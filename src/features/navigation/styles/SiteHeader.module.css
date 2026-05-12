@@ -8,8 +8,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem clamp(1.25rem, 4vw, 2.75rem);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(6, 5, 14, 0.45);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--header-bg);
   backdrop-filter: blur(14px) saturate(120%);
   -webkit-backdrop-filter: blur(14px) saturate(120%);
 }
@@ -19,7 +19,7 @@
   font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: rgba(248, 250, 255, 0.92);
+  color: var(--text-emphasis);
   text-decoration: none;
 }
 
@@ -34,14 +34,14 @@
   font-weight: 450;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(230, 235, 255, 0.55);
+  color: var(--text-quiet);
   text-decoration: none;
   transition: color 0.35s ease, text-shadow 0.35s ease;
 }
 
 .nav a:hover {
-  color: rgba(244, 248, 255, 0.92);
-  text-shadow: 0 0 24px rgba(200, 210, 255, 0.2);
+  color: var(--text-emphasis);
+  text-shadow: 0 0 24px var(--glow-cool-20);
 }
 
 @media (max-width: 520px) {

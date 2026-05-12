@@ -1,0 +1,39 @@
+---
+description: Estrutura de páginas, tokens de estilo globais e práticas React do portfólio
+alwaysApply: true
+---
+
+# Convenções do projeto (portifolio-cosmic)
+
+Lê isto antes de alterar código neste repositório.
+
+## Páginas (`src/pages`)
+
+- Cada rota/página vive numa **pasta com o nome da página**, no padrão de `src/pages/Home`:
+  - `HomePage.tsx` — componente da página (default export).
+  - `home.css` (ou nome alinhado à página) — estilos **específicos dessa página**, importados no `HomePage.tsx` com caminho relativo (ex.: `import './home.css'`).
+- Não coloques lógica de página dentro de `src/app` além do arranque (rotas futuras podem seguir o mesmo padrão: `src/pages/NomeDaRota/...`).
+
+## Estilos globais e tokens (`src/app/styles`)
+
+- Cores, gradientes do tema, sombras partilhadas e variáveis de design system ficam em **`src/app/styles/globals.css`** (`:root`).
+- Em **CSS Modules** ou CSS de features/widgets: usa **`var(--nome-da-variável)`**; **não** uses cores literais (`#rgb`, `rgba(...)`) fora de `globals.css`.
+- Mantém `globals.css` como única fonte de verdade dos tokens; nomes existentes (`--bg`, `--text`, `--border`, `--hero-overlay-*`, etc.) devem ser reutilizados antes de criar novos.
+
+## Features e restante `src`
+
+- UI reutilizável por domínio continua em **`src/features/<nome>/`** (componentes, estilos do módulo, dados em `model/` quando fizer sentido).
+- Assets partilhados: **`src/shared/assets/`**.
+
+## React e TypeScript
+
+- Componentes de página e de feature como **funções** com tipos explícitos quando acrescentares props.
+- Preferir composição, hooks pequenos e um ficheiro por componente principal quando o ficheiro crescer.
+- Evitar `any`; respeitar `verbatimModuleSyntax` / imports de tipo (`import type`) conforme o `tsconfig`.
+- Acessibilidade: labels em navegação, `aria-*` quando relevante, conteúdo interativo com elementos semânticos (`button`, `a`, `nav`).
+
+## Resumo
+
+1. Nova página → pasta em `src/pages/<Nome>/` com `*Page.tsx` + CSS da página ao lado.
+2. Cores e tema → só em `src/app/styles/globals.css`; resto com `var(--...)`.
+3. React → componentes claros, tipados e acessíveis.

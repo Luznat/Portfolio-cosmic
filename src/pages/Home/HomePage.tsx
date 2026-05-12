@@ -2,7 +2,7 @@ import { SiteHeader } from '../../features/navigation'
 import { HeroSection } from '../../features/hero'
 import { NextStepsSection } from '../../features/next-steps'
 import { SectionTicks } from '../../widgets/section-ticks'
-import '../../styles/home.css'
+import './home.css'
 
 export default function HomePage() {
   return (

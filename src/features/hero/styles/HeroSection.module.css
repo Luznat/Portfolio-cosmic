@@ -27,10 +27,10 @@
   pointer-events: none;
   background: linear-gradient(
     90deg,
-    rgba(2, 2, 8, 0.96) 0%,
-    rgba(4, 4, 12, 0.88) 32%,
-    rgba(8, 7, 18, 0.52) 58%,
-    rgba(12, 10, 26, 0.22) 82%,
-    rgba(16, 14, 32, 0.12) 100%
+    var(--hero-overlay-1) 0%,
+    var(--hero-overlay-2) 32%,
+    var(--hero-overlay-3) 58%,
+    var(--hero-overlay-4) 82%,
+    var(--hero-overlay-5) 100%
   );
 }
