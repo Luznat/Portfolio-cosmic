@@ -1,11 +1,6 @@
 import { motion } from 'framer-motion'
-import styles from './SiteHeader.module.css'
-
-const nav = [
-  { href: '#inicio', label: 'Início' },
-  { href: '#projetos', label: 'Projetos' },
-  { href: '#contato', label: 'Contato' },
-] as const
+import { nav } from '../model/navigation.data'
+import styles from '../styles/SiteHeader.module.css'
 
 export function SiteHeader() {
   return (

@@ -1,6 +1,6 @@
-import reactLogo from '../assets/react.svg'
-import viteLogo from '../assets/vite.svg'
-import { communityLinks, documentationLinks } from '../data/homeLinks'
+import reactLogo from '../../../shared/assets/images/react.svg'
+import viteLogo from '../../../shared/assets/images/vite.svg'
+import { communityLinks, documentationLinks } from '../../../content/homeLinks'
 
 export function NextStepsSection() {
   return (
@@ -15,11 +15,7 @@ export function NextStepsSection() {
           {documentationLinks.map((item) => (
             <li key={item.href}>
               <a href={item.href} target="_blank" rel="noreferrer">
-                <img
-                  className={item.image === 'vite' ? 'logo' : 'button-icon'}
-                  src={item.image === 'vite' ? viteLogo : reactLogo}
-                  alt=""
-                />
+                <img className={item.image === 'vite' ? 'logo' : 'button-icon'} src={item.image === 'vite' ? viteLogo : reactLogo} alt="" />
                 {item.label}
               </a>
             </li>
@@ -36,11 +32,7 @@ export function NextStepsSection() {
           {communityLinks.map((item) => (
             <li key={item.href}>
               <a href={item.href} target="_blank" rel="noreferrer">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden
-                >
+                <svg className="button-icon" role="presentation" aria-hidden>
                   <use href={`/icons.svg#${item.spriteId}`}></use>
                 </svg>
                 {item.label}
