@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
-import heroVideoUrl from '../../assets/videos/nPQXGJoy-ezgif.com-reverse-video.mp4'
-import styles from './HeroBackgroundVideo.module.css'
+import heroVideoUrl from '../../../shared/assets/videos/nPQXGJoy-ezgif.com-reverse-video.mp4'
+import styles from '../styles/HeroBackgroundVideo.module.css'
 
 export function HeroBackgroundVideo() {
   const ref = useRef<HTMLVideoElement>(null)
@@ -27,15 +27,7 @@ export function HeroBackgroundVideo() {
 
   return (
     <div className={styles.wrap} aria-hidden>
-      <video
-        ref={ref}
-        className={styles.video}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-      >
+      <video ref={ref} className={styles.video} autoPlay muted loop playsInline preload="auto">
         <source src={heroVideoUrl} type="video/mp4" />
       </video>
     </div>

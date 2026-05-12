@@ -1,6 +1,6 @@
 import { HeroBackgroundVideo } from './HeroBackgroundVideo'
 import { HeroContent } from './HeroContent'
-import styles from './HeroSection.module.css'
+import styles from '../styles/HeroSection.module.css'
 
 export function HeroSection() {
   return (
