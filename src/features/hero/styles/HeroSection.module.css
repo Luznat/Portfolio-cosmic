@@ -1,7 +1,7 @@
 .section {
   position: relative;
-  min-height: 100dvh;
-  min-height: 100svh;
+  min-height: 88dvh;
+  min-height: 88svh;
   display: flex;
   flex-direction: column;
   isolation: isolate;
