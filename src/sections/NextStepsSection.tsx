@@ -4,7 +4,7 @@ import { communityLinks, documentationLinks } from '../data/homeLinks'
 
 export function NextStepsSection() {
   return (
-    <section id="next-steps">
+    <section id="projetos">
       <div id="docs">
         <svg className="icon" role="presentation" aria-hidden>
           <use href="/icons.svg#documentation-icon"></use>
@@ -26,7 +26,7 @@ export function NextStepsSection() {
           ))}
         </ul>
       </div>
-      <div id="social">
+      <div id="contato">
         <svg className="icon" role="presentation" aria-hidden>
           <use href="/icons.svg#social-icon"></use>
         </svg>

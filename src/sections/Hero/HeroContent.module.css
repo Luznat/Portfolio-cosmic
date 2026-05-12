@@ -1,0 +1,71 @@
+.content {
+  text-align: left;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display, system-ui), system-ui, sans-serif;
+  font-size: clamp(1.85rem, 4.2vw, 3.35rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #f8f9ff;
+  text-shadow:
+    0 0 40px rgba(200, 210, 255, 0.18),
+    0 0 80px rgba(160, 170, 220, 0.08);
+}
+
+.subtitle {
+  margin: 1.35rem 0 0;
+  max-width: 34rem;
+  font-size: clamp(0.95rem, 1.35vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: rgba(230, 235, 255, 0.72);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.35rem;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(245, 247, 255, 0.88);
+  background: rgba(8, 8, 18, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.35s ease;
+  box-shadow: 0 0 0 0 rgba(180, 190, 255, 0);
+}
+
+.btn:hover {
+  background: rgba(14, 14, 28, 0.55);
+  border-color: rgba(220, 225, 255, 0.22);
+  box-shadow:
+    0 0 28px rgba(160, 170, 220, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transform: translateY(-1px);
+}
+
+.btn:focus-visible {
+  outline: 1px solid rgba(200, 210, 255, 0.45);
+  outline-offset: 3px;
+}

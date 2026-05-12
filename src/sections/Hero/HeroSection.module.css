@@ -1,0 +1,36 @@
+.section {
+  position: relative;
+  min-height: 100dvh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  overflow: hidden;
+  scroll-margin-top: 4.5rem;
+}
+
+.inner {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: clamp(5.5rem, 12vw, 7rem) clamp(1.25rem, 5vw, 3.5rem)
+    clamp(2.5rem, 6vw, 4rem);
+  max-width: min(42rem, 92vw);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 2, 8, 0.96) 0%,
+    rgba(4, 4, 12, 0.88) 32%,
+    rgba(8, 7, 18, 0.52) 58%,
+    rgba(12, 10, 26, 0.22) 82%,
+    rgba(16, 14, 32, 0.12) 100%
+  );
+}
