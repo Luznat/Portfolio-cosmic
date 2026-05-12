@@ -1,5 +1,5 @@
 #projetos {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 5.75rem;
   display: flex;
   border-top: 1px solid var(--border);
   text-align: left;
@@ -34,7 +34,7 @@
 }
 
 #contato {
-  scroll-margin-top: 5.5rem;
+  scroll-margin-top: 6.25rem;
 }
 
 #projetos ul {
