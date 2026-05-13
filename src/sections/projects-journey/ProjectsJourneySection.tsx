@@ -11,8 +11,7 @@ const revealTransition = {
 }
 
 export const ProjectsJourneySection = memo(function ProjectsJourneySection() {
-  const { scrollYProgress, wormholeProgress, constellationRevealed } =
-    useHomeScroll()
+  const { scrollYProgress } = useHomeScroll()
 
   return (
     <section
@@ -21,27 +20,21 @@ export const ProjectsJourneySection = memo(function ProjectsJourneySection() {
       aria-labelledby="journey-heading"
     >
       <div className={styles.stars} aria-hidden>
-        <StarDustField
-          scrollYProgress={scrollYProgress}
-          wormholeProgress={wormholeProgress}
-        />
+        <StarDustField scrollYProgress={scrollYProgress} />
       </div>
       <div className={styles.stage}>
         <h2 id="journey-heading" className={styles.kicker}>
           Jornada
         </h2>
         <div className={styles.constellationWrap}>
-          {constellationRevealed ? (
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={revealTransition}
-            >
-              <ConstellationProjects />
-            </motion.div>
-          ) : (
-            <div className={styles.constellationPlaceholder} aria-hidden />
-          )}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={revealTransition}
+          >
+            <ConstellationProjects />
+          </motion.div>
         </div>
       </div>
       <footer id="contato" className={styles.footer}>

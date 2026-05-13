@@ -17,7 +17,7 @@ const reveal = {
 }
 
 export function HeroContent() {
-  const { beginWormhole } = useHomeScroll()
+  const { scrollToJourney } = useHomeScroll()
 
   return (
     <div className={styles.content}>
@@ -49,7 +49,7 @@ export function HeroContent() {
           animate="show"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          onClick={beginWormhole}
+          onClick={scrollToJourney}
         >
           Ver Projetos
         </motion.button>

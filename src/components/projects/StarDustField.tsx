@@ -38,22 +38,11 @@ const STAR_LAYOUT: readonly StarSpec[] = [
 function StarDot({
   spec,
   scrollYProgress,
-  wormholeProgress,
-  streakBias,
 }: {
   spec: StarSpec
   scrollYProgress: MotionValue<number>
-  wormholeProgress: MotionValue<number>
-  streakBias: number
 }) {
-  const y = useTransform(
-    [scrollYProgress, wormholeProgress],
-    ([s, w]) => {
-      const drift = spec.depth * 14 * (s as number)
-      const wh = (w as number) * (w as number)
-      return drift + wh * (-95 - streakBias * 3.5)
-    },
-  )
+  const y = useTransform(scrollYProgress, (s) => spec.depth * 14 * s)
 
   return (
     <motion.circle
@@ -73,12 +62,10 @@ function StarDot({
 
 export type StarDustFieldProps = {
   readonly scrollYProgress: MotionValue<number>
-  readonly wormholeProgress: MotionValue<number>
 }
 
 export const StarDustField = memo(function StarDustField({
   scrollYProgress,
-  wormholeProgress,
 }: StarDustFieldProps) {
   const compact = useMemo(() => {
     if (typeof window === 'undefined') return false
@@ -92,12 +79,7 @@ export const StarDustField = memo(function StarDustField({
     [compact],
   )
 
-  const groupStretch = useTransform(
-    wormholeProgress,
-    [0, 0.12, 1],
-    [1, compact ? 4 : 8, compact ? 10 : 18],
-  )
-  const groupY = useTransform(wormholeProgress, [0, 1], [0, compact ? -28 : -48])
+  const groupY = useTransform(scrollYProgress, (s) => -10 * s)
 
   return (
     <svg
@@ -106,21 +88,9 @@ export const StarDustField = memo(function StarDustField({
       preserveAspectRatio="none"
       aria-hidden
     >
-      <motion.g
-        style={{
-          scaleY: groupStretch,
-          y: groupY,
-          transformOrigin: '50px 50px',
-        }}
-      >
+      <motion.g style={{ y: groupY, transformOrigin: '50px 50px' }}>
         {stars.map((spec, i) => (
-          <StarDot
-            key={i}
-            spec={spec}
-            scrollYProgress={scrollYProgress}
-            wormholeProgress={wormholeProgress}
-            streakBias={i}
-          />
+          <StarDot key={i} spec={spec} scrollYProgress={scrollYProgress} />
         ))}
       </motion.g>
     </svg>

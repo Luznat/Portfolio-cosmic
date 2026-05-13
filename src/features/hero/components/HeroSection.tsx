@@ -1,93 +1,47 @@
 import {
   motion,
   useMotionTemplate,
-  useMotionValue,
   useReducedMotion,
   useTransform,
 } from 'framer-motion'
-import { useEffect } from 'react'
 import { HeroBackgroundVideo } from './HeroBackgroundVideo'
 import { HeroContent } from './HeroContent'
 import { useHomeScroll } from '../../../hooks/useHomeScroll'
 import styles from '../styles/HeroSection.module.css'
 
 export function HeroSection() {
-  const {
-    scrollYProgress,
-    wormholeProgress,
-    constellationRevealed,
-    beginWormhole,
-  } = useHomeScroll()
+  const { scrollYProgress, scrollToJourney } = useHomeScroll()
   const reduce = useReducedMotion()
 
-  const gateMv = useMotionValue(0)
-  useEffect(() => {
-    gateMv.set(constellationRevealed ? 1 : 0)
-  }, [constellationRevealed, gateMv])
+  const scale = useTransform(scrollYProgress, (s) => {
+    const t = Math.min(1, s / 0.52)
+    return 1.1 - (reduce ? 0.06 : 0.09) * t
+  })
 
-  const scale = useTransform(
-    [scrollYProgress, wormholeProgress, gateMv],
-    ([s, w, g]) => {
-      if ((g as number) > 0.5) return 0.042
-      const wh = (w as number) * (w as number)
-      const t = Math.min(1, (s as number) / 0.52)
-      const scrollBase = 1.1 - (reduce ? 0.06 : 0.09) * t
-      return scrollBase * (1 - wh) + 0.022 * wh
-    },
-  )
+  const opacity = useTransform(scrollYProgress, (s) => {
+    const t = Math.min(1, s / 0.55)
+    return 1 - (reduce ? 0.12 : 0.18) * t
+  })
 
-  const opacity = useTransform(
-    [scrollYProgress, wormholeProgress, gateMv],
-    ([s, w, g]) => {
-      if ((g as number) > 0.5) return 0.08
-      const wh = (w as number) * (w as number)
-      const t = Math.min(1, (s as number) / 0.55)
-      const scrollBase = 1 - (reduce ? 0.12 : 0.18) * t
-      return scrollBase * (1 - wh * 0.92) + 0.05 * wh
-    },
-  )
-
-  const blurPx = useTransform(
-    [scrollYProgress, wormholeProgress, gateMv],
-    ([s, w, g]) => {
-      if ((g as number) > 0.5) return reduce ? 2 : 5
-      const wh = (w as number) * (w as number)
-      const scrollBlur = (reduce ? 0.4 : 0.9) * Math.min(1, (s as number) / 0.48)
-      return scrollBlur + wh * (reduce ? 2 : 9)
-    },
-  )
+  const blurPx = useTransform(scrollYProgress, (s) => {
+    return (reduce ? 0.4 : 0.9) * Math.min(1, s / 0.48)
+  })
   const filter = useMotionTemplate`blur(${blurPx}px)`
 
-  const overlayOpacity = useTransform(
-    [scrollYProgress, wormholeProgress, gateMv],
-    ([s, w, g]) => {
-      if ((g as number) > 0.5) return 0.4
-      const wh = (w as number) * (w as number)
-      const t = Math.min(1, (s as number) / 0.5)
-      const base = 1 - (reduce ? 0.08 : 0.14) * t
-      return base * (1 - wh * 0.35) + 0.25 * wh
-    },
-  )
+  const overlayOpacity = useTransform(scrollYProgress, (s) => {
+    const t = Math.min(1, s / 0.5)
+    return 1 - (reduce ? 0.08 : 0.14) * t
+  })
 
-  const innerBlurPx = useTransform(
-    [scrollYProgress, wormholeProgress, gateMv],
-    ([s, w, g]) => {
-      if ((g as number) > 0.5) return reduce ? 1.2 : 3.2
-      const wh = (w as number) * (w as number)
-      const scrollBlur = (reduce ? 0.22 : 0.48) * Math.min(1, (s as number) / 0.48)
-      return scrollBlur + wh * (reduce ? 1.1 : 5.5)
-    },
-  )
+  const innerBlurPx = useTransform(scrollYProgress, (s) => {
+    return (reduce ? 0.22 : 0.48) * Math.min(1, s / 0.48)
+  })
   const innerFilter = useMotionTemplate`blur(${innerBlurPx}px)`
 
-  const innerY = useTransform(
-    [wormholeProgress, gateMv],
-    ([w, g]) => {
-      if ((g as number) > 0.5) return 0
-      const wh = (w as number) * (w as number)
-      return wh * (reduce ? 7 : 16)
-    },
-  )
+  const innerY = useTransform(scrollYProgress, (s) => {
+    const t = Math.min(1, s / 0.48)
+    return t * (reduce ? 5 : 12)
+  })
 
   const foregroundStyle = {
     scale,
@@ -115,11 +69,12 @@ export function HeroSection() {
         </motion.div>
       </div>
       <motion.div className={styles.scrollCueBand} style={foregroundStyle}>
+
         <button
           type="button"
           className={styles.scrollCue}
-          onClick={beginWormhole}
-          aria-label="Entrar na jornada espacial"
+          onClick={scrollToJourney}
+          aria-label="Ir para a secção de projetos abaixo"
         >
           <svg
             viewBox="0 0 24 24"

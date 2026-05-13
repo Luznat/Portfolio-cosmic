@@ -1,7 +1,7 @@
 .section {
   position: relative;
-  min-height: 100dvh;
-  min-height: 100svh;
+  /* Menor que 100vh: deixa ver um pouco da secção seguinte (jornada) por baixo */
+  min-height: min(100svh, max(36rem, 84svh));
   display: flex;
   flex-direction: column;
   isolation: isolate;
@@ -9,6 +9,13 @@
   scroll-snap-align: start;
   scroll-snap-stop: always;
   scroll-margin-top: 5.5rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .section {
+    min-height: min(100svh, max(32rem, 88svh));
+  }
 }
 
 .videoParallax {
@@ -26,14 +33,14 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: min(32vh, 280px);
+  height: min(28vh, 240px);
   z-index: 4;
   pointer-events: none;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    color-mix(in srgb, var(--bg) 25%, transparent) 42%,
-    color-mix(in srgb, var(--bg) 72%, transparent) 78%,
+    color-mix(in srgb, var(--bg) 22%, transparent) 38%,
+    color-mix(in srgb, var(--bg) 65%, transparent) 72%,
     var(--bg) 100%
   );
 }
@@ -45,7 +52,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  transform: translateY(-10.25vh);
+  transform: translateY(clamp(-7vh, -5.5svh, -3vh));
 }
 
 .inner {
@@ -75,15 +82,34 @@
 
 .scrollCueBand {
   position: absolute;
-  bottom: clamp(0.85rem, 2.5vh, 1.75rem);
+  bottom: clamp(0.65rem, 2vh, 1.35rem);
   left: 0;
   right: 0;
   z-index: 5;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
   pointer-events: none;
   transform-origin: 50% 100%;
   will-change: transform, opacity, filter;
+}
+
+.scrollHint {
+  margin: 0;
+  max-width: 17rem;
+  padding: 0 0.75rem;
+  font-family: var(--sans);
+  font-size: clamp(0.6875rem, 1.55vw, 0.8125rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.4;
+  color: var(--text-subtle);
+  text-shadow:
+    0 0 1px color-mix(in srgb, var(--bg) 88%, transparent),
+    0 2px 14px color-mix(in srgb, var(--bg) 70%, transparent);
 }
 
 .scrollCueBand .scrollCue {

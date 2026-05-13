@@ -2,11 +2,8 @@ import type { MotionValue } from 'framer-motion'
 import { createContext, useContext } from 'react'
 
 export type HomeScrollContextValue = {
-  scrollYProgress: MotionValue<number>
-  wormholeProgress: MotionValue<number>
-  constellationRevealed: boolean
-  beginWormhole: () => void
-  beginReverseWormhole: () => void
+  readonly scrollYProgress: MotionValue<number>
+  readonly scrollToJourney: () => void
 }
 
 export const HomeScrollContext = createContext<HomeScrollContextValue | null>(
