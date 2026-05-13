@@ -1,0 +1,78 @@
+.root {
+  position: relative;
+  width: min(100%, 52rem);
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  min-height: clamp(220px, 42vw, 380px);
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.line {
+  stroke: color-mix(in srgb, var(--text-quiet) 55%, transparent);
+  stroke-width: 0.14;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.65s ease;
+}
+
+.root:hover .line {
+  stroke: color-mix(in srgb, var(--accent) 32%, var(--text-quiet) 48%);
+}
+
+.nodeAnchor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.node {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border-soft) 80%, transparent);
+  box-shadow: 0 0 0 0 transparent;
+  transition:
+    box-shadow 0.65s ease,
+    border-color 0.65s ease,
+    background 0.65s ease;
+}
+
+.node:hover {
+  border-color: color-mix(in srgb, var(--border-hover) 70%, transparent);
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  box-shadow: 0 0 28px var(--glow-deep-12);
+}
+
+.node:focus-visible {
+  outline: 1px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+.nodeLabel {
+  display: block;
+  font-family: var(--heading);
+  font-size: clamp(0.82rem, 1.35vw, 0.98rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-h);
+  text-shadow: 0 0 18px var(--glow-deep-08);
+}
+
+.nodeTag {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: clamp(0.66rem, 1.05vw, 0.76rem);
+  color: var(--text-quiet);
+  letter-spacing: 0.05em;
+}

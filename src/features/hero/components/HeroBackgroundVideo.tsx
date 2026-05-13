@@ -27,7 +27,15 @@ export function HeroBackgroundVideo() {
 
   return (
     <div className={styles.wrap} aria-hidden>
-      <video ref={ref} className={styles.video} autoPlay muted loop playsInline preload="auto">
+      <video
+        ref={ref}
+        className={styles.video}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+      >
         <source src={heroVideoUrl} type="video/mp4" />
       </video>
     </div>

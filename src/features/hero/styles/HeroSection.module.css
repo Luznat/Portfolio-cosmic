@@ -1,24 +1,61 @@
 .section {
   position: relative;
-  min-height: 88dvh;
-  min-height: 88svh;
+  min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   isolation: isolate;
   overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   scroll-margin-top: 5.5rem;
 }
 
-.inner {
+.videoParallax {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  transform-origin: 50% 42%;
+  will-change: transform, opacity, filter;
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: min(32vh, 280px);
+  z-index: 4;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in srgb, var(--bg) 25%, transparent) 42%,
+    color-mix(in srgb, var(--bg) 72%, transparent) 78%,
+    var(--bg) 100%
+  );
+}
+
+.innerLift {
   position: relative;
   z-index: 3;
   flex: 1;
   display: flex;
   align-items: center;
+  width: 100%;
+  transform: translateY(-10.25vh);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
   padding: clamp(6rem, 12vw, 7.5rem) clamp(1.25rem, 5vw, 3.5rem)
     clamp(2.5rem, 6vw, 4rem);
   max-width: min(42rem, 92vw);
-  transform: translateY(-10.25vh);
+  transform-origin: 50% 55%;
+  will-change: transform, opacity, filter;
 }
 
 .overlay {
@@ -34,4 +71,79 @@
     var(--hero-overlay-4) 82%,
     var(--hero-overlay-5) 100%
   );
+}
+
+.scrollCueBand {
+  position: absolute;
+  bottom: clamp(0.85rem, 2.5vh, 1.75rem);
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity, filter;
+}
+
+.scrollCueBand .scrollCue {
+  pointer-events: auto;
+}
+
+.scrollCue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  border: none;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 35%, transparent);
+  color: var(--text-quiet);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    color 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.scrollCue:hover {
+  color: var(--text-emphasis);
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  box-shadow: 0 0 20px var(--glow-deep-12);
+}
+
+.scrollCue:focus-visible {
+  outline: 1px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.scrollCue svg {
+  width: 1rem;
+  height: 1rem;
+  opacity: 0.75;
+  animation: scrollCueFloat 2.6s ease-in-out infinite;
+}
+
+@keyframes scrollCueFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translateY(5px);
+    opacity: 0.95;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollCue svg {
+    animation: none;
+    opacity: 0.75;
+  }
 }

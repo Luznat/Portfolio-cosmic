@@ -1,0 +1,71 @@
+.projectPage {
+  min-height: 100dvh;
+  min-height: 100svh;
+  padding: clamp(5.5rem, 11vw, 7rem) clamp(1.25rem, 5vw, 2.5rem)
+    clamp(2.5rem, 6vw, 4rem);
+  box-sizing: border-box;
+  background: var(--bg);
+}
+
+.projectPage__inner {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.projectPage__crumb {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: var(--text-quiet);
+}
+
+.projectPage__crumb a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.projectPage__crumb a:hover {
+  text-decoration: underline;
+}
+
+.projectPage__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--heading);
+  font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--text-h);
+}
+
+.projectPage__tagline {
+  margin: 0 0 1.5rem;
+  color: var(--text-subtle);
+  line-height: 1.5;
+}
+
+.projectPage__body {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.projectPage__lead {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.projectPage__muted {
+  margin: 0 0 1rem;
+  color: var(--text-subtle);
+}
+
+.projectPage__back {
+  display: inline-block;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.projectPage__back:hover {
+  text-decoration: underline;
+}

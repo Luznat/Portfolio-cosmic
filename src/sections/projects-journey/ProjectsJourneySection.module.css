@@ -1,0 +1,90 @@
+.section {
+  position: relative;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 220vh;
+  box-sizing: border-box;
+  padding: clamp(4rem, 10vw, 6rem) clamp(1.25rem, 5vw, 2.5rem) clamp(3rem, 8vw, 5rem);
+  scroll-margin-top: 5.75rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg) 88%, transparent) 0%,
+    var(--bg) 18%,
+    var(--bg) 100%
+  );
+  overflow: clip;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  opacity: 0.85;
+}
+
+.stage {
+  position: relative;
+  z-index: 2;
+  min-height: 120vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: clamp(2rem, 6vh, 4rem);
+}
+
+.kicker {
+  margin: 0 0 2.5rem;
+  font-size: clamp(0.65rem, 1vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-quiet);
+}
+
+.constellationWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem 0 4rem;
+}
+
+.constellationPlaceholder {
+  width: min(100%, 52rem);
+  min-height: clamp(220px, 42vw, 380px);
+}
+
+.footer {
+  position: relative;
+  z-index: 2;
+  max-width: 28rem;
+  margin: 0 auto;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  scroll-margin-top: 6.25rem;
+}
+
+.footerTitle {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-emphasis);
+}
+
+.footerText {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-quiet);
+}
+
+@media (max-width: 768px) {
+  .section {
+    min-height: 180vh;
+  }
+
+  .stage {
+    min-height: 95vh;
+  }
+}
