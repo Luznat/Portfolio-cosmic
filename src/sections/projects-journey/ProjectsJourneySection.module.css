@@ -1,7 +1,5 @@
 .section {
   position: relative;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   min-height: 220vh;
   box-sizing: border-box;
   padding: clamp(4rem, 10vw, 6rem) clamp(1.25rem, 5vw, 2.5rem) clamp(3rem, 8vw, 5rem);
