@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion'
-import { memo } from 'react'
+import { motion, useScroll } from 'framer-motion'
+import { memo, useRef } from 'react'
 import { AndromedaConstellation } from '../../components/projects/andromeda/AndromedaConstellation'
 import { StarDustField } from '../../components/projects/StarDustField'
 import { useHomeScroll } from '../../hooks/useHomeScroll'
@@ -11,10 +11,17 @@ const revealTransition = {
 }
 
 export const ProjectsJourneySection = memo(function ProjectsJourneySection() {
-  const { scrollYProgress } = useHomeScroll()
+  const { scrollContainerRef, scrollYProgress } = useHomeScroll()
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const { scrollYProgress: journeyScrollYProgress } = useScroll({
+    container: scrollContainerRef,
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  })
 
   return (
     <section
+      ref={sectionRef}
       id="projetos"
       className={styles.section}
       aria-labelledby="journey-heading"
@@ -39,7 +46,9 @@ export const ProjectsJourneySection = memo(function ProjectsJourneySection() {
             transition={revealTransition}
             aria-describedby="andromeda-map-desc"
           >
-            <AndromedaConstellation />
+            <AndromedaConstellation
+              journeyScrollYProgress={journeyScrollYProgress}
+            />
           </motion.div>
         </div>
       </div>

@@ -8,6 +8,8 @@ export interface ScheduledEdge {
   readonly key: string
   readonly from: SchedulePoint
   readonly to: SchedulePoint
+  /** Which project constellation this segment belongs to */
+  readonly projectSlug: string
   /** Normalized scroll segment through the constellation stage (0–1) */
   readonly reveal: readonly [number, number]
 }
@@ -56,14 +58,28 @@ export function buildConstellationSchedule(
   const n = projects.length
   const startPad = 0
   const gapBetweenProjects = n > 1 ? 0.012 : 0
-  const usable = 1 - startPad - gapBetweenProjects * Math.max(0, n - 1)
-  const bandW = usable / Math.max(1, n)
 
-  let bandCursor = startPad
+  const twoProjectBandWidth = 0.46
+  const bands: readonly (readonly [number, number])[] =
+    n === 2
+      ? [
+          [0.12, 0.12 + twoProjectBandWidth] as const,
+          [0.3, 0.3 + twoProjectBandWidth] as const,
+        ]
+      : (() => {
+          const usable = 1 - startPad - gapBetweenProjects * Math.max(0, n - 1)
+          const bandW = usable / Math.max(1, n)
+          let bandCursor = startPad
+          return projects.map(() => {
+            const bandStart = bandCursor
+            const bandEnd = bandStart + bandW
+            bandCursor = bandEnd + gapBetweenProjects
+            return [bandStart, bandEnd] as const
+          })
+        })()
 
-  projects.forEach((p) => {
-    const bandStart = bandCursor
-    const bandEnd = bandStart + bandW
+  projects.forEach((p, pi) => {
+    const [bandStart, bandEnd] = bands[pi] ?? [0, 1]
     const chain = p.constellationChain
     const steps = 2 * chain.length - 1
     const stepW = (bandEnd - bandStart) / steps
@@ -92,13 +108,12 @@ export function buildConstellationSchedule(
             key: `${chain[k]}__${chain[k + 1]}`,
             from: a,
             to: b,
+            projectSlug: p.slug,
             reveal: [t0, Math.max(t0 + 0.02, t1)],
           })
         }
       }
     }
-
-    bandCursor = bandEnd + gapBetweenProjects
   })
 
   const mainStars: MainStarReveal[] = projects.map((p) => {

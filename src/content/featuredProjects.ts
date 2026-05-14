@@ -20,8 +20,12 @@ export interface FeaturedProject {
   readonly coverSrc?: string
   readonly satellites: readonly ProjectSatellite[]
   /**
-   * Single path through this constellation: small stars (ids) and project slug.
-   * Consecutive pairs are the only segments drawn (celestial map, no random chords).
+   * Scroll-linked drift for this constellation (lines + stars move together).
+   * 0 = off. Typical 0.1–0.22 (multiplies pixel range).
+   */
+  readonly constellationParallax?: number
+  /**
+   * Single path: satellite ids and project slug; consecutive pairs draw segments.
    */
   readonly constellationChain: readonly string[]
 }
@@ -39,6 +43,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
     cx: 15,
     cy: 45,
     coverSrc: heroCover,
+    constellationParallax: 0.15,
     constellationChain: [
       'orbit-s2',
       'orbit-s1',
@@ -59,6 +64,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
     tagline: 'Design system espacial',
     cx: 72,
     cy: 10,
+    constellationParallax: 0.15,
     constellationChain: [
       'neb-s1',
       'nebula-kit',

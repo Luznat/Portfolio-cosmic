@@ -49,6 +49,7 @@
   stroke: var(--andromeda-line);
   stroke-width: 0.17;
   stroke-linecap: round;
+  stroke-dasharray: 0.55 0.42;
   filter:
     drop-shadow(0 0 2px var(--glow-cool-18))
     drop-shadow(0 0 5px var(--glow-deep-12));
@@ -73,11 +74,17 @@
   pointer-events: none;
 }
 
-.starField > *:not(.lineSvg) {
+.constellationLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.constellationLayer > *:not(.lineSvg) {
   pointer-events: auto;
 }
 
-.starField .lineSvg {
+.constellationLayer .lineSvg {
   pointer-events: none;
 }
 

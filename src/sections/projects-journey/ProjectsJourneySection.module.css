@@ -17,7 +17,8 @@
       var(--bg) 18%,
       var(--bg) 100%
     );
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .stars {
