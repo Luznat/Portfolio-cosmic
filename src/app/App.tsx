@@ -32,7 +32,11 @@ function HomeRoute() {
 
   return (
     <HomeScrollContext.Provider
-      value={{ scrollYProgress, scrollToJourney }}
+      value={{
+        scrollYProgress,
+        scrollToJourney,
+        scrollContainerRef: mainRef,
+      }}
     >
       <HomePage mainRef={mainRef} />
     </HomeScrollContext.Provider>

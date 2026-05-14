@@ -62,10 +62,13 @@ function StarDot({
 
 export type StarDustFieldProps = {
   readonly scrollYProgress: MotionValue<number>
+  /** Fewer dots, lower visual noise (e.g. Andrômeda constellation stage) */
+  readonly density?: 'full' | 'sparse'
 }
 
 export const StarDustField = memo(function StarDustField({
   scrollYProgress,
+  density = 'full',
 }: StarDustFieldProps) {
   const compact = useMemo(() => {
     if (typeof window === 'undefined') return false
@@ -74,16 +77,22 @@ export const StarDustField = memo(function StarDustField({
     )
   }, [])
 
-  const stars = useMemo(
-    () => (compact ? STAR_LAYOUT.slice(0, 11) : [...STAR_LAYOUT]),
-    [compact],
-  )
+  const stars = useMemo(() => {
+    if (density === 'sparse') {
+      const sparse = STAR_LAYOUT.slice(0, 8)
+      return compact ? sparse.slice(0, 6) : sparse
+    }
+    return compact ? STAR_LAYOUT.slice(0, 11) : [...STAR_LAYOUT]
+  }, [compact, density])
 
   const groupY = useTransform(scrollYProgress, (s) => -10 * s)
 
+  const fieldClass =
+    density === 'sparse' ? `${styles.field} ${styles.fieldSparse}` : styles.field
+
   return (
     <svg
-      className={styles.field}
+      className={fieldClass}
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
       aria-hidden

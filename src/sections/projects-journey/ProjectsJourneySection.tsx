@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { memo } from 'react'
-import { ConstellationProjects } from '../../components/projects/ConstellationProjects'
+import { AndromedaConstellation } from '../../components/projects/andromeda/AndromedaConstellation'
 import { StarDustField } from '../../components/projects/StarDustField'
 import { useHomeScroll } from '../../hooks/useHomeScroll'
 import styles from './ProjectsJourneySection.module.css'
@@ -20,20 +20,25 @@ export const ProjectsJourneySection = memo(function ProjectsJourneySection() {
       aria-labelledby="journey-heading"
     >
       <div className={styles.stars} aria-hidden>
-        <StarDustField scrollYProgress={scrollYProgress} />
+        <StarDustField scrollYProgress={scrollYProgress} density="sparse" />
       </div>
       <div className={styles.stage}>
         <h2 id="journey-heading" className={styles.kicker}>
-          Jornada
+          Andrômeda
         </h2>
+        <p id="andromeda-map-desc" className={styles.subkicker}>
+          Orbit no traço de Escorpião · Nebula Kit no traço de Touro
+        </p>
         <div className={styles.constellationWrap}>
           <motion.div
+            className={styles.constellationMount}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={revealTransition}
+            aria-describedby="andromeda-map-desc"
           >
-            <ConstellationProjects />
+            <AndromedaConstellation />
           </motion.div>
         </div>
       </div>

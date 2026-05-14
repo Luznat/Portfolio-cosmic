@@ -6,6 +6,10 @@
   pointer-events: none;
 }
 
+.fieldSparse {
+  opacity: 0.42;
+}
+
 .star {
   transform-box: fill-box;
   transform-origin: center;

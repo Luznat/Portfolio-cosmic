@@ -39,6 +39,9 @@
   --glow-deep-08: rgba(160, 170, 220, 0.08);
   --glow-deep-12: rgba(160, 170, 220, 0.12);
   --glow-edge: rgba(180, 190, 255, 0);
+  /* Constellation / Andrômeda (cool, minimal) */
+  --andromeda-line: color-mix(in srgb, var(--text-quiet) 52%, transparent);
+  --andromeda-line-muted: color-mix(in srgb, var(--text-quiet) 28%, transparent);
   --focus-ring: rgba(200, 210, 255, 0.45);
   --cta-inset-highlight: rgba(255, 255, 255, 0.06);
 

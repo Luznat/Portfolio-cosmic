@@ -22,7 +22,7 @@ export function ProjectPage() {
           ) : (
             <>
               <p className="projectPage__crumb">
-                <Link to="/#projetos">Jornada</Link>
+                <Link to="/#projetos">Andrômeda</Link>
                 <span aria-hidden> / </span>
                 <span>{project.name}</span>
               </p>
@@ -35,7 +35,7 @@ export function ProjectPage() {
                 </p>
               </div>
               <Link className="projectPage__back" to="/#projetos">
-                ← Voltar à jornada
+                ← Voltar ao mapa
               </Link>
             </>
           )}
