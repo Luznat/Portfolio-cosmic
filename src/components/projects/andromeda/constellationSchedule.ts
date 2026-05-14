@@ -59,12 +59,13 @@ export function buildConstellationSchedule(
   const startPad = 0
   const gapBetweenProjects = n > 1 ? 0.012 : 0
 
-  const twoProjectBandWidth = 0.46
+  const orbitTwoProjectBandWidth = 0.52
+  const nebulaTwoProjectBandWidth = 0.46
   const bands: readonly (readonly [number, number])[] =
     n === 2
       ? [
-          [0.12, 0.12 + twoProjectBandWidth] as const,
-          [0.3, 0.3 + twoProjectBandWidth] as const,
+          [0.12, 0.12 + orbitTwoProjectBandWidth] as const,
+          [0.3, 0.3 + nebulaTwoProjectBandWidth] as const,
         ]
       : (() => {
           const usable = 1 - startPad - gapBetweenProjects * Math.max(0, n - 1)

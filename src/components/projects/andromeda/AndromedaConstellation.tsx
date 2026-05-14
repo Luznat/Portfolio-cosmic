@@ -22,6 +22,7 @@ type ConstellationLayerProps = {
   readonly edges: readonly ScheduledEdge[]
   readonly sequenceProgress: MotionValue<number>
   readonly layerParallaxScrollYProgress: MotionValue<number>
+  readonly layerZIndex: number
   readonly parallaxSign: number
   readonly mainReveal: readonly [number, number]
   readonly satelliteRevealById: ReadonlyMap<string, readonly [number, number]>
@@ -34,6 +35,7 @@ const ConstellationLayer = memo(function ConstellationLayer({
   edges,
   sequenceProgress,
   layerParallaxScrollYProgress,
+  layerZIndex,
   parallaxSign,
   mainReveal,
   satelliteRevealById,
@@ -49,7 +51,10 @@ const ConstellationLayer = memo(function ConstellationLayer({
   )
 
   return (
-    <motion.div className={styles.constellationLayer} style={{ y: layerY }}>
+    <motion.div
+      className={styles.constellationLayer}
+      style={{ y: layerY, zIndex: layerZIndex }}
+    >
       <ConstellationLines
         scrollYProgress={sequenceProgress}
         edges={edges}
@@ -155,26 +160,31 @@ export const AndromedaConstellation = memo(function AndromedaConstellation({
         aria-hidden
       />
       <motion.div className={styles.starField} style={{ y: fieldParallaxY }}>
-        {featuredProjects.map((p, index) => {
-          const mainReveal = mainRevealBySlug.get(p.slug)
-          if (!mainReveal) return null
-          const edges = edgesByProjectSlug.get(p.slug) ?? []
-          const parallaxSign = index === 0 ? 1 : -1
-          return (
-            <ConstellationLayer
-              key={p.slug}
-              project={p}
-              edges={edges}
-              sequenceProgress={sequenceProgress}
-              layerParallaxScrollYProgress={journeyScrollYProgress}
-              parallaxSign={parallaxSign}
-              mainReveal={mainReveal}
-              satelliteRevealById={satelliteRevealById}
-              hoverId={hoverId}
-              onHover={onHover}
-            />
-          )
-        })}
+        {[...featuredProjects]
+          .map((p, featuredIndex) => ({ p, featuredIndex }))
+          .sort((a, b) => b.p.cx - a.p.cx)
+          .map(({ p, featuredIndex }) => {
+            const mainReveal = mainRevealBySlug.get(p.slug)
+            if (!mainReveal) return null
+            const edges = edgesByProjectSlug.get(p.slug) ?? []
+            const parallaxSign = featuredIndex === 0 ? 1 : -1
+            const layerZIndex = featuredProjects.length - featuredIndex
+            return (
+              <ConstellationLayer
+                key={p.slug}
+                project={p}
+                edges={edges}
+                sequenceProgress={sequenceProgress}
+                layerParallaxScrollYProgress={journeyScrollYProgress}
+                layerZIndex={layerZIndex}
+                parallaxSign={parallaxSign}
+                mainReveal={mainReveal}
+                satelliteRevealById={satelliteRevealById}
+                hoverId={hoverId}
+                onHover={onHover}
+              />
+            )
+          })}
       </motion.div>
     </div>
   )
