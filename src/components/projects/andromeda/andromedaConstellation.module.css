@@ -4,7 +4,7 @@
   max-width: none;
   min-width: 0;
   margin: 0 auto;
-  min-height: min(88vh, 56rem);
+  min-height: min(68vh, 42rem);
   isolation: isolate;
 }
 
@@ -16,12 +16,12 @@
   border-radius: 55% 45% 50% 50% / 60% 40% 55% 45%;
   background:
     radial-gradient(
-      ellipse 52% 65% at 30% 52%,
+      ellipse 52% 65% at 28% 42%,
       color-mix(in srgb, var(--glow-cool-18) 55%, transparent),
       transparent 72%
     ),
     radial-gradient(
-      ellipse 52% 65% at 76% 52%,
+      ellipse 52% 65% at 72% 42%,
       color-mix(in srgb, var(--accent-bg) 90%, transparent),
       transparent 68%
     ),
@@ -47,17 +47,23 @@
 .constLine {
   fill: none;
   stroke: var(--andromeda-line);
-  stroke-width: 0.085;
+  stroke-width: 0.17;
   stroke-linecap: round;
+  filter:
+    drop-shadow(0 0 2px var(--glow-cool-18))
+    drop-shadow(0 0 5px var(--glow-deep-12));
 }
 
 .constLine[data-muted='1'] {
   stroke: var(--andromeda-line-muted);
+  filter: drop-shadow(0 0 1px var(--glow-deep-08));
 }
 
 .constLineBright {
-  stroke: color-mix(in srgb, var(--text-emphasis) 38%, var(--text-quiet) 42%);
-  filter: drop-shadow(0 0 3px var(--glow-deep-12));
+  stroke: color-mix(in srgb, var(--text-h) 35%, var(--text-emphasis) 55%);
+  filter:
+    drop-shadow(0 0 3px var(--glow-cool-20))
+    drop-shadow(0 0 8px var(--glow-deep-12));
 }
 
 .starField {
@@ -302,7 +308,7 @@
 
 @media (max-width: 768px) {
   .stage {
-    min-height: min(92vh, 42rem);
+    min-height: min(72vh, 36rem);
   }
 
   .mainCaption {

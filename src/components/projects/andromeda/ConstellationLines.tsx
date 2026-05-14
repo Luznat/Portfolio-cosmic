@@ -19,16 +19,14 @@ const ConstellationLine = memo(function ConstellationLine({
   scrollYProgress: MotionValue<number>
   hoverId: string | null
 }) {
-  const pathLength = useTransform(
-    scrollYProgress,
-    [edge.reveal[0], edge.reveal[1]],
-    [0, 1],
-    { clamp: true },
-  )
   const lineOpacity = useTransform(
     scrollYProgress,
-    [edge.reveal[0], Math.min(1, edge.reveal[1] + 0.06)],
-    [0, 1],
+    [
+      edge.reveal[0],
+      edge.reveal[1],
+      Math.min(1, edge.reveal[1] + 0.06),
+    ],
+    [0, 1, 1],
     { clamp: true },
   )
 
@@ -50,7 +48,7 @@ const ConstellationLine = memo(function ConstellationLine({
       className={lineClass}
       data-muted={muted ? '1' : undefined}
       vectorEffect="non-scaling-stroke"
-      style={{ pathLength, opacity: lineOpacity }}
+      style={{ opacity: lineOpacity }}
     />
   )
 })

@@ -38,35 +38,11 @@ function resolvePoint(
   return undefined
 }
 
-function chainEdgeReveal(
-  projectIndex: number,
-  edgeIndex: number,
-): readonly [number, number] {
-  const base = 0.05 + projectIndex * 0.3 + edgeIndex * 0.07
-  return [base, base + 0.17]
-}
-
-function satelliteAppearRevealFromChain(
-  projectIndex: number,
-  chainIndex: number,
-): readonly [number, number] {
-  const base = 0.02 + projectIndex * 0.3 + chainIndex * 0.05
-  return [base, base + 0.13]
-}
-
-function mainStarRevealFromChain(
-  projectIndex: number,
-  mainIndexInChain: number,
-): readonly [number, number] {
-  const base = 0.07 + projectIndex * 0.3 + mainIndexInChain * 0.05
-  return [base, base + 0.15]
-}
-
-function backboneReveal(projectIndex: number): readonly [number, number] {
-  const t0 = 0.48 + projectIndex * 0.08
-  return [t0, t0 + 0.2]
-}
-
+/**
+ * Per project: first star of the chain appears, then each scroll segment draws
+ * the segment to the next star, then that star appears — repeat, then backbone
+ * between project cores.
+ */
 export function buildConstellationSchedule(
   projects: readonly FeaturedProject[],
 ): {
@@ -75,53 +51,83 @@ export function buildConstellationSchedule(
   satellites: readonly SatelliteReveal[]
 } {
   const edges: ScheduledEdge[] = []
-  const mainStars: MainStarReveal[] = []
   const satelliteRevealById = new Map<string, readonly [number, number]>()
+  const mainRevealBySlug = new Map<string, readonly [number, number]>()
 
-  projects.forEach((p, projectIndex) => {
+  const n = projects.length
+  const startPad = 0
+  const backboneReserve = 0.07
+  const gapBetweenProjects = n > 1 ? 0.012 : 0
+  const usable =
+    1 - startPad - backboneReserve - gapBetweenProjects * Math.max(0, n - 1)
+  const bandW = usable / Math.max(1, n)
+
+  let bandCursor = startPad
+
+  projects.forEach((p) => {
+    const bandStart = bandCursor
+    const bandEnd = bandStart + bandW
     const chain = p.constellationChain
-    const mainIdx = chain.indexOf(p.slug)
-    if (mainIdx >= 0) {
-      mainStars.push({
-        slug: p.slug,
-        reveal: mainStarRevealFromChain(projectIndex, mainIdx),
-      })
-    }
+    const steps = 2 * chain.length - 1
+    const stepW = (bandEnd - bandStart) / steps
 
-    chain.forEach((nodeId, idx) => {
-      if (nodeId === p.slug) return
-      const sat = p.satellites.find((s) => s.id === nodeId)
-      if (sat && !satelliteRevealById.has(sat.id)) {
-        satelliteRevealById.set(
-          sat.id,
-          satelliteAppearRevealFromChain(projectIndex, idx),
-        )
+    for (let i = 0; i < steps; i++) {
+      const t0 = bandStart + i * stepW
+      const t1 = bandStart + (i + 1) * stepW - stepW * 0.04
+
+      if (i % 2 === 0) {
+        const nodeIdx = i / 2
+        const nodeId = chain[nodeIdx]
+        if (nodeId === p.slug) {
+          mainRevealBySlug.set(p.slug, [t0, Math.max(t0 + 0.02, t1)])
+        } else {
+          const sat = p.satellites.find((s) => s.id === nodeId)
+          if (sat) {
+            satelliteRevealById.set(sat.id, [t0, Math.max(t0 + 0.02, t1)])
+          }
+        }
+      } else {
+        const k = (i - 1) / 2
+        const a = resolvePoint(projects, chain[k])
+        const b = resolvePoint(projects, chain[k + 1])
+        if (a && b) {
+          edges.push({
+            key: `${chain[k]}__${chain[k + 1]}`,
+            from: a,
+            to: b,
+            reveal: [t0, Math.max(t0 + 0.02, t1)],
+          })
+        }
       }
-    })
-
-    for (let k = 0; k < chain.length - 1; k++) {
-      const a = resolvePoint(projects, chain[k])
-      const b = resolvePoint(projects, chain[k + 1])
-      if (!a || !b) continue
-      edges.push({
-        key: `${chain[k]}__${chain[k + 1]}`,
-        from: a,
-        to: b,
-        reveal: chainEdgeReveal(projectIndex, k),
-      })
     }
+
+    bandCursor = bandEnd + gapBetweenProjects
   })
+
+  const bbStart = bandCursor
+  const bbEnd = Math.min(0.995, bbStart + backboneReserve - 0.01)
 
   for (let i = 0; i < projects.length - 1; i++) {
     const a = projects[i]
     const b = projects[i + 1]
+    const span = (bbEnd - bbStart) / (projects.length - 1)
+    const t0 = bbStart + i * span
+    const t1 = bbStart + (i + 1) * span - span * 0.05
     edges.push({
       key: `${a.slug}__${b.slug}`,
       from: { kind: 'project', slug: a.slug, cx: a.cx, cy: a.cy },
       to: { kind: 'project', slug: b.slug, cx: b.cx, cy: b.cy },
-      reveal: backboneReveal(i),
+      reveal: [t0, Math.max(t0 + 0.02, t1)],
     })
   }
+
+  const mainStars: MainStarReveal[] = projects.map((p) => {
+    const reveal = mainRevealBySlug.get(p.slug)
+    if (!reveal) {
+      return { slug: p.slug, reveal: [0, 0.1] as const }
+    }
+    return { slug: p.slug, reveal }
+  })
 
   const satellites: SatelliteReveal[] = []
   for (const p of projects) {

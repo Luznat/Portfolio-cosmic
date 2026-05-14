@@ -27,7 +27,8 @@ export const ProjectsJourneySection = memo(function ProjectsJourneySection() {
           Andrômeda
         </h2>
         <p id="andromeda-map-desc" className={styles.subkicker}>
-          Orbit no traço de Escorpião · Nebula Kit no traço de Touro
+          Duas constelações — cada estrela grande é um projeto; as linhas seguem
+          só o caminho entre estrelas vizinhas.
         </p>
         <div className={styles.constellationWrap}>
           <motion.div

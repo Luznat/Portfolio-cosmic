@@ -36,15 +36,23 @@ export const AndromedaConstellation = memo(function AndromedaConstellation() {
     return m
   }, [schedule.mainStars])
 
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: rawStageProgress } = useScroll({
     container: scrollContainerRef,
     target: stageRef,
-    offset: ['start 0.88', 'end 0.12'],
+    offset: ['start end', 'end start'],
   })
+
+  /** Full constellation timeline in the first half of the stage crossing (less finger travel). */
+  const scrollYProgress = useTransform(
+    rawStageProgress,
+    [0, 0.48],
+    [0, 1],
+    { clamp: true },
+  )
 
   const nebulaOpacity = useTransform(
     scrollYProgress,
-    [0, 0.14],
+    [0, 0.06],
     [0, 1],
     { clamp: true },
   )
