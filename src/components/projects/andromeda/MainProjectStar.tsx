@@ -44,61 +44,58 @@ export const MainProjectStar = memo(function MainProjectStar({
   const active = hoverId === project.slug
 
   return (
-    <motion.div
+    <div
       className={styles.mainAnchor}
-      style={{
-        left: `${project.cx}%`,
-        top: `${project.cy}%`,
-        opacity,
-        scale,
-      }}
+      style={{ left: `${project.cx}%`, top: `${project.cy}%` }}
     >
-      <Link
-        className={styles.mainHit}
-        to={`/projects/${project.slug}`}
-        onMouseEnter={enter}
-        onMouseLeave={leave}
-        data-active={active ? '1' : undefined}
-      >
-        <span className={styles.srOnly}>
-          {project.name} — {project.tagline}
-        </span>
-        <div className={styles.mainStack}>
-          <motion.div
-            className={styles.coreGlow}
-            style={{ opacity: glow }}
-            aria-hidden
-          />
-          <motion.div
-            className={styles.breathRing}
-            style={{ opacity: glow }}
-            aria-hidden
-          />
-          <img
-            className={styles.mainStarImg}
-            src={STAR_PROJECT_URL}
-            alt=""
-            draggable={false}
-          />
-          <div className={styles.coreHalo} aria-hidden />
-          <div className={styles.coreCover}>
-            {project.coverSrc ? (
-              <img
-                className={styles.corePhoto}
-                src={project.coverSrc}
-                alt=""
-                draggable={false}
-              />
-            ) : (
-              <div className={styles.coreFallback} aria-hidden />
-            )}
+      <motion.div className={styles.mainAnchorMotion} style={{ opacity, scale }}>
+        <Link
+          className={styles.mainHit}
+          to={`/projects/${project.slug}`}
+          onMouseEnter={enter}
+          onMouseLeave={leave}
+          data-active={active ? '1' : undefined}
+        >
+          <span className={styles.srOnly}>
+            {project.name} — {project.tagline}
+          </span>
+          <div className={styles.mainStack}>
+            <motion.div
+              className={styles.coreGlow}
+              style={{ opacity: glow }}
+              aria-hidden
+            />
+            <motion.div
+              className={styles.breathRing}
+              style={{ opacity: glow }}
+              aria-hidden
+            />
+            <img
+              className={styles.mainStarImg}
+              src={STAR_PROJECT_URL}
+              alt=""
+              draggable={false}
+            />
+            <div className={styles.coreHalo} aria-hidden />
+            <div className={styles.coreCover}>
+              {project.coverSrc ? (
+                <img
+                  className={styles.corePhoto}
+                  src={project.coverSrc}
+                  alt=""
+                  draggable={false}
+                />
+              ) : (
+                <div className={styles.coreFallback} aria-hidden />
+              )}
+            </div>
+            <div className={styles.mainCaption} aria-hidden>
+              <span className={styles.mainName}>{project.name}</span>
+              <span className={styles.mainTag}>{project.tagline}</span>
+            </div>
           </div>
-          <div className={styles.mainCaption} aria-hidden>
-            <span className={styles.mainName}>{project.name}</span>
-            <span className={styles.mainTag}>{project.tagline}</span>
-          </div>
-        </div>
-      </Link>
-    </motion.div>
+        </Link>
+      </motion.div>
+    </div>
   )
 })

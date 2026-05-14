@@ -40,9 +40,9 @@ export const featuredProjects: readonly FeaturedProject[] = [
     cy: 45,
     coverSrc: heroCover,
     constellationChain: [
+      'orbit-s2',
       'orbit-s1',
       'orbit-mobile',
-      'orbit-s2',
       'orbit-s3',
       'orbit-s4',
     ],

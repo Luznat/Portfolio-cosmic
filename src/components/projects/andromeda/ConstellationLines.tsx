@@ -68,7 +68,7 @@ export const ConstellationLines = memo(function ConstellationLines({
     <svg
       className={styles.lineSvg}
       viewBox="0 0 100 100"
-      preserveAspectRatio="xMidYMid meet"
+      preserveAspectRatio="none"
       aria-hidden
     >
       {edges.map((edge) => (

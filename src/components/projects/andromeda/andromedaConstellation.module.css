@@ -73,14 +73,22 @@
   pointer-events: none;
 }
 
-.starField > * {
+.starField > *:not(.lineSvg) {
   pointer-events: auto;
+}
+
+.starField .lineSvg {
+  pointer-events: none;
 }
 
 .satAnchor {
   position: absolute;
   z-index: 2;
   transform: translate(-50%, -50%);
+}
+
+.satAnchorMotion {
+  transform-origin: 50% 50%;
 }
 
 .satHit {
@@ -126,6 +134,10 @@
   position: absolute;
   z-index: 3;
   transform: translate(-50%, -50%);
+}
+
+.mainAnchorMotion {
+  transform-origin: 50% 50%;
 }
 
 .mainHit {

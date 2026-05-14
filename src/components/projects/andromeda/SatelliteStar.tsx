@@ -43,29 +43,31 @@ export const SatelliteStar = memo(function SatelliteStar({
   const active = hoverId === satellite.id
 
   return (
-    <motion.div
+    <div
       className={styles.satAnchor}
-      style={{ left: `${satellite.cx}%`, top: `${satellite.cy}%`, opacity, scale }}
+      style={{ left: `${satellite.cx}%`, top: `${satellite.cy}%` }}
     >
-      <div
-        className={styles.satHit}
-        aria-hidden
-        onMouseEnter={enter}
-        onMouseLeave={leave}
-      >
-        <motion.div
-          className={styles.satGlow}
-          style={{ opacity: glow }}
+      <motion.div className={styles.satAnchorMotion} style={{ opacity, scale }}>
+        <div
+          className={styles.satHit}
           aria-hidden
-        />
-        <img
-          className={styles.satImg}
-          src={satelliteAssetUrl(satellite.variant)}
-          alt=""
-          draggable={false}
-          data-active={active ? '1' : undefined}
-        />
-      </div>
-    </motion.div>
+          onMouseEnter={enter}
+          onMouseLeave={leave}
+        >
+          <motion.div
+            className={styles.satGlow}
+            style={{ opacity: glow }}
+            aria-hidden
+          />
+          <img
+            className={styles.satImg}
+            src={satelliteAssetUrl(satellite.variant)}
+            alt=""
+            draggable={false}
+            data-active={active ? '1' : undefined}
+          />
+        </div>
+      </motion.div>
+    </div>
   )
 })

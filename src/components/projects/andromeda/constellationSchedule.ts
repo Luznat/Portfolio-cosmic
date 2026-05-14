@@ -39,9 +39,8 @@ function resolvePoint(
 }
 
 /**
- * Per project: first star of the chain appears, then each scroll segment draws
- * the segment to the next star, then that star appears — repeat, then backbone
- * between project cores.
+ * Per project: first star of the chain appears, then each line segment, then the
+ * next star, etc. Each project is its own constellation — no edges between projects.
  */
 export function buildConstellationSchedule(
   projects: readonly FeaturedProject[],
@@ -56,10 +55,8 @@ export function buildConstellationSchedule(
 
   const n = projects.length
   const startPad = 0
-  const backboneReserve = 0.07
   const gapBetweenProjects = n > 1 ? 0.012 : 0
-  const usable =
-    1 - startPad - backboneReserve - gapBetweenProjects * Math.max(0, n - 1)
+  const usable = 1 - startPad - gapBetweenProjects * Math.max(0, n - 1)
   const bandW = usable / Math.max(1, n)
 
   let bandCursor = startPad
@@ -103,23 +100,6 @@ export function buildConstellationSchedule(
 
     bandCursor = bandEnd + gapBetweenProjects
   })
-
-  const bbStart = bandCursor
-  const bbEnd = Math.min(0.995, bbStart + backboneReserve - 0.01)
-
-  for (let i = 0; i < projects.length - 1; i++) {
-    const a = projects[i]
-    const b = projects[i + 1]
-    const span = (bbEnd - bbStart) / (projects.length - 1)
-    const t0 = bbStart + i * span
-    const t1 = bbStart + (i + 1) * span - span * 0.05
-    edges.push({
-      key: `${a.slug}__${b.slug}`,
-      from: { kind: 'project', slug: a.slug, cx: a.cx, cy: a.cy },
-      to: { kind: 'project', slug: b.slug, cx: b.cx, cy: b.cy },
-      reveal: [t0, Math.max(t0 + 0.02, t1)],
-    })
-  }
 
   const mainStars: MainStarReveal[] = projects.map((p) => {
     const reveal = mainRevealBySlug.get(p.slug)

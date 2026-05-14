@@ -70,12 +70,12 @@ export const AndromedaConstellation = memo(function AndromedaConstellation() {
         style={{ opacity: nebulaOpacity }}
         aria-hidden
       />
-      <ConstellationLines
-        scrollYProgress={scrollYProgress}
-        edges={schedule.edges}
-        hoverId={hoverId}
-      />
       <motion.div className={styles.starField} style={{ y: parallaxY }}>
+        <ConstellationLines
+          scrollYProgress={scrollYProgress}
+          edges={schedule.edges}
+          hoverId={hoverId}
+        />
         {schedule.satellites.map((sr) => {
           const satellite = satelliteById.get(sr.id)
           if (!satellite) return null
