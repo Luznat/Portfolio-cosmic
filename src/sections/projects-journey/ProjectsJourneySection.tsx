@@ -2,6 +2,7 @@ import { motion, useScroll } from 'framer-motion'
 import { memo, useRef } from 'react'
 import { AndromedaConstellation } from '../../components/projects/andromeda'
 import { useHomeScroll } from '../../hooks/useHomeScroll'
+import projectsNebulaBackdrop from '../../shared/assets/images/ChatGPT Image 15 de mai. de 2026, 17_49_03.png'
 import styles from './ProjectsJourneySection.module.css'
 
 const revealTransition = {
@@ -25,6 +26,11 @@ export const ProjectsJourneySection = memo(function ProjectsJourneySection() {
       className={styles.section}
       aria-labelledby="journey-heading"
     >
+      <div
+        className={styles.sectionBackdrop}
+        style={{ backgroundImage: `url(${projectsNebulaBackdrop})` }}
+        aria-hidden
+      />
       <div className={styles.stage}>
         <h2 id="journey-heading" className={styles.kicker}>
           Constelações

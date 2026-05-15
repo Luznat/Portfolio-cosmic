@@ -8,6 +8,33 @@
   background: var(--section-projects-bg);
   overflow-x: clip;
   overflow-y: visible;
+  isolation: isolate;
+}
+
+.sectionBackdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 42% 0%;
+  /* Visível mas ainda “de fundo”; normal soma bem ao #000 da secção */
+  opacity: 0.42;
+  filter: brightness(0.62) saturate(1.22) contrast(1.06);
+}
+
+.sectionBackdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 95% 78% at 50% 28%,
+    transparent 35%,
+    color-mix(in srgb, var(--section-projects-bg) 82%, transparent) 72%,
+    var(--section-projects-bg) 100%
+  );
 }
 
 .stage {

@@ -26,10 +26,10 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    color-mix(in srgb, var(--glow-cool-20) 55%, transparent),
+    color-mix(in srgb, var(--glow-cool-20) 34%, transparent),
     transparent 70%
   );
-  filter: blur(10px);
+  filter: blur(8px);
   pointer-events: none;
 }
 
@@ -38,7 +38,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 0 10px var(--glow-deep-12));
+  filter: drop-shadow(0 0 6px var(--glow-deep-12));
   transition:
     filter 0.9s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
@@ -46,19 +46,19 @@
 
 .satHit:hover .satImg,
 .satImg[data-active='1'] {
-  filter: drop-shadow(0 0 18px var(--glow-cool-18));
+  filter: drop-shadow(0 0 12px var(--glow-cool-18));
   transform: scale(1.04);
 }
 
 .satAnchor[data-constellation-lit='1'] .satImg {
-  filter: drop-shadow(0 0 22px var(--glow-cool-20))
-    drop-shadow(0 0 38px var(--glow-deep-12));
+  filter: drop-shadow(0 0 14px var(--glow-cool-20))
+    drop-shadow(0 0 24px var(--glow-deep-12));
   transform: scale(1.12);
 }
 
 .satAnchor[data-constellation-lit='1'] .satGlow {
   opacity: 1;
-  filter: blur(14px);
+  filter: blur(10px);
 }
 
 .satAnchorMotion {

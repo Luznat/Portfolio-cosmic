@@ -37,17 +37,17 @@
 
 .mainHit[data-constellation-lit='1'] .coreGlow {
   opacity: 1;
-  filter: blur(28px);
+  filter: blur(22px);
 }
 
 .mainHit[data-constellation-lit='1'] .breathRing {
   opacity: 1;
-  box-shadow: 0 0 56px color-mix(in srgb, var(--glow-cool-20) 55%, transparent);
+  box-shadow: 0 0 36px color-mix(in srgb, var(--glow-cool-20) 38%, transparent);
 }
 
 .mainHit[data-constellation-lit='1'] .mainStarImg {
-  filter: drop-shadow(0 0 32px var(--glow-cool-20))
-    drop-shadow(0 0 48px var(--glow-deep-12));
+  filter: drop-shadow(0 0 22px var(--glow-cool-20))
+    drop-shadow(0 0 34px var(--glow-deep-12));
 }
 
 .coreGlow,
@@ -76,11 +76,11 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    color-mix(in srgb, var(--glow-cool-20) 65%, transparent),
-    color-mix(in srgb, var(--accent-bg) 40%, transparent) 45%,
+    color-mix(in srgb, var(--glow-cool-20) 44%, transparent),
+    color-mix(in srgb, var(--accent-bg) 26%, transparent) 45%,
     transparent 72%
   );
-  filter: blur(22px);
+  filter: blur(18px);
   pointer-events: none;
 }
 
@@ -92,7 +92,7 @@
   height: 58%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  box-shadow: 0 0 42px color-mix(in srgb, var(--glow-cool-18) 40%, transparent);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--glow-cool-18) 26%, transparent);
   animation: andromedaBreath 10s ease-in-out infinite;
   pointer-events: none;
 }
@@ -104,13 +104,13 @@
   height: 100%;
   object-fit: contain;
   pointer-events: none;
-  filter: drop-shadow(0 0 14px var(--glow-deep-08));
+  filter: drop-shadow(0 0 8px var(--glow-deep-08));
   transition: filter 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mainHit:hover .mainStarImg,
 .mainHit[data-active='1'] .mainStarImg {
-  filter: drop-shadow(0 0 28px var(--glow-cool-18));
+  filter: drop-shadow(0 0 18px var(--glow-cool-18));
 }
 
 .coreHalo {
@@ -123,7 +123,7 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    color-mix(in srgb, var(--text-emphasis) 22%, transparent),
+    color-mix(in srgb, var(--text-emphasis) 13%, transparent),
     transparent 70%
   );
   mix-blend-mode: screen;
@@ -140,8 +140,8 @@
   border-radius: 50%;
   overflow: hidden;
   box-shadow:
-    inset 0 0 22px color-mix(in srgb, var(--accent) 35%, transparent),
-    0 0 18px var(--glow-deep-12);
+    inset 0 0 16px color-mix(in srgb, var(--accent) 24%, transparent),
+    0 0 12px var(--glow-deep-12);
   mix-blend-mode: soft-light;
   pointer-events: none;
 }
@@ -183,7 +183,7 @@
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--text-h);
-  text-shadow: 0 0 20px var(--glow-deep-12);
+  text-shadow: 0 0 12px var(--glow-deep-08);
 }
 
 .mainTag {
@@ -209,11 +209,11 @@
 @keyframes andromedaBreath {
   0%,
   100% {
-    opacity: 0.38;
+    opacity: 0.24;
     transform: translate(-50%, -50%) scale(1);
   }
   50% {
-    opacity: 0.62;
+    opacity: 0.42;
     transform: translate(-50%, -50%) scale(1.05);
   }
 }
