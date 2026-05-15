@@ -31,11 +31,10 @@ export const ProjectsJourneySection = memo(function ProjectsJourneySection() {
       </div>
       <div className={styles.stage}>
         <h2 id="journey-heading" className={styles.kicker}>
-          Andrômeda
+        Constelações
         </h2>
         <p id="andromeda-map-desc" className={styles.subkicker}>
-          Duas constelações — cada estrela grande é um projeto; as linhas seguem
-          só o caminho entre estrelas vizinhas.
+          Duas constelações — cada estrela grande é um projeto
         </p>
         <div className={styles.constellationWrap}>
           <motion.div

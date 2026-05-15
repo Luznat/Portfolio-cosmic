@@ -5,18 +5,7 @@
   padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 5vw, 2.5rem)
     clamp(3rem, 8vw, 5rem);
   scroll-margin-top: 5.75rem;
-  background:
-    radial-gradient(
-      ellipse 120% 80% at 50% 0%,
-      color-mix(in srgb, var(--accent-bg) 55%, transparent),
-      transparent 55%
-    ),
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--bg) 88%, transparent) 0%,
-      var(--bg) 18%,
-      var(--bg) 100%
-    );
+  background: var(--section-projects-bg);
   overflow-x: clip;
   overflow-y: visible;
 }

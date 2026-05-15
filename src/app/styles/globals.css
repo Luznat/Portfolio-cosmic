@@ -8,6 +8,7 @@
 
   /* Surfaces */
   --bg: #07060d;
+  --section-projects-bg: #000000;
   --surface-video: #04030a;
   --code-bg: rgba(20, 18, 36, 0.85);
   --social-bg: rgba(12, 11, 24, 0.65);
@@ -52,6 +53,23 @@
   );
   --focus-ring: rgba(200, 210, 255, 0.45);
   --cta-inset-highlight: rgba(255, 255, 255, 0.06);
+
+  /* Hero — fade do vídeo na base (transição para projetos) */
+  --hero-bottom-fade-soft: color-mix(
+    in srgb,
+    var(--section-projects-bg) 22%,
+    transparent
+  );
+  --hero-bottom-fade-mid: color-mix(
+    in srgb,
+    var(--section-projects-bg) 58%,
+    transparent
+  );
+  --hero-bottom-fade-strong: color-mix(
+    in srgb,
+    var(--section-projects-bg) 92%,
+    transparent
+  );
 
   /* Hero overlay gradient stops */
   --hero-overlay-1: rgba(2, 2, 8, 0.96);

@@ -31,15 +31,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: min(28vh, 240px);
+  height: min(40vh, 340px);
   z-index: 4;
   pointer-events: none;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    color-mix(in srgb, var(--bg) 22%, transparent) 38%,
-    color-mix(in srgb, var(--bg) 65%, transparent) 72%,
-    var(--bg) 100%
+    var(--hero-bottom-fade-soft) 28%,
+    var(--hero-bottom-fade-mid) 58%,
+    var(--hero-bottom-fade-strong) 84%,
+    var(--section-projects-bg) 100%
   );
 }
 

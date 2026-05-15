@@ -17,6 +17,24 @@
   pointer-events: none;
 }
 
+.wrap::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: min(34vh, 280px);
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--hero-bottom-fade-soft) 38%,
+    var(--hero-bottom-fade-mid) 72%,
+    var(--hero-bottom-fade-strong) 100%
+  );
+}
+
 @media (max-width: 768px) {
   .video {
     object-position: 50% 44%;
