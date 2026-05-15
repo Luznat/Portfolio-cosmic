@@ -43,7 +43,7 @@ export const featuredProjects: readonly FeaturedProject[] = [
     cx: 15,
     cy: 45,
     coverSrc: heroCover,
-    constellationParallax: 0.15,
+    constellationParallax: 0.10,
     constellationChain: [
       'orbit-s2',
       'orbit-s1',

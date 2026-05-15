@@ -1,147 +1,8 @@
-.stage {
-  position: relative;
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-  margin: 0 auto;
-  min-height: min(68vh, 42rem);
-  isolation: isolate;
-}
-
-.nebula {
-  position: absolute;
-  inset: -12% -6% -8%;
-  pointer-events: none;
-  z-index: 0;
-  border-radius: 55% 45% 50% 50% / 60% 40% 55% 45%;
-  background:
-    radial-gradient(
-      ellipse 52% 65% at 28% 42%,
-      color-mix(in srgb, var(--glow-cool-18) 55%, transparent),
-      transparent 72%
-    ),
-    radial-gradient(
-      ellipse 52% 65% at 72% 42%,
-      color-mix(in srgb, var(--accent-bg) 90%, transparent),
-      transparent 68%
-    ),
-    radial-gradient(
-      circle at 50% 88%,
-      color-mix(in srgb, var(--glow-deep-12) 70%, transparent),
-      transparent 55%
-    );
-  filter: blur(36px);
-  opacity: 0.75;
-}
-
-.lineSvg {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
-  isolation: isolate;
-}
-
-.constLine {
-  fill: none;
-  stroke: var(--andromeda-line);
-  stroke-width: 0.17;
-  stroke-linecap: round;
-  stroke-dasharray: 0.55 0.42;
-  filter:
-    drop-shadow(0 0 2px var(--glow-cool-18))
-    drop-shadow(0 0 5px var(--glow-deep-12));
-}
-
-.constLine[data-muted='1'] {
-  stroke: var(--andromeda-line-muted);
-  filter: drop-shadow(0 0 1px var(--glow-deep-08));
-}
-
-.constLineBright {
-  stroke: color-mix(in srgb, var(--text-h) 35%, var(--text-emphasis) 55%);
-  filter:
-    drop-shadow(0 0 3px var(--glow-cool-20))
-    drop-shadow(0 0 8px var(--glow-deep-12));
-}
-
-.starField {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.constellationLayer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.constellationLayer > *:not(.lineSvg) {
-  pointer-events: auto;
-}
-
-.constellationLayer .lineSvg {
-  pointer-events: none;
-}
-
-.satAnchor {
-  position: absolute;
-  z-index: 2;
-  transform: translate(-50%, -50%);
-}
-
-.satAnchorMotion {
-  transform-origin: 50% 50%;
-}
-
-.satHit {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: clamp(3.25rem, 6.5vw, 4.5rem);
-  height: clamp(3.25rem, 6.5vw, 4.5rem);
-}
-
-.satGlow {
-  position: absolute;
-  width: 160%;
-  height: 160%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--glow-cool-20) 55%, transparent),
-    transparent 70%
-  );
-  filter: blur(10px);
-  pointer-events: none;
-}
-
-.satImg {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 0 10px var(--glow-deep-12));
-  transition:
-    filter 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.satHit:hover .satImg,
-.satImg[data-active='1'] {
-  filter: drop-shadow(0 0 18px var(--glow-cool-18));
-  transform: scale(1.04);
-}
-
 .mainAnchor {
   position: absolute;
   z-index: 3;
   transform: translate(-50%, -50%);
+  pointer-events: auto;
 }
 
 .mainAnchorMotion {
@@ -327,10 +188,6 @@
 }
 
 @media (max-width: 768px) {
-  .stage {
-    min-height: min(72vh, 36rem);
-  }
-
   .mainCaption {
     bottom: -2.1rem;
   }
@@ -338,10 +195,5 @@
   .mainStack {
     width: clamp(8.5rem, 42vw, 11rem);
     height: clamp(10.2rem, 50vw, 13rem);
-  }
-
-  .satHit {
-    width: clamp(2.85rem, 9vw, 3.6rem);
-    height: clamp(2.85rem, 9vw, 3.6rem);
   }
 }

@@ -1,17 +1,17 @@
 import { memo, useCallback, useMemo, useState } from 'react'
 import { motion, useTransform, type MotionValue } from 'framer-motion'
-import { useHomeScroll } from '../../../hooks/useHomeScroll'
+import { useHomeScroll } from '../../../../hooks/useHomeScroll'
 import {
   featuredProjects,
   type FeaturedProject,
-} from '../../../content/featuredProjects'
+} from '../../../../content/featuredProjects'
 import {
   buildConstellationSchedule,
   type ScheduledEdge,
-} from './constellationSchedule'
-import { ConstellationLines } from './ConstellationLines'
-import { MainProjectStar } from './MainProjectStar'
-import { SatelliteStar } from './SatelliteStar'
+} from '../lib/constellationSchedule'
+import { ConstellationLines } from '../ConstellationLines/ConstellationLines'
+import { MainProjectStar } from '../MainProjectStar/MainProjectStar'
+import { SatelliteStar } from '../SatelliteStar/SatelliteStar'
 import styles from './andromedaConstellation.module.css'
 
 const SEQUENCE_FROM_JOURNEY_LO = 0

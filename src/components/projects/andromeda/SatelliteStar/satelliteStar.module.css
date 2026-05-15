@@ -1,0 +1,56 @@
+.satAnchor {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.satAnchorMotion {
+  transform-origin: 50% 50%;
+}
+
+.satHit {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(3.25rem, 6.5vw, 4.5rem);
+  height: clamp(3.25rem, 6.5vw, 4.5rem);
+}
+
+.satGlow {
+  position: absolute;
+  width: 160%;
+  height: 160%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--glow-cool-20) 55%, transparent),
+    transparent 70%
+  );
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.satImg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px var(--glow-deep-12));
+  transition:
+    filter 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.satHit:hover .satImg,
+.satImg[data-active='1'] {
+  filter: drop-shadow(0 0 18px var(--glow-cool-18));
+  transform: scale(1.04);
+}
+
+@media (max-width: 768px) {
+  .satHit {
+    width: clamp(2.85rem, 9vw, 3.6rem);
+    height: clamp(2.85rem, 9vw, 3.6rem);
+  }
+}

@@ -1,6 +1,6 @@
 import { motion, useScroll } from 'framer-motion'
 import { memo, useRef } from 'react'
-import { AndromedaConstellation } from '../../components/projects/andromeda/AndromedaConstellation'
+import { AndromedaConstellation } from '../../components/projects/andromeda'
 import { StarDustField } from '../../components/projects/StarDustField'
 import { useHomeScroll } from '../../hooks/useHomeScroll'
 import styles from './ProjectsJourneySection.module.css'

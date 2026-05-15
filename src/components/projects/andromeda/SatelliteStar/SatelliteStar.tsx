@@ -1,8 +1,8 @@
 import { memo, useCallback } from 'react'
 import { motion, useTransform, type MotionValue } from 'framer-motion'
-import type { ProjectSatellite } from '../../../content/featuredProjects'
-import { satelliteAssetUrl } from './starAssetUrls'
-import styles from './andromedaConstellation.module.css'
+import type { ProjectSatellite } from '../../../../content/featuredProjects'
+import { satelliteAssetUrl } from '../lib/starAssetUrls'
+import styles from './satelliteStar.module.css'
 
 export type SatelliteStarProps = {
   readonly satellite: ProjectSatellite

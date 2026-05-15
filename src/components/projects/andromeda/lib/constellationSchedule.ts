@@ -1,4 +1,4 @@
-import type { FeaturedProject, ProjectSatellite } from '../../../content/featuredProjects'
+import type { FeaturedProject, ProjectSatellite } from '../../../../content/featuredProjects'
 
 export type SchedulePoint =
   | { kind: 'project'; slug: string; cx: number; cy: number }

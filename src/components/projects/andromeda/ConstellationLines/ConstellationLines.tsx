@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react'
 import { motion, useTransform, type MotionValue } from 'framer-motion'
-import type { ScheduledEdge } from './constellationSchedule'
-import styles from './andromedaConstellation.module.css'
+import type { ScheduledEdge } from '../lib/constellationSchedule'
+import styles from './constellationLines.module.css'
 
 function edgeTouchIds(edge: ScheduledEdge): readonly string[] {
   const a =

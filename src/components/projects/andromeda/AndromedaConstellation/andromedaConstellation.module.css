@@ -1,0 +1,54 @@
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin: 0 auto;
+  min-height: min(68vh, 42rem);
+  isolation: isolate;
+}
+
+.nebula {
+  position: absolute;
+  inset: -12% -6% -8%;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 55% 45% 50% 50% / 60% 40% 55% 45%;
+  background:
+    radial-gradient(
+      ellipse 52% 65% at 28% 42%,
+      color-mix(in srgb, var(--glow-cool-18) 55%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 52% 65% at 72% 42%,
+      color-mix(in srgb, var(--accent-bg) 90%, transparent),
+      transparent 68%
+    ),
+    radial-gradient(
+      circle at 50% 88%,
+      color-mix(in srgb, var(--glow-deep-12) 70%, transparent),
+      transparent 55%
+    );
+  filter: blur(36px);
+  opacity: 0.75;
+}
+
+.starField {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.constellationLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .stage {
+    min-height: min(72vh, 36rem);
+  }
+}

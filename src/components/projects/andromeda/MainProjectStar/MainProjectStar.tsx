@@ -1,9 +1,9 @@
 import { memo, useCallback } from 'react'
 import { motion, useTransform, type MotionValue } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import type { FeaturedProject } from '../../../content/featuredProjects'
-import { STAR_PROJECT_URL } from './starAssetUrls'
-import styles from './andromedaConstellation.module.css'
+import type { FeaturedProject } from '../../../../content/featuredProjects'
+import { STAR_PROJECT_URL } from '../lib/starAssetUrls'
+import styles from './mainProjectStar.module.css'
 
 export type MainProjectStarProps = {
   readonly project: FeaturedProject
