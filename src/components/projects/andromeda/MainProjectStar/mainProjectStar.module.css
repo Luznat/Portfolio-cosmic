@@ -1,8 +1,14 @@
 .mainAnchor {
   position: absolute;
-  z-index: 3;
+  z-index: 4;
   transform: translate(-50%, -50%);
   pointer-events: auto;
+  transition: filter 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mainAnchor[data-constellation-lit='1'] {
+  filter: brightness(1.15);
+  z-index: 5;
 }
 
 .mainAnchorMotion {
@@ -24,8 +30,33 @@
 }
 
 .mainHit:hover,
-.mainHit[data-active='1'] {
-  transform: scale(1.025);
+.mainHit[data-active='1'],
+.mainHit[data-constellation-lit='1'] {
+  transform: scale(1.04);
+}
+
+.mainHit[data-constellation-lit='1'] .coreGlow {
+  opacity: 1;
+  filter: blur(28px);
+}
+
+.mainHit[data-constellation-lit='1'] .breathRing {
+  opacity: 1;
+  box-shadow: 0 0 56px color-mix(in srgb, var(--glow-cool-20) 55%, transparent);
+}
+
+.mainHit[data-constellation-lit='1'] .mainStarImg {
+  filter: drop-shadow(0 0 32px var(--glow-cool-20))
+    drop-shadow(0 0 48px var(--glow-deep-12));
+}
+
+.coreGlow,
+.breathRing,
+.mainStarImg {
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mainStack {
@@ -189,11 +220,32 @@
 
 @media (max-width: 768px) {
   .mainCaption {
-    bottom: -2.1rem;
+    bottom: -2.35rem;
+    max-width: min(12rem, 46vw);
+  }
+
+  .mainName {
+    letter-spacing: 0.2em;
+    font-size: clamp(0.62rem, 2.8vw, 0.72rem);
+  }
+
+  .mainTag {
+    font-size: clamp(0.58rem, 2.5vw, 0.68rem);
   }
 
   .mainStack {
-    width: clamp(8.5rem, 42vw, 11rem);
-    height: clamp(10.2rem, 50vw, 13rem);
+    width: clamp(7.5rem, 38vw, 10rem);
+    height: clamp(9rem, 46vw, 12rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .mainStack {
+    width: clamp(6.75rem, 44vw, 9rem);
+    height: clamp(8.1rem, 52vw, 10.8rem);
+  }
+
+  .mainCaption {
+    bottom: -2rem;
   }
 }

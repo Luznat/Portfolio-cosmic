@@ -10,12 +10,6 @@
   overflow-y: visible;
 }
 
-.stars {
-  position: absolute;
-  inset: 0;
-  opacity: 0.85;
-}
-
 .stage {
   position: relative;
   z-index: 2;
@@ -99,10 +93,46 @@
 
 @media (max-width: 768px) {
   .section {
-    min-height: 155vh;
+    min-height: 165vh;
+    padding-inline: clamp(1rem, 4vw, 1.5rem);
   }
 
   .stage {
-    min-height: 78vh;
+    min-height: 82vh;
+    padding-top: 0.5rem;
+  }
+
+  .kicker {
+    letter-spacing: 0.22em;
+    padding-inline: 0.5rem;
+  }
+
+  .subkicker {
+    max-width: min(20rem, 92vw);
+    padding-inline: 0.75rem;
+    letter-spacing: 0.08em;
+  }
+
+  .constellationWrap {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-inline: max(0.5rem, env(safe-area-inset-left, 0px))
+      max(0.5rem, env(safe-area-inset-right, 0px));
+  }
+
+  .footer {
+    padding-inline: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .kicker {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+  }
+
+  .subkicker {
+    font-size: 0.75rem;
   }
 }

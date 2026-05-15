@@ -1,43 +1,32 @@
-import { memo, useMemo } from 'react'
+import { memo } from 'react'
 import { motion, useTransform, type MotionValue } from 'framer-motion'
 import type { ScheduledEdge } from '../lib/constellationSchedule'
+import { constellationLineOpacity } from '../lib/scrollReveal'
 import styles from './constellationLines.module.css'
-
-function edgeTouchIds(edge: ScheduledEdge): readonly string[] {
-  const a =
-    edge.from.kind === 'project' ? edge.from.slug : edge.from.id
-  const b = edge.to.kind === 'project' ? edge.to.slug : edge.to.id
-  return [a, b]
-}
 
 const ConstellationLine = memo(function ConstellationLine({
   edge,
   scrollYProgress,
-  hoverId,
+  constellationLit,
+  constellationDimmed,
 }: {
   edge: ScheduledEdge
   scrollYProgress: MotionValue<number>
-  hoverId: string | null
+  constellationLit: boolean
+  constellationDimmed: boolean
 }) {
-  const lineOpacity = useTransform(
-    scrollYProgress,
-    [
-      edge.reveal[0],
-      edge.reveal[1],
-      Math.min(1, edge.reveal[1] + 0.06),
-    ],
-    [0, 1, 1],
-    { clamp: true },
+  const displayOpacity = useTransform(scrollYProgress, (progress) =>
+    constellationLineOpacity(
+      progress,
+      edge.reveal,
+      constellationLit,
+      constellationDimmed,
+    ),
   )
 
-  const touches = useMemo(
-    () => (hoverId ? edgeTouchIds(edge).includes(hoverId) : false),
-    [edge, hoverId],
-  )
-  const muted = Boolean(hoverId && !touches)
   const lineClass =
     `${styles.constLine}` +
-    (touches && hoverId ? ` ${styles.constLineBright}` : '')
+    (constellationLit ? ` ${styles.constLineConstellationLit}` : '')
 
   return (
     <motion.line
@@ -46,9 +35,10 @@ const ConstellationLine = memo(function ConstellationLine({
       x2={edge.to.cx}
       y2={edge.to.cy}
       className={lineClass}
-      data-muted={muted ? '1' : undefined}
+      data-muted={constellationDimmed ? '1' : undefined}
+      data-lit={constellationLit ? '1' : undefined}
       vectorEffect="non-scaling-stroke"
-      style={{ opacity: lineOpacity }}
+      style={{ opacity: displayOpacity }}
     />
   )
 })
@@ -56,14 +46,21 @@ const ConstellationLine = memo(function ConstellationLine({
 export type ConstellationLinesProps = {
   readonly scrollYProgress: MotionValue<number>
   readonly edges: readonly ScheduledEdge[]
-  readonly hoverId: string | null
+  readonly projectSlug: string
+  readonly hoverConstellationSlug: string | null
 }
 
 export const ConstellationLines = memo(function ConstellationLines({
   scrollYProgress,
   edges,
-  hoverId,
+  projectSlug,
+  hoverConstellationSlug,
 }: ConstellationLinesProps) {
+  const constellationLit = hoverConstellationSlug === projectSlug
+  const constellationDimmed = Boolean(
+    hoverConstellationSlug && hoverConstellationSlug !== projectSlug,
+  )
+
   return (
     <svg
       className={styles.lineSvg}
@@ -76,7 +73,8 @@ export const ConstellationLines = memo(function ConstellationLines({
           key={edge.key}
           edge={edge}
           scrollYProgress={scrollYProgress}
-          hoverId={hoverId}
+          constellationLit={constellationLit}
+          constellationDimmed={constellationDimmed}
         />
       ))}
     </svg>

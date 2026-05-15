@@ -15,19 +15,22 @@
   stroke-width: 0.17;
   stroke-linecap: round;
   stroke-dasharray: 0.55 0.42;
-  filter:
-    drop-shadow(0 0 2px var(--glow-cool-18))
-    drop-shadow(0 0 5px var(--glow-deep-12));
+  filter: drop-shadow(0 0 4px var(--glow-deep-12));
+  transition:
+    stroke 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    stroke-width 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .constLine[data-muted='1'] {
   stroke: var(--andromeda-line-muted);
-  filter: drop-shadow(0 0 1px var(--glow-deep-08));
+  filter: none;
 }
 
-.constLineBright {
-  stroke: color-mix(in srgb, var(--text-h) 35%, var(--text-emphasis) 55%);
-  filter:
-    drop-shadow(0 0 3px var(--glow-cool-20))
-    drop-shadow(0 0 8px var(--glow-deep-12));
+.constLineConstellationLit,
+.constLine[data-lit='1'] {
+  stroke: color-mix(in srgb, var(--text-h) 70%, var(--text-emphasis) 85%);
+  stroke-width: 0.32;
+  stroke-dasharray: 0.85 0.28;
+  filter: drop-shadow(0 0 10px var(--glow-cool-20));
 }

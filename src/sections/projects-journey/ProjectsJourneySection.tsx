@@ -1,7 +1,6 @@
 import { motion, useScroll } from 'framer-motion'
 import { memo, useRef } from 'react'
 import { AndromedaConstellation } from '../../components/projects/andromeda'
-import { StarDustField } from '../../components/projects/StarDustField'
 import { useHomeScroll } from '../../hooks/useHomeScroll'
 import styles from './ProjectsJourneySection.module.css'
 
@@ -11,7 +10,7 @@ const revealTransition = {
 }
 
 export const ProjectsJourneySection = memo(function ProjectsJourneySection() {
-  const { scrollContainerRef, scrollYProgress } = useHomeScroll()
+  const { scrollContainerRef } = useHomeScroll()
   const sectionRef = useRef<HTMLElement | null>(null)
   const { scrollYProgress: journeyScrollYProgress } = useScroll({
     container: scrollContainerRef,
@@ -26,12 +25,9 @@ export const ProjectsJourneySection = memo(function ProjectsJourneySection() {
       className={styles.section}
       aria-labelledby="journey-heading"
     >
-      <div className={styles.stars} aria-hidden>
-        <StarDustField scrollYProgress={scrollYProgress} density="sparse" />
-      </div>
       <div className={styles.stage}>
         <h2 id="journey-heading" className={styles.kicker}>
-        Constelações
+          Constelações
         </h2>
         <p id="andromeda-map-desc" className={styles.subkicker}>
           Duas constelações — cada estrela grande é um projeto

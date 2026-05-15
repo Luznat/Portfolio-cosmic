@@ -81,6 +81,59 @@ export const featuredProjects: readonly FeaturedProject[] = [
   },
 ] as const
 
+/** Positions tuned for portrait — Orbit upper-left, Nebula lower-right (less overlap). */
+export const featuredProjectsMobile: readonly FeaturedProject[] = [
+  {
+    slug: 'orbit-mobile',
+    name: 'Orbit',
+    tagline: 'Experiência mobile imersiva',
+    cx: 22,
+    cy: 38,
+    coverSrc: heroCover,
+    constellationParallax: 0.1,
+    constellationChain: [
+      'orbit-s2',
+      'orbit-s1',
+      'orbit-mobile',
+      'orbit-s3',
+      'orbit-s4',
+    ],
+    satellites: [
+      { id: 'orbit-s1', cx: 14, cy: 20, variant: 1 },
+      { id: 'orbit-s2', cx: 34, cy: 8, variant: 2 },
+      { id: 'orbit-s3', cx: 44, cy: 56, variant: 3 },
+      { id: 'orbit-s4', cx: 48, cy: 72, variant: 2 },
+    ],
+  },
+  {
+    slug: 'nebula-kit',
+    name: 'Nebula Kit',
+    tagline: 'Design system espacial',
+    cx: 72,
+    cy: 32,
+    constellationParallax: 0.15,
+    constellationChain: [
+      'neb-s1',
+      'nebula-kit',
+      'neb-s2',
+      'neb-s3',
+      'neb-s4',
+    ],
+    satellites: [
+      { id: 'neb-s1', cx: 84, cy: 14, variant: 2 },
+      { id: 'neb-s2', cx: 90, cy: 52, variant: 3 },
+      { id: 'neb-s3', cx: 58, cy: 64, variant: 1 },
+      { id: 'neb-s4', cx: 76, cy: 80, variant: 2 },
+    ],
+  },
+] as const
+
+export function getFeaturedProjectForViewport(
+  mobile: boolean,
+): readonly FeaturedProject[] {
+  return mobile ? featuredProjectsMobile : featuredProjects
+}
+
 export function getFeaturedProjectBySlug(
   slug: string,
 ): FeaturedProject | undefined {

@@ -69,3 +69,25 @@
   outline: 1px solid var(--focus-ring);
   outline-offset: 3px;
 }
+
+@media (max-width: 768px) {
+  .title {
+    font-size: clamp(1.85rem, 9vw, 2.65rem);
+    line-height: 1.14;
+  }
+
+  .subtitle {
+    margin-top: 1rem;
+    font-size: clamp(0.95rem, 4.2vw, 1.1rem);
+    max-width: 100%;
+  }
+
+  .actions {
+    gap: 0.65rem;
+  }
+
+  .btn {
+    min-height: 2.75rem;
+    padding-inline: 1.15rem;
+  }
+}

@@ -2,6 +2,7 @@ import { memo, useCallback } from 'react'
 import { motion, useTransform, type MotionValue } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import type { FeaturedProject } from '../../../../content/featuredProjects'
+import { revealOpacity, revealScale } from '../lib/scrollReveal'
 import { STAR_PROJECT_URL } from '../lib/starAssetUrls'
 import styles from './mainProjectStar.module.css'
 
@@ -9,52 +10,46 @@ export type MainProjectStarProps = {
   readonly project: FeaturedProject
   readonly scrollYProgress: MotionValue<number>
   readonly reveal: readonly [number, number]
-  readonly hoverId: string | null
-  readonly onHover: (id: string | null) => void
+  readonly hoverConstellationSlug: string | null
+  readonly onHoverConstellation: () => void
 }
 
 export const MainProjectStar = memo(function MainProjectStar({
   project,
   scrollYProgress,
   reveal,
-  hoverId,
-  onHover,
+  hoverConstellationSlug,
+  onHoverConstellation,
 }: MainProjectStarProps) {
-  const opacity = useTransform(
-    scrollYProgress,
-    [reveal[0], reveal[1]],
-    [0, 1],
-    { clamp: true },
+  const constellationLit = hoverConstellationSlug === project.slug
+
+  const opacity = useTransform(scrollYProgress, (progress) =>
+    revealOpacity(progress, reveal),
   )
-  const scale = useTransform(
-    scrollYProgress,
-    [reveal[0], reveal[1]],
-    [0.9, 1],
-    { clamp: true },
-  )
-  const glow = useTransform(
-    scrollYProgress,
-    [reveal[0], Math.min(1, reveal[1] + 0.1)],
-    [0, 1],
-    { clamp: true },
+  const scale = useTransform(scrollYProgress, (progress) =>
+    revealScale(progress, reveal, 0.9, 1),
   )
 
-  const enter = useCallback(() => onHover(project.slug), [onHover, project.slug])
-  const leave = useCallback(() => onHover(null), [onHover])
-  const active = hoverId === project.slug
+  const glowOpacity = useTransform(scrollYProgress, (progress) => {
+    if (constellationLit) return 1
+    return revealOpacity(progress, reveal, 0.1)
+  })
+
+  const enter = useCallback(() => onHoverConstellation(), [onHoverConstellation])
 
   return (
     <div
       className={styles.mainAnchor}
       style={{ left: `${project.cx}%`, top: `${project.cy}%` }}
+      data-constellation-lit={constellationLit ? '1' : undefined}
+      onMouseEnter={enter}
     >
       <motion.div className={styles.mainAnchorMotion} style={{ opacity, scale }}>
         <Link
           className={styles.mainHit}
           to={`/projects/${project.slug}`}
-          onMouseEnter={enter}
-          onMouseLeave={leave}
-          data-active={active ? '1' : undefined}
+          data-active={constellationLit ? '1' : undefined}
+          data-constellation-lit={constellationLit ? '1' : undefined}
         >
           <span className={styles.srOnly}>
             {project.name} — {project.tagline}
@@ -62,12 +57,12 @@ export const MainProjectStar = memo(function MainProjectStar({
           <div className={styles.mainStack}>
             <motion.div
               className={styles.coreGlow}
-              style={{ opacity: glow }}
+              style={{ opacity: glowOpacity }}
               aria-hidden
             />
             <motion.div
               className={styles.breathRing}
-              style={{ opacity: glow }}
+              style={{ opacity: glowOpacity }}
               aria-hidden
             />
             <img

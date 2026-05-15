@@ -13,6 +13,21 @@
 @media (max-width: 768px) {
   .section {
     min-height: min(100svh, max(32rem, 88svh));
+    scroll-margin-top: 4.75rem;
+  }
+
+  .innerLift {
+    transform: translateY(-2vh);
+  }
+
+  .inner {
+    padding: clamp(5.25rem, 14vw, 6rem) clamp(1.1rem, 4vw, 1.5rem)
+      clamp(2rem, 5vw, 2.75rem);
+    max-width: 100%;
+  }
+
+  .scrollCueBand {
+    bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -22,7 +37,7 @@
   z-index: 0;
   overflow: hidden;
   transform-origin: 50% 42%;
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity;
 }
 
 .section::after {
@@ -61,7 +76,7 @@
     clamp(2.5rem, 6vw, 4rem);
   max-width: min(42rem, 92vw);
   transform-origin: 50% 55%;
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity;
 }
 
 .overlay {
@@ -91,7 +106,7 @@
   gap: 0.45rem;
   pointer-events: none;
   transform-origin: 50% 100%;
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity;
 }
 
 .scrollHint {

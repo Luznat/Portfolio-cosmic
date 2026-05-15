@@ -1,9 +1,4 @@
-import {
-  motion,
-  useMotionTemplate,
-  useReducedMotion,
-  useTransform,
-} from 'framer-motion'
+import { motion, useReducedMotion, useTransform } from 'framer-motion'
 import { HeroBackgroundVideo } from './HeroBackgroundVideo'
 import { HeroContent } from './HeroContent'
 import { useHomeScroll } from '../../../hooks/useHomeScroll'
@@ -23,20 +18,10 @@ export function HeroSection() {
     return 1 - (reduce ? 0.12 : 0.18) * t
   })
 
-  const blurPx = useTransform(scrollYProgress, (s) => {
-    return (reduce ? 0.4 : 0.9) * Math.min(1, s / 0.48)
-  })
-  const filter = useMotionTemplate`blur(${blurPx}px)`
-
   const overlayOpacity = useTransform(scrollYProgress, (s) => {
     const t = Math.min(1, s / 0.5)
     return 1 - (reduce ? 0.08 : 0.14) * t
   })
-
-  const innerBlurPx = useTransform(scrollYProgress, (s) => {
-    return (reduce ? 0.22 : 0.48) * Math.min(1, s / 0.48)
-  })
-  const innerFilter = useMotionTemplate`blur(${innerBlurPx}px)`
 
   const innerY = useTransform(scrollYProgress, (s) => {
     const t = Math.min(1, s / 0.48)
@@ -46,7 +31,6 @@ export function HeroSection() {
   const foregroundStyle = {
     scale,
     opacity,
-    filter: innerFilter,
     y: innerY,
   }
 
@@ -54,7 +38,7 @@ export function HeroSection() {
     <section id="inicio" className={styles.section} data-hero-section>
       <motion.div
         className={styles.videoParallax}
-        style={{ scale, opacity, filter }}
+        style={{ scale, opacity }}
       >
         <HeroBackgroundVideo />
       </motion.div>

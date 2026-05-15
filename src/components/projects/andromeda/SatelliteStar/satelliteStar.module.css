@@ -1,12 +1,14 @@
 .satAnchor {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   transform: translate(-50%, -50%);
   pointer-events: auto;
+  transition: filter 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.satAnchorMotion {
-  transform-origin: 50% 50%;
+.satAnchor[data-constellation-lit='1'] {
+  filter: brightness(1.2);
+  z-index: 4;
 }
 
 .satHit {
@@ -48,9 +50,34 @@
   transform: scale(1.04);
 }
 
+.satAnchor[data-constellation-lit='1'] .satImg {
+  filter: drop-shadow(0 0 22px var(--glow-cool-20))
+    drop-shadow(0 0 38px var(--glow-deep-12));
+  transform: scale(1.12);
+}
+
+.satAnchor[data-constellation-lit='1'] .satGlow {
+  opacity: 1;
+  filter: blur(14px);
+}
+
+.satAnchorMotion {
+  transform-origin: 50% 50%;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 @media (max-width: 768px) {
   .satHit {
-    width: clamp(2.85rem, 9vw, 3.6rem);
-    height: clamp(2.85rem, 9vw, 3.6rem);
+    width: clamp(2.75rem, 11vw, 3.5rem);
+    height: clamp(2.75rem, 11vw, 3.5rem);
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .satHit {
+    width: clamp(2.65rem, 12vw, 3.25rem);
+    height: clamp(2.65rem, 12vw, 3.25rem);
   }
 }

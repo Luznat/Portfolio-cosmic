@@ -30,7 +30,7 @@
       color-mix(in srgb, var(--glow-deep-12) 70%, transparent),
       transparent 55%
     );
-  filter: blur(36px);
+  filter: blur(24px);
   opacity: 0.75;
 }
 
@@ -38,17 +38,45 @@
   position: absolute;
   inset: 0;
   z-index: 2;
-  pointer-events: none;
 }
 
 .constellationLayer {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.constellationLayer[data-dimmed='1'] {
+  opacity: 0.88;
+}
+
+.constellationLayer[data-lit='1'] {
+  opacity: 1;
+}
+
+.constellationHitArea {
+  position: absolute;
+  z-index: 1;
+  pointer-events: auto;
+  border-radius: 12%;
 }
 
 @media (max-width: 768px) {
   .stage {
-    min-height: min(72vh, 36rem);
+    min-height: min(78vh, 40rem);
+    padding-bottom: 2.5rem;
+  }
+
+  .nebula {
+    inset: -8% -4% -6%;
+    filter: blur(20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .stage {
+    min-height: min(82vh, 36rem);
+    padding-bottom: 3rem;
   }
 }

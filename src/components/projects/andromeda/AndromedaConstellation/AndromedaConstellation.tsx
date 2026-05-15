@@ -1,10 +1,17 @@
 import { memo, useCallback, useMemo, useState } from 'react'
-import { motion, useTransform, type MotionValue } from 'framer-motion'
+import {
+  motion,
+  useReducedMotion,
+  useTransform,
+  type MotionValue,
+} from 'framer-motion'
 import { useHomeScroll } from '../../../../hooks/useHomeScroll'
 import {
-  featuredProjects,
+  getFeaturedProjectForViewport,
   type FeaturedProject,
 } from '../../../../content/featuredProjects'
+import { useMediaQuery } from '../../../../hooks/useMediaQuery'
+import { getConstellationBounds } from '../lib/constellationBounds'
 import {
   buildConstellationSchedule,
   type ScheduledEdge,
@@ -26,8 +33,9 @@ type ConstellationLayerProps = {
   readonly parallaxSign: number
   readonly mainReveal: readonly [number, number]
   readonly satelliteRevealById: ReadonlyMap<string, readonly [number, number]>
-  readonly hoverId: string | null
-  readonly onHover: (id: string | null) => void
+  readonly hoverConstellationSlug: string | null
+  readonly onHoverConstellation: (slug: string | null) => void
+  readonly disableParallax: boolean
 }
 
 const ConstellationLayer = memo(function ConstellationLayer({
@@ -39,10 +47,11 @@ const ConstellationLayer = memo(function ConstellationLayer({
   parallaxSign,
   mainReveal,
   satelliteRevealById,
-  hoverId,
-  onHover,
+  hoverConstellationSlug,
+  onHoverConstellation,
+  disableParallax,
 }: ConstellationLayerProps) {
-  const strength = project.constellationParallax ?? 0
+  const strength = disableParallax ? 0 : (project.constellationParallax ?? 0)
   const layerY = useTransform(
     layerParallaxScrollYProgress,
     [0, 1],
@@ -50,15 +59,45 @@ const ConstellationLayer = memo(function ConstellationLayer({
     { clamp: true },
   )
 
+  const constellationLit = hoverConstellationSlug === project.slug
+  const constellationDimmed = Boolean(
+    hoverConstellationSlug && hoverConstellationSlug !== project.slug,
+  )
+
+  const lightConstellation = useCallback(() => {
+    onHoverConstellation(project.slug)
+  }, [onHoverConstellation, project.slug])
+
+  const clearConstellation = useCallback(() => {
+    onHoverConstellation(null)
+  }, [onHoverConstellation])
+
+  const bounds = useMemo(() => getConstellationBounds(project), [project])
+
   return (
     <motion.div
       className={styles.constellationLayer}
       style={{ y: layerY, zIndex: layerZIndex }}
+      data-lit={constellationLit ? '1' : undefined}
+      data-dimmed={constellationDimmed ? '1' : undefined}
     >
+      <div
+        className={styles.constellationHitArea}
+        style={{
+          left: `${bounds.left}%`,
+          top: `${bounds.top}%`,
+          width: `${bounds.width}%`,
+          height: `${bounds.height}%`,
+        }}
+        onMouseEnter={lightConstellation}
+        onMouseLeave={clearConstellation}
+        aria-hidden
+      />
       <ConstellationLines
         scrollYProgress={sequenceProgress}
         edges={edges}
-        hoverId={hoverId}
+        projectSlug={project.slug}
+        hoverConstellationSlug={hoverConstellationSlug}
       />
       {project.satellites.map((s) => {
         const reveal = satelliteRevealById.get(s.id)
@@ -67,10 +106,11 @@ const ConstellationLayer = memo(function ConstellationLayer({
           <SatelliteStar
             key={s.id}
             satellite={s}
+            projectSlug={project.slug}
             scrollYProgress={sequenceProgress}
             reveal={reveal}
-            hoverId={hoverId}
-            onHover={onHover}
+            hoverConstellationSlug={hoverConstellationSlug}
+            onHoverConstellation={lightConstellation}
           />
         )
       })}
@@ -78,8 +118,8 @@ const ConstellationLayer = memo(function ConstellationLayer({
         project={project}
         scrollYProgress={sequenceProgress}
         reveal={mainReveal}
-        hoverId={hoverId}
-        onHover={onHover}
+        hoverConstellationSlug={hoverConstellationSlug}
+        onHoverConstellation={lightConstellation}
       />
     </motion.div>
   )
@@ -93,11 +133,20 @@ export const AndromedaConstellation = memo(function AndromedaConstellation({
   journeyScrollYProgress,
 }: AndromedaConstellationProps) {
   const { scrollYProgress: mainScrollYProgress } = useHomeScroll()
-  const [hoverId, setHoverId] = useState<string | null>(null)
+  const reduceMotion = useReducedMotion()
+  const isMobileLayout = useMediaQuery('(max-width: 768px)')
+  const disableParallax = reduceMotion || isMobileLayout
+  const projects = useMemo(
+    () => getFeaturedProjectForViewport(isMobileLayout),
+    [isMobileLayout],
+  )
+  const [hoverConstellationSlug, setHoverConstellationSlug] = useState<
+    string | null
+  >(null)
 
   const schedule = useMemo(
-    () => buildConstellationSchedule(featuredProjects),
-    [],
+    () => buildConstellationSchedule(projects),
+    [projects],
   )
 
   const mainRevealBySlug = useMemo(() => {
@@ -115,7 +164,7 @@ export const AndromedaConstellation = memo(function AndromedaConstellation({
 
   const edgesByProjectSlug = useMemo(() => {
     const m = new Map<string, ScheduledEdge[]>()
-    for (const p of featuredProjects) {
+    for (const p of projects) {
       m.set(p.slug, [])
     }
     for (const e of schedule.edges) {
@@ -125,7 +174,7 @@ export const AndromedaConstellation = memo(function AndromedaConstellation({
       }
     }
     return m
-  }, [schedule.edges])
+  }, [projects, schedule.edges])
 
   const sequenceProgress = useTransform(
     journeyScrollYProgress,
@@ -144,12 +193,12 @@ export const AndromedaConstellation = memo(function AndromedaConstellation({
   const fieldParallaxY = useTransform(
     mainScrollYProgress,
     [0, 1],
-    [34, -40],
+    disableParallax ? [0, 0] : [34, -40],
     { clamp: true },
   )
 
-  const onHover = useCallback((id: string | null) => {
-    setHoverId(id)
+  const onHoverConstellation = useCallback((slug: string | null) => {
+    setHoverConstellationSlug(slug)
   }, [])
 
   return (
@@ -160,7 +209,7 @@ export const AndromedaConstellation = memo(function AndromedaConstellation({
         aria-hidden
       />
       <motion.div className={styles.starField} style={{ y: fieldParallaxY }}>
-        {[...featuredProjects]
+        {[...projects]
           .map((p, featuredIndex) => ({ p, featuredIndex }))
           .sort((a, b) => b.p.cx - a.p.cx)
           .map(({ p, featuredIndex }) => {
@@ -168,7 +217,7 @@ export const AndromedaConstellation = memo(function AndromedaConstellation({
             if (!mainReveal) return null
             const edges = edgesByProjectSlug.get(p.slug) ?? []
             const parallaxSign = featuredIndex === 0 ? 1 : -1
-            const layerZIndex = featuredProjects.length - featuredIndex
+            const layerZIndex = projects.length - featuredIndex
             return (
               <ConstellationLayer
                 key={p.slug}
@@ -180,8 +229,9 @@ export const AndromedaConstellation = memo(function AndromedaConstellation({
                 parallaxSign={parallaxSign}
                 mainReveal={mainReveal}
                 satelliteRevealById={satelliteRevealById}
-                hoverId={hoverId}
-                onHover={onHover}
+                hoverConstellationSlug={hoverConstellationSlug}
+                onHoverConstellation={onHoverConstellation}
+                disableParallax={disableParallax}
               />
             )
           })}
