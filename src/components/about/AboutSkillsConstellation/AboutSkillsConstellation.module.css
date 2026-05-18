@@ -1,0 +1,291 @@
+.constellation {
+  position: relative;
+  z-index: 2;
+  width: min(72rem, 100%);
+  margin: clamp(2rem, 5vh, 3rem) auto 0;
+  min-height: clamp(12rem, 30vw, 17rem);
+  padding: 0 clamp(0.5rem, 2vw, 1rem);
+  box-sizing: border-box;
+}
+
+.lineSvg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.line {
+  fill: none;
+  stroke: color-mix(
+    in srgb,
+    var(--text-emphasis) 72%,
+    var(--text-subtle) 28%
+  );
+  stroke-width: 0.32;
+  stroke-linecap: round;
+  stroke-dasharray: 0.8 0.38;
+  opacity: 1;
+  filter: drop-shadow(0 0 8px var(--glow-cool-18))
+    drop-shadow(0 0 5px var(--glow-deep-12));
+  transition:
+    stroke 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    stroke-width 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.line[data-dimmed='1'] {
+  stroke: var(--andromeda-line-muted);
+  opacity: 0.55;
+  filter: none;
+}
+
+.line[data-lit='1'] {
+  stroke: color-mix(in srgb, var(--text-h) 55%, var(--text-emphasis) 92%);
+  stroke-width: 0.4;
+  stroke-dasharray: 0.95 0.28;
+  filter: drop-shadow(0 0 14px var(--glow-cool-20))
+    drop-shadow(0 0 6px var(--glow-deep-12));
+  opacity: 1;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.starItem {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.star {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.25rem;
+  border: none;
+  background: transparent;
+  cursor: default;
+  color: var(--text-subtle);
+  transition:
+    color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.star:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+  border-radius: 0.35rem;
+}
+
+.star[data-dimmed='1'] {
+  color: var(--text-quiet);
+  filter: brightness(0.72);
+}
+
+.star[data-lit='1'],
+.star:hover,
+.star:focus-visible {
+  color: var(--text-emphasis);
+}
+
+.starVisual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(2.75rem, 5.5vw, 3.75rem);
+  height: clamp(2.75rem, 5.5vw, 3.75rem);
+}
+
+.starGlow {
+  position: absolute;
+  width: 155%;
+  height: 155%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--glow-cool-20) 34%, transparent),
+    transparent 70%
+  );
+  filter: blur(8px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.starImg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px var(--glow-deep-12));
+}
+
+.star:not([data-dimmed='1']) .starVisual {
+  animation: skillStarTwinkle var(--twinkle-duration, 3.6s) ease-in-out infinite;
+  animation-delay: var(--twinkle-delay, 0s);
+  will-change: transform, filter;
+}
+
+.star:not([data-dimmed='1']) .starGlow {
+  animation: skillGlowTwinkle var(--twinkle-duration, 3.6s) ease-in-out infinite;
+  animation-delay: var(--twinkle-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.star:hover .starVisual,
+.star:focus-visible .starVisual,
+.star[data-lit='1'] .starVisual {
+  animation-play-state: paused;
+  transform: scale(1.08);
+  filter: brightness(1.12);
+}
+
+.star:hover .starGlow,
+.star:focus-visible .starGlow,
+.star[data-lit='1'] .starGlow {
+  animation-play-state: paused;
+  opacity: 1;
+  filter: blur(10px);
+  transform: scale(1.12);
+}
+
+.star:hover .starImg,
+.star:focus-visible .starImg,
+.star[data-lit='1'] .starImg {
+  filter: drop-shadow(0 0 14px var(--glow-cool-20))
+    drop-shadow(0 0 24px var(--glow-deep-12));
+}
+
+.star[data-dimmed='1'] .starVisual {
+  animation: none;
+  transform: scale(0.92);
+  filter: brightness(0.75);
+}
+
+.star[data-dimmed='1'] .starImg {
+  opacity: 0.55;
+}
+
+.star[data-dimmed='1'] .starGlow {
+  animation: none;
+  opacity: 0.12;
+  transform: scale(0.9);
+}
+
+@keyframes skillStarTwinkle {
+  0%,
+  100% {
+    transform: scale(0.9);
+    filter: brightness(0.82) drop-shadow(0 0 4px var(--glow-deep-12));
+  }
+
+  40% {
+    transform: scale(1.1);
+    filter: brightness(1.18) drop-shadow(0 0 14px var(--glow-cool-20))
+      drop-shadow(0 0 22px var(--glow-deep-12));
+  }
+
+  65% {
+    transform: scale(0.96);
+    filter: brightness(0.95) drop-shadow(0 0 8px var(--glow-cool-18));
+  }
+}
+
+@keyframes skillGlowTwinkle {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: scale(0.88);
+  }
+
+  50% {
+    opacity: 0.92;
+    transform: scale(1.15);
+  }
+}
+
+.label {
+  max-width: min(9.5rem, 28vw);
+  font-size: clamp(0.68rem, 0.95vw, 0.78rem);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.35;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.constellation[data-layout='compact'] {
+  min-height: clamp(18rem, 68vw, 24rem);
+  max-width: min(26rem, 100%);
+  margin-inline: auto;
+  aspect-ratio: 4 / 5;
+}
+
+.constellation[data-layout='compact'] .stars,
+.constellation[data-layout='compact'] .lineSvg {
+  inset: 6% 5% 10%;
+}
+
+.constellation[data-layout='compact'] .starVisual {
+  width: clamp(2.25rem, 8vw, 2.85rem);
+  height: clamp(2.25rem, 8vw, 2.85rem);
+}
+
+.constellation[data-layout='compact'] .label {
+  max-width: min(6.25rem, 30vw);
+  font-size: clamp(0.6rem, 2.8vw, 0.68rem);
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.constellation[data-layout='narrow'] {
+  min-height: clamp(20rem, 118vw, 26rem);
+  max-width: min(22rem, 100%);
+  aspect-ratio: 10 / 13;
+}
+
+.constellation[data-layout='narrow'] .stars,
+.constellation[data-layout='narrow'] .lineSvg {
+  inset: 5% 6% 8%;
+}
+
+.constellation[data-layout='narrow'] .starVisual {
+  width: clamp(2rem, 11vw, 2.6rem);
+  height: clamp(2rem, 11vw, 2.6rem);
+}
+
+.constellation[data-layout='narrow'] .label {
+  max-width: min(5.5rem, 38vw);
+  font-size: clamp(0.58rem, 3.1vw, 0.65rem);
+  line-height: 1.2;
+  white-space: normal;
+}
+
+@media (max-width: 1024px) {
+  .constellation {
+    margin-top: 1.75rem;
+    padding-inline: clamp(0.25rem, 2vw, 0.75rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .star {
+    transition-duration: 0.01ms;
+  }
+
+  .star:not([data-dimmed='1']) .starVisual,
+  .star:not([data-dimmed='1']) .starGlow {
+    animation: none;
+  }
+}

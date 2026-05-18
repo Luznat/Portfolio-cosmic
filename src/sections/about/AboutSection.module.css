@@ -16,7 +16,7 @@
   box-sizing: border-box;
   margin-top: 0;
   padding: clamp(6.5rem, 16vh, 10rem) clamp(1.25rem, 5vw, 2.5rem)
-    clamp(2.5rem, 6vh, 3.5rem);
+    clamp(3.5rem, 8vh, 4.5rem);
   scroll-margin-top: 5.75rem;
   background: transparent;
   overflow-x: clip;
@@ -139,7 +139,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .paragraph {
@@ -147,26 +147,6 @@
   font-size: clamp(0.92rem, 1.1vw, 1rem);
   line-height: 1.65;
   color: var(--text);
-}
-
-.highlights {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 0.55rem 0.65rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.highlight {
-  padding: 0.4rem 0.85rem;
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  color: var(--text-subtle);
-  border: 1px solid var(--border-soft);
-  border-radius: 999px;
-  background: var(--accent-bg);
 }
 
 @media (max-width: 768px) {
@@ -190,10 +170,6 @@
   .content {
     text-align: center;
     width: 100%;
-  }
-
-  .highlights {
-    justify-content: center;
   }
 
   .kicker {

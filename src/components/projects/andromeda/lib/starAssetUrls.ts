@@ -6,6 +6,7 @@ import starProject from '../../../../shared/assets/images/Estrela-projeto.svg?ur
 import type { SatelliteVariant } from '../../../../content/featuredProjects'
 
 export const STAR_PROJECT_URL = starProject
+export const STAR_SKILL_URL = starConst2
 
 export function satelliteAssetUrl(variant: SatelliteVariant): string {
   switch (variant) {

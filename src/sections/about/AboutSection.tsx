@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { AboutAvatar } from '../../components/about/AboutAvatar/AboutAvatar'
-import { aboutHighlights, aboutIntro } from '../../content/about'
+import { AboutSkillsConstellation } from '../../components/about/AboutSkillsConstellation/AboutSkillsConstellation'
+import { aboutIntro } from '../../content/about'
 import aboutGalaxyBackdrop from '../../shared/assets/images/Galaxia_background_for_portfolio_202605181755.jpeg'
 import styles from './AboutSection.module.css'
 
@@ -79,22 +80,9 @@ function AboutSection({
             </motion.p>
           ))}
         </div>
-        <motion.ul
-          className={styles.highlights}
-          aria-label="Áreas de atuação"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ ...revealTransition, delay: 0.22 }}
-        >
-          {aboutHighlights.map((item) => (
-            <li key={item.label} className={styles.highlight}>
-              {item.label}
-            </li>
-          ))}
-        </motion.ul>
         </div>
       </motion.div>
+      <AboutSkillsConstellation />
     </section>
   )
 }
