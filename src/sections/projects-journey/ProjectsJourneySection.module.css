@@ -1,9 +1,7 @@
 .section {
   position: relative;
-  min-height: 175vh;
   box-sizing: border-box;
-  padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 5vw, 2.5rem)
-    clamp(3rem, 8vw, 5rem);
+  padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 5vw, 2.5rem) 0;
   scroll-margin-top: 5.75rem;
   background: var(--section-projects-bg);
   overflow-x: clip;
@@ -19,28 +17,35 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 42% 0%;
-  /* Visível mas ainda “de fundo”; normal soma bem ao #000 da secção */
   opacity: 0.42;
   filter: brightness(0.62) saturate(1.22) contrast(1.06);
+  -webkit-mask-image: var(--journey-backdrop-mask);
+  mask-image: var(--journey-backdrop-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
+/* Suaviza a transição para o fundo do Sobre mim, sem faixa opaca */
 .sectionBackdrop::after {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(
-    ellipse 95% 78% at 50% 28%,
-    transparent 35%,
-    color-mix(in srgb, var(--section-projects-bg) 82%, transparent) 72%,
-    var(--section-projects-bg) 100%
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 54%,
+    color-mix(in srgb, var(--section-projects-bg) 22%, transparent) 76%,
+    transparent 100%
   );
 }
 
 .stage {
   position: relative;
   z-index: 2;
-  min-height: 88vh;
+  min-height: min(88vh, max(34rem, 82svh));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,7 +83,7 @@
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   padding: clamp(0.5rem, 1.5vh, 1.25rem) max(1rem, env(safe-area-inset-right, 0px))
-    clamp(1rem, 3vh, 2.5rem) max(1rem, env(safe-area-inset-left, 0px));
+    clamp(4rem, 9vh, 6.5rem) max(1rem, env(safe-area-inset-left, 0px));
   box-sizing: border-box;
 }
 
@@ -93,39 +98,13 @@
   min-height: clamp(220px, 42vw, 380px);
 }
 
-.footer {
-  position: relative;
-  z-index: 2;
-  max-width: 28rem;
-  margin: 0 auto;
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  scroll-margin-top: 6.25rem;
-}
-
-.footerTitle {
-  margin: 0 0 0.5rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text-emphasis);
-}
-
-.footerText {
-  margin: 0;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: var(--text-quiet);
-}
-
 @media (max-width: 768px) {
   .section {
-    min-height: 165vh;
     padding-inline: clamp(1rem, 4vw, 1.5rem);
   }
 
   .stage {
-    min-height: 82vh;
+    min-height: min(82vh, max(30rem, 78svh));
     padding-top: 0.5rem;
   }
 
@@ -146,10 +125,6 @@
     margin-right: 0;
     padding-inline: max(0.5rem, env(safe-area-inset-left, 0px))
       max(0.5rem, env(safe-area-inset-right, 0px));
-  }
-
-  .footer {
-    padding-inline: 1rem;
   }
 }
 

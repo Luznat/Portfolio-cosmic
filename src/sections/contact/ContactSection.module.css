@@ -1,0 +1,36 @@
+.section {
+  position: relative;
+  box-sizing: border-box;
+  padding: clamp(2.5rem, 6vh, 3.5rem) clamp(1.25rem, 5vw, 2.5rem)
+    clamp(3.5rem, 10vh, 5rem);
+  scroll-margin-top: 6.25rem;
+  background: var(--section-projects-bg);
+}
+
+.inner {
+  max-width: 28rem;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.title {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-emphasis);
+}
+
+.text {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-quiet);
+}
+
+@media (max-width: 768px) {
+  .inner {
+    padding-inline: 1rem;
+  }
+}

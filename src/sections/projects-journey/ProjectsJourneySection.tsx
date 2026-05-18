@@ -1,6 +1,7 @@
 import { motion, useScroll } from 'framer-motion'
 import { memo, useRef } from 'react'
 import { AndromedaConstellation } from '../../components/projects/andromeda'
+import { ProjectsAboutSection } from '../about/AboutSection'
 import { useHomeScroll } from '../../hooks/useHomeScroll'
 import projectsNebulaBackdrop from '../../shared/assets/images/ChatGPT Image 15 de mai. de 2026, 17_49_03.png'
 import styles from './ProjectsJourneySection.module.css'
@@ -53,13 +54,7 @@ export const ProjectsJourneySection = memo(function ProjectsJourneySection() {
           </motion.div>
         </div>
       </div>
-      <footer id="contato" className={styles.footer}>
-        <h2 className={styles.footerTitle}>Contato</h2>
-        <p className={styles.footerText}>
-          Espaço reservado para email, redes ou formulário — mantém a leitura
-          limpa até lá.
-        </p>
-      </footer>
+      <ProjectsAboutSection />
     </section>
   )
 })

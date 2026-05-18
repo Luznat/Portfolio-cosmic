@@ -9,6 +9,64 @@
   /* Surfaces */
   --bg: #07060d;
   --section-projects-bg: #000000;
+  --section-about-bg: #07060d;
+  --about-photo-vignette-mid: color-mix(
+    in srgb,
+    var(--section-projects-bg) 55%,
+    transparent
+  );
+  --about-photo-vignette-strong: color-mix(
+    in srgb,
+    var(--section-projects-bg) 90%,
+    transparent
+  );
+  --about-backdrop-veil-soft: color-mix(
+    in srgb,
+    var(--section-projects-bg) 28%,
+    transparent
+  );
+  --about-backdrop-veil-mid: color-mix(
+    in srgb,
+    var(--section-projects-bg) 44%,
+    transparent
+  );
+  --about-backdrop-photo-veil-left: color-mix(
+    in srgb,
+    var(--section-projects-bg) 82%,
+    transparent
+  );
+  --about-backdrop-photo-veil-mid: color-mix(
+    in srgb,
+    var(--section-projects-bg) 48%,
+    transparent
+  );
+  --about-backdrop-photo-glow-right: color-mix(
+    in srgb,
+    var(--glow-cool-18) 14%,
+    transparent
+  );
+  --journey-backdrop-mask: linear-gradient(
+    180deg,
+    #fff 0%,
+    #fff 40%,
+    color-mix(in srgb, #fff 48%, transparent) 56%,
+    transparent 76%
+  );
+  --about-backdrop-mask: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, #fff 38%, transparent) 6%,
+    #fff 18%,
+    #fff 100%
+  );
+  --about-photo-mask: radial-gradient(
+    circle farthest-side at 50% 46%,
+    #fff 0%,
+    #fff 50%,
+    color-mix(in srgb, #fff 30%, transparent) 68%,
+    color-mix(in srgb, #fff 8%, transparent) 82%,
+    transparent 92%
+  );
   --surface-video: #04030a;
   --code-bg: rgba(20, 18, 36, 0.85);
   --social-bg: rgba(12, 11, 24, 0.65);

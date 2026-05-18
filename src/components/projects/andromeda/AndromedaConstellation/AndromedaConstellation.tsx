@@ -183,13 +183,6 @@ export const AndromedaConstellation = memo(function AndromedaConstellation({
     { clamp: true },
   )
 
-  const nebulaOpacity = useTransform(
-    journeyScrollYProgress,
-    [0, 0.1],
-    [0, 1],
-    { clamp: true },
-  )
-
   const fieldParallaxY = useTransform(
     mainScrollYProgress,
     [0, 1],
@@ -203,11 +196,7 @@ export const AndromedaConstellation = memo(function AndromedaConstellation({
 
   return (
     <div className={styles.stage}>
-      <motion.div
-        className={styles.nebula}
-        style={{ opacity: nebulaOpacity }}
-        aria-hidden
-      />
+      <div className={styles.nebula} aria-hidden />
       <motion.div className={styles.starField} style={{ y: fieldParallaxY }}>
         {[...projects]
           .map((p, featuredIndex) => ({ p, featuredIndex }))

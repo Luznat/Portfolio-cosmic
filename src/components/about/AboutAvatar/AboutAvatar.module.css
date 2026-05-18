@@ -1,0 +1,36 @@
+.figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.portrait {
+  position: relative;
+  width: clamp(15.5rem, 40vw, 24rem);
+  aspect-ratio: 1;
+  overflow: visible;
+  background: transparent;
+  -webkit-mask-image: var(--about-photo-mask);
+  mask-image: var(--about-photo-mask);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.photo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: 108%;
+  height: 108%;
+  max-width: none;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  object-position: center 20%;
+}
