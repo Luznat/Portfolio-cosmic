@@ -87,9 +87,9 @@
   background: linear-gradient(
     90deg,
     var(--hero-overlay-1) 0%,
-    var(--hero-overlay-2) 32%,
-    var(--hero-overlay-3) 58%,
-    var(--hero-overlay-4) 82%,
+    var(--hero-overlay-2) 26%,
+    var(--hero-overlay-3) 44%,
+    var(--hero-overlay-4) 68%,
     var(--hero-overlay-5) 100%
   );
 }

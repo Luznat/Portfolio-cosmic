@@ -201,9 +201,9 @@
   /* Hero overlay gradient stops */
   --hero-overlay-1: rgba(2, 2, 8, 0.96);
   --hero-overlay-2: rgba(4, 4, 12, 0.88);
-  --hero-overlay-3: rgba(8, 7, 18, 0.52);
-  --hero-overlay-4: rgba(12, 10, 26, 0.22);
-  --hero-overlay-5: rgba(16, 14, 32, 0.12);
+  --hero-overlay-3: rgba(8, 7, 18, 0.62);
+  --hero-overlay-4: rgba(10, 9, 20, 0.78);
+  --hero-overlay-5: rgba(7, 6, 14, 0.88);
 
   /* Shadows */
   --shadow:
