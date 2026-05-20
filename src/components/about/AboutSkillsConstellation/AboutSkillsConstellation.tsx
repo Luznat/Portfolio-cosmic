@@ -55,7 +55,7 @@ export const AboutSkillsConstellation = memo(function AboutSkillsConstellation()
       data-layout={layout}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: false, amount: 0.2 }}
       transition={{ ...revealTransition, delay: 0.18 }}
       aria-label="Constelação de competências"
     >
@@ -146,7 +146,7 @@ function SkillStarNode({
         whileInView={
           reduceMotion ? undefined : { opacity: 1, scale: 1 }
         }
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: false, amount: 0.5 }}
         transition={{
           ...revealTransition,
           delay: 0.22 + index * 0.07,

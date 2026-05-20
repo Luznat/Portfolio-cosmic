@@ -39,7 +39,7 @@ function AboutSection({
           className={styles.kicker}
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: false, amount: 0.4 }}
           transition={revealTransition}
         >
           {aboutIntro.kicker}
@@ -49,7 +49,7 @@ function AboutSection({
           className={styles.title}
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={{ once: false, amount: 0.35 }}
           transition={{ ...revealTransition, delay: 0.06 }}
         >
           {aboutIntro.title}
@@ -58,7 +58,7 @@ function AboutSection({
           className={styles.lead}
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={{ once: false, amount: 0.35 }}
           transition={{ ...revealTransition, delay: 0.1 }}
         >
           {aboutIntro.lead}
@@ -70,7 +70,7 @@ function AboutSection({
               className={styles.paragraph}
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: false, amount: 0.3 }}
               transition={{
                 ...revealTransition,
                 delay: 0.14 + index * 0.06,

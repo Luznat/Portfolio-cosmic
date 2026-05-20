@@ -1,17 +1,68 @@
 .section {
   position: relative;
   box-sizing: border-box;
-  padding: clamp(2.5rem, 6vh, 3.5rem) clamp(1.25rem, 5vw, 2.5rem)
+  min-height: min(100svh, max(34rem, 90svh));
+  padding: clamp(3rem, 10vh, 5rem) clamp(1.25rem, 5vw, 2.5rem)
     clamp(3.5rem, 10vh, 5rem);
   scroll-margin-top: 6.25rem;
   background: var(--section-projects-bg);
+  overflow-x: clip;
+  isolation: isolate;
+}
+
+.sectionBackdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 88%;
+  opacity: 0.94;
+  filter: brightness(0.78) saturate(1.18) contrast(1.04);
+  -webkit-mask-image: var(--contact-backdrop-mask);
+  mask-image: var(--contact-backdrop-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.sectionBackdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--contact-backdrop-veil-top) 0%,
+    var(--contact-backdrop-veil-mid) 28%,
+    var(--contact-backdrop-veil-soft) 48%,
+    transparent 62%
+  );
+}
+
+.sectionBackdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--section-projects-bg) 0%,
+    color-mix(in srgb, var(--section-projects-bg) 72%, transparent) 10%,
+    transparent 24%
+  );
 }
 
 .inner {
+  position: relative;
+  z-index: 2;
   max-width: 28rem;
   margin: 0 auto;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
+  padding-top: clamp(0.5rem, 4vh, 2rem);
   text-align: center;
 }
 
@@ -30,6 +81,10 @@
 }
 
 @media (max-width: 768px) {
+  .sectionBackdrop {
+    background-position: center 92%;
+  }
+
   .inner {
     padding-inline: 1rem;
   }

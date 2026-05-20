@@ -59,6 +59,28 @@
     #fff 18%,
     #fff 100%
   );
+  --contact-backdrop-mask: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, #fff 28%, transparent) 5%,
+    #fff 14%,
+    #fff 100%
+  );
+  --contact-backdrop-veil-top: color-mix(
+    in srgb,
+    var(--section-projects-bg) 42%,
+    transparent
+  );
+  --contact-backdrop-veil-mid: color-mix(
+    in srgb,
+    var(--section-projects-bg) 22%,
+    transparent
+  );
+  --contact-backdrop-veil-soft: color-mix(
+    in srgb,
+    var(--section-projects-bg) 12%,
+    transparent
+  );
   --about-photo-mask: radial-gradient(
     circle farthest-side at 50% 46%,
     #fff 0%,

@@ -14,7 +14,7 @@ export function AboutAvatar() {
       className={styles.figure}
       initial={{ opacity: 0, scale: 0.96 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, amount: 0.35 }}
+      viewport={{ once: false, amount: 0.35 }}
       transition={{ ...revealTransition, delay: 0.04 }}
     >
       <motion.div

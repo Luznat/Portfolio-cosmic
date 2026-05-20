@@ -1,4 +1,5 @@
 import { memo } from 'react'
+import contactSunBackdrop from '../../shared/assets/images/sol-contato.png'
 import styles from './ContactSection.module.css'
 
 export const ContactSection = memo(function ContactSection() {
@@ -8,6 +9,11 @@ export const ContactSection = memo(function ContactSection() {
       className={styles.section}
       aria-labelledby="contact-heading"
     >
+      <div
+        className={styles.sectionBackdrop}
+        style={{ backgroundImage: `url(${contactSunBackdrop})` }}
+        aria-hidden
+      />
       <div className={styles.inner}>
         <h2 id="contact-heading" className={styles.title}>
           Contato
