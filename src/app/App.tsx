@@ -1,5 +1,5 @@
 import { useScroll } from 'framer-motion'
-import { useCallback, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { HomeScrollContext } from '../contexts/HomeScrollContext'
 import HomePage from '../pages/Home/HomePage'
@@ -20,20 +20,43 @@ function HomeRoute() {
   const mainRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ container: mainRef })
 
-  const scrollToJourney = useCallback(() => {
+  const scrollToSection = useCallback((sectionId: string) => {
     const main = mainRef.current
     if (!main) return
-    const hero = main.querySelector(
-      '[data-hero-section]',
-    ) as HTMLElement | null
-    const top = hero?.offsetHeight ?? 0
-    main.scrollTo({ top, behavior: 'smooth' })
+
+    const target = main.querySelector<HTMLElement>(`#${sectionId}`)
+    if (!target) return
+
+    const prefersReduced = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches
+
+    target.scrollIntoView({
+      behavior: prefersReduced ? 'instant' : 'smooth',
+      block: 'start',
+    })
   }, [])
+
+  const scrollToJourney = useCallback(() => {
+    scrollToSection('projetos')
+  }, [scrollToSection])
+
+  useEffect(() => {
+    const hash = window.location.hash.replace(/^#/, '')
+    if (!hash) return
+
+    const frame = window.requestAnimationFrame(() => {
+      scrollToSection(hash)
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [scrollToSection])
 
   return (
     <HomeScrollContext.Provider
       value={{
         scrollYProgress,
+        scrollToSection,
         scrollToJourney,
         scrollContainerRef: mainRef,
       }}
