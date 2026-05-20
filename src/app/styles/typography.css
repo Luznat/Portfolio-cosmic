@@ -1,0 +1,48 @@
+/* Shared cinematic type patterns — tokens live in globals.css :root */
+
+.typeKicker {
+  font-size: var(--type-kicker-size);
+  font-weight: var(--type-kicker-weight);
+  letter-spacing: var(--type-kicker-tracking);
+  text-transform: uppercase;
+  color: var(--text-quiet);
+}
+
+.typeSectionTitle {
+  font-family: var(--heading);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  line-height: var(--type-title-line-height);
+  letter-spacing: var(--type-title-tracking);
+  color: var(--text-h);
+}
+
+.typeLead {
+  font-size: var(--type-lead-size);
+  font-weight: var(--type-lead-weight);
+  line-height: var(--type-lead-line-height);
+  letter-spacing: var(--type-lead-tracking);
+  color: var(--text-emphasis);
+}
+
+.typeBody {
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-line-height);
+  letter-spacing: var(--type-body-tracking);
+  color: var(--text);
+}
+
+.typeLabel {
+  font-size: var(--type-label-size);
+  font-weight: var(--type-label-weight);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+}
+
+.typeCta {
+  font-size: var(--type-cta-size);
+  font-weight: var(--type-cta-weight);
+  letter-spacing: var(--type-cta-tracking);
+  text-transform: uppercase;
+}

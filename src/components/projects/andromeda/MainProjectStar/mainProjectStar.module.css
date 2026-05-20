@@ -178,9 +178,9 @@
 .mainName {
   display: block;
   font-family: var(--heading);
-  font-size: clamp(0.68rem, 1.1vw, 0.8rem);
-  font-weight: 500;
-  letter-spacing: 0.28em;
+  font-size: var(--type-label-size);
+  font-weight: var(--type-label-weight);
+  letter-spacing: var(--type-label-tracking);
   text-transform: uppercase;
   color: var(--text-h);
   text-shadow: 0 0 12px var(--glow-deep-08);
@@ -189,9 +189,10 @@
 .mainTag {
   display: block;
   margin-top: 0.2rem;
-  font-size: clamp(0.62rem, 1vw, 0.72rem);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
   color: var(--text-quiet);
-  letter-spacing: 0.06em;
+  letter-spacing: var(--type-caption-tracking);
 }
 
 .srOnly {
@@ -225,12 +226,7 @@
   }
 
   .mainName {
-    letter-spacing: 0.2em;
-    font-size: clamp(0.62rem, 2.8vw, 0.72rem);
-  }
-
-  .mainTag {
-    font-size: clamp(0.58rem, 2.5vw, 0.68rem);
+    letter-spacing: var(--type-nav-tracking);
   }
 
   .mainStack {

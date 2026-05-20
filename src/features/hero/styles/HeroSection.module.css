@@ -114,9 +114,9 @@
   max-width: 17rem;
   padding: 0 0.75rem;
   font-family: var(--sans);
-  font-size: clamp(0.6875rem, 1.55vw, 0.8125rem);
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  letter-spacing: var(--type-caption-tracking);
   text-transform: uppercase;
   text-align: center;
   line-height: 1.4;

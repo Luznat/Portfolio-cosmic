@@ -49,27 +49,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: clamp(0.75rem, 2.5vh, 1.75rem);
+  gap: 0.35rem;
+  padding-top: clamp(1.5rem, 5vh, 2.75rem);
 }
 
 .kicker {
-  margin: 0 0 0.75rem;
-  font-size: clamp(0.65rem, 1vw, 0.72rem);
-  font-weight: 500;
-  letter-spacing: 0.35em;
+  margin: 0 0 0.5rem;
+  font-family: var(--heading);
+  font-size: var(--type-kicker-size);
+  font-weight: var(--type-kicker-weight);
+  line-height: 1.35;
+  letter-spacing: var(--type-kicker-tracking);
   text-transform: uppercase;
   color: var(--text-quiet);
 }
 
 .subkicker {
-  margin: 0 0 1.35rem;
+  margin: 0 0 clamp(2rem, 5vh, 3rem);
   max-width: 22rem;
-  font-size: clamp(0.78rem, 1.15vw, 0.88rem);
-  font-weight: 400;
-  letter-spacing: 0.12em;
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  letter-spacing: var(--type-caption-tracking);
   color: color-mix(in srgb, var(--text-quiet) 92%, transparent);
   text-align: center;
-  line-height: 1.5;
+  line-height: var(--type-lead-line-height);
 }
 
 .constellationWrap {
@@ -105,18 +108,20 @@
 
   .stage {
     min-height: min(82vh, max(30rem, 78svh));
-    padding-top: 0.5rem;
+    padding-top: clamp(1.25rem, 4vh, 2rem);
   }
 
   .kicker {
-    letter-spacing: 0.22em;
+    margin-bottom: 0.65rem;
+    letter-spacing: var(--type-nav-tracking);
     padding-inline: 0.5rem;
   }
 
   .subkicker {
+    margin-bottom: clamp(1.75rem, 4.5vh, 2.5rem);
     max-width: min(20rem, 92vw);
     padding-inline: 0.75rem;
-    letter-spacing: 0.08em;
+    letter-spacing: var(--type-lead-tracking);
   }
 
   .constellationWrap {
@@ -130,11 +135,12 @@
 
 @media (max-width: 480px) {
   .kicker {
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
+    font-size: clamp(0.56rem, 2.8vw, 0.66rem);
+    letter-spacing: var(--type-nav-tracking);
   }
 
   .subkicker {
-    font-size: 0.75rem;
+    font-size: var(--type-caption-size);
+    margin-bottom: 1.65rem;
   }
 }

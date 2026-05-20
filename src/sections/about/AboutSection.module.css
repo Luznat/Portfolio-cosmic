@@ -111,9 +111,9 @@
 
 .kicker {
   margin: 0 0 0.85rem;
-  font-size: clamp(0.65rem, 1vw, 0.72rem);
-  font-weight: 500;
-  letter-spacing: 0.35em;
+  font-size: var(--type-kicker-size);
+  font-weight: var(--type-kicker-weight);
+  letter-spacing: var(--type-kicker-tracking);
   text-transform: uppercase;
   color: var(--text-quiet);
 }
@@ -121,17 +121,19 @@
 .title {
   margin: 0 0 1.1rem;
   font-family: var(--heading);
-  font-size: clamp(1.65rem, 4.2vw, 2.35rem);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: 0.02em;
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  line-height: var(--type-title-line-height);
+  letter-spacing: var(--type-title-tracking);
   color: var(--text-h);
 }
 
 .lead {
   margin: 0 0 1.75rem;
-  font-size: clamp(1rem, 1.35vw, 1.12rem);
-  line-height: 1.6;
+  font-size: var(--type-lead-size);
+  font-weight: var(--type-lead-weight);
+  line-height: var(--type-lead-line-height);
+  letter-spacing: var(--type-lead-tracking);
   color: var(--text-emphasis);
 }
 
@@ -144,8 +146,10 @@
 
 .paragraph {
   margin: 0;
-  font-size: clamp(0.92rem, 1.1vw, 1rem);
-  line-height: 1.65;
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-line-height);
+  letter-spacing: var(--type-body-tracking);
   color: var(--text);
 }
 
@@ -173,7 +177,7 @@
   }
 
   .kicker {
-    letter-spacing: 0.22em;
+    letter-spacing: var(--type-nav-tracking);
   }
 
   .title {

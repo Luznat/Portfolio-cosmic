@@ -18,10 +18,11 @@
 }
 
 .brand {
-  font-family: var(--font-display, system-ui), system-ui, sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  font-family: var(--heading);
+  font-size: var(--type-brand-size);
+  font-weight: var(--type-brand-weight);
+  letter-spacing: var(--type-brand-tracking);
+  text-transform: uppercase;
   color: var(--text-emphasis);
   text-decoration: none;
 }
@@ -33,9 +34,9 @@
 }
 
 .nav a {
-  font-size: 0.8125rem;
-  font-weight: 450;
-  letter-spacing: 0.06em;
+  font-size: var(--type-nav-size);
+  font-weight: var(--type-nav-weight);
+  letter-spacing: var(--type-nav-tracking);
   text-transform: uppercase;
   color: var(--text-quiet);
   text-decoration: none;
@@ -56,7 +57,7 @@
   }
 
   .brand {
-    font-size: 0.88rem;
+    font-size: var(--type-nav-size);
   }
 }
 
@@ -76,8 +77,8 @@
   }
 
   .nav a {
-    font-size: 0.68rem;
-    letter-spacing: 0.05em;
+    font-size: clamp(0.62rem, 2.5vw, 0.68rem);
+    letter-spacing: var(--type-cta-tracking);
     padding: 0.35rem 0.15rem;
   }
 }

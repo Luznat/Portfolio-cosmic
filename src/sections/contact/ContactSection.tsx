@@ -1,8 +1,10 @@
 import { useReducedMotion } from 'framer-motion'
 import { memo } from 'react'
-import { contactIntro, contactLinks } from '../../content/contact'
+import { ContactSignalField } from '../../components/contact/ContactSignalField/ContactSignalField'
 import contactSunBackdrop from '../../shared/assets/images/sol-contato.png'
 import styles from './ContactSection.module.css'
+
+const SOLAR_PARTICLE_COUNT = 16
 
 export const ContactSection = memo(function ContactSection() {
   const reduceMotion = useReducedMotion()
@@ -18,6 +20,8 @@ export const ContactSection = memo(function ContactSection() {
         data-reduce-motion={reduceMotion ? 'true' : undefined}
         aria-hidden
       >
+        <div className={styles.starfield} />
+        <div className={styles.nebula} />
         <div
           className={styles.sectionBackdrop}
           style={{ backgroundImage: `url(${contactSunBackdrop})` }}
@@ -25,32 +29,17 @@ export const ContactSection = memo(function ContactSection() {
         <div className={styles.sunCorona} />
         <div className={styles.sunGlow} />
         <div className={styles.sunRim} />
+        <div className={styles.solarParticles}>
+          {Array.from({ length: SOLAR_PARTICLE_COUNT }, (_, index) => (
+            <span
+              key={index}
+              className={styles.solarParticle}
+              style={{ ['--particle-i' as string]: String(index) }}
+            />
+          ))}
+        </div>
       </div>
-      <div className={styles.inner}>
-        <p className={styles.kicker}>{contactIntro.kicker}</p>
-        <h2 id="contact-heading" className={styles.title}>
-          {contactIntro.title}
-        </h2>
-        <p className={styles.lead}>{contactIntro.lead}</p>
-        <nav className={styles.links} aria-label="Canais de contato">
-          <ul className={styles.linkList}>
-            {contactLinks.map((link) => (
-              <li key={link.id}>
-                <a
-                  className={styles.link}
-                  href={link.href}
-                  {...(link.external
-                    ? { target: '_blank', rel: 'noreferrer' }
-                    : {})}
-                >
-                  <span className={styles.linkLabel}>{link.label}</span>
-                  <span className={styles.linkDetail}>{link.detail}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+      <ContactSignalField reduceMotion={reduceMotion} />
     </section>
   )
 })

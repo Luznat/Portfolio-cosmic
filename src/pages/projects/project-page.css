@@ -14,7 +14,10 @@
 
 .projectPage__crumb {
   margin: 0 0 1rem;
-  font-size: 0.85rem;
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  letter-spacing: var(--type-caption-tracking);
+  text-transform: uppercase;
   color: var(--text-quiet);
 }
 
@@ -30,16 +33,20 @@
 .projectPage__title {
   margin: 0 0 0.5rem;
   font-family: var(--heading);
-  font-size: clamp(1.6rem, 3.2vw, 2.1rem);
-  font-weight: 500;
-  letter-spacing: -0.03em;
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  line-height: var(--type-title-line-height);
+  letter-spacing: var(--type-title-tracking);
   color: var(--text-h);
 }
 
 .projectPage__tagline {
   margin: 0 0 1.5rem;
+  font-size: var(--type-lead-size);
+  font-weight: var(--type-lead-weight);
+  letter-spacing: var(--type-lead-tracking);
+  line-height: var(--type-lead-line-height);
   color: var(--text-subtle);
-  line-height: 1.5;
 }
 
 .projectPage__body {
@@ -49,19 +56,28 @@
 
 .projectPage__lead {
   margin: 0;
-  line-height: 1.6;
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-line-height);
+  letter-spacing: var(--type-body-tracking);
   color: var(--text);
 }
 
 .projectPage__muted {
   margin: 0 0 1rem;
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  letter-spacing: var(--type-body-tracking);
   color: var(--text-subtle);
 }
 
 .projectPage__back {
   display: inline-block;
   margin-top: 2rem;
-  font-size: 0.9rem;
+  font-size: var(--type-cta-size);
+  font-weight: var(--type-cta-weight);
+  letter-spacing: var(--type-cta-tracking);
+  text-transform: uppercase;
   color: var(--accent);
   text-decoration: none;
 }

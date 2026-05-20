@@ -216,9 +216,9 @@
 
 .label {
   max-width: min(9.5rem, 28vw);
-  font-size: clamp(0.68rem, 0.95vw, 0.78rem);
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  font-size: var(--type-label-size);
+  font-weight: var(--type-label-weight);
+  letter-spacing: var(--type-label-tracking);
   line-height: 1.35;
   text-align: center;
   white-space: nowrap;

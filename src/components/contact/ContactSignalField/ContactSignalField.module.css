@@ -1,0 +1,377 @@
+.field {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: min(72vh, max(28rem, 68svh));
+  box-sizing: border-box;
+}
+
+.intro {
+  position: absolute;
+  top: clamp(0.5rem, 4vh, 2.5rem);
+  left: clamp(1rem, 6vw, 4.5rem);
+  max-width: min(22rem, 46vw);
+  margin: 0;
+  text-align: left;
+  pointer-events: none;
+}
+
+.kicker {
+  margin: 0 0 0.75rem;
+  font-size: var(--type-kicker-size);
+  font-weight: var(--type-kicker-weight);
+  letter-spacing: var(--type-kicker-tracking);
+  text-transform: uppercase;
+  color: var(--contact-signal-label);
+}
+
+.title {
+  margin: 0 0 0.85rem;
+  font-family: var(--heading);
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  line-height: var(--type-title-line-height);
+  letter-spacing: var(--type-title-tracking);
+  text-transform: uppercase;
+  color: var(--text-h);
+}
+
+.lead {
+  margin: 0;
+  max-width: 18rem;
+  font-size: var(--type-lead-size);
+  font-weight: var(--type-lead-weight);
+  line-height: var(--type-lead-line-height);
+  letter-spacing: var(--type-lead-tracking);
+  color: var(--contact-signal-detail);
+}
+
+.constellationSvg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.constellationLine {
+  stroke: var(--contact-signal-line);
+  stroke-width: 0.35;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: contactLineReveal 0.65s ease forwards;
+}
+
+.signals {
+  position: absolute;
+  inset: 0;
+}
+
+.signalList {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.signalItem {
+  position: absolute;
+  left: var(--signal-x, 50%);
+  top: var(--signal-y, 50%);
+  transform: translate(-50%, -50%);
+  animation: contactSignalFloat var(--float-duration, 11s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+.signal {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 0;
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.45s ease;
+}
+
+.signalGlow {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  z-index: 0;
+  width: 140%;
+  height: 180%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 70% 55% at 50% 50%,
+    var(--contact-signal-glow) 0%,
+    transparent 72%
+  );
+  opacity: 0.35;
+  filter: blur(18px);
+  transition: opacity 0.45s ease;
+}
+
+.signalCore {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+
+.signalLabel {
+  font-size: var(--type-label-size);
+  font-weight: var(--type-label-weight);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+  color: var(--contact-signal-label);
+  transition:
+    color 0.4s ease,
+    text-shadow 0.4s ease,
+    letter-spacing 0.4s ease;
+}
+
+.signalDetail {
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  letter-spacing: var(--type-caption-tracking);
+  color: var(--contact-signal-detail);
+  opacity: 0.72;
+  transition:
+    color 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.particles {
+  position: absolute;
+  left: 50%;
+  bottom: -0.5rem;
+  z-index: 0;
+  width: 4.5rem;
+  height: 3.5rem;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.particle {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--contact-particle);
+  box-shadow: 0 0 6px var(--contact-signal-glow);
+  opacity: 0;
+}
+
+.particle:nth-child(1) {
+  animation: contactParticleRise 2.8s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+  left: 32%;
+  animation: contactParticleRise 3.4s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.particle:nth-child(3) {
+  left: 68%;
+  animation: contactParticleRise 3.1s ease-in-out infinite;
+  animation-delay: 1.1s;
+}
+
+.particle:nth-child(4) {
+  left: 48%;
+  width: 1px;
+  height: 1px;
+  animation: contactParticleRise 2.5s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+.signal:hover,
+.signal:focus-visible,
+.signal[data-active='true'] {
+  transform: translateY(-3px);
+}
+
+.signal:hover .signalGlow,
+.signal:focus-visible .signalGlow,
+.signal[data-active='true'] .signalGlow {
+  opacity: 0.85;
+}
+
+.signal:hover .signalLabel,
+.signal:focus-visible .signalLabel,
+.signal[data-active='true'] .signalLabel {
+  color: var(--contact-signal-solar);
+  text-shadow:
+    0 0 18px var(--contact-signal-glow),
+    0 0 36px var(--contact-sun-glow-outer);
+  letter-spacing: var(--type-label-tracking);
+}
+
+.signal:hover .signalDetail,
+.signal:focus-visible .signalDetail,
+.signal[data-active='true'] .signalDetail {
+  color: var(--text-h);
+  opacity: 1;
+}
+
+.signal:hover .particles,
+.signal:focus-visible .particles,
+.signal[data-active='true'] .particles {
+  opacity: 1;
+}
+
+.signal:focus-visible {
+  outline: none;
+}
+
+.signal:focus-visible .signalLabel {
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+}
+
+@keyframes contactSignalFloat {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translate(0, 0);
+  }
+
+  25% {
+    transform: translate(-50%, -50%) translate(var(--orbit-x, 12px), calc(var(--orbit-y, 10px) * -0.6));
+  }
+
+  50% {
+    transform: translate(-50%, -50%) translate(calc(var(--orbit-x, 12px) * -0.45), var(--orbit-y, 10px));
+  }
+
+  75% {
+    transform: translate(-50%, -50%) translate(calc(var(--orbit-x, 12px) * 0.35), calc(var(--orbit-y, 10px) * -0.35));
+  }
+}
+
+@keyframes contactLineReveal {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 12;
+  }
+
+  to {
+    opacity: 0.55;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes contactParticleRise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+
+  20% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-2.8rem) scale(0.2);
+  }
+}
+
+.field[data-motion='off'] .signalItem {
+  animation: none;
+}
+
+.field[data-motion='off'] .particle {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signalItem {
+    animation: none;
+  }
+
+  .particle {
+    animation: none;
+  }
+
+  .constellationLine {
+    animation: none;
+    opacity: 0.45;
+  }
+}
+
+@media (max-width: 768px) {
+  .field {
+    min-height: min(90svh, 42rem);
+  }
+
+  .intro {
+    left: 1.25rem;
+    max-width: calc(100% - 2.5rem);
+  }
+
+  .constellationSvg,
+  .signals {
+    top: clamp(12.5rem, 36vh, 15.5rem);
+    bottom: clamp(5rem, 14vh, 8rem);
+  }
+
+  .signalItem[data-signal='email'] {
+    --signal-x: 14%;
+    --signal-y: 32%;
+  }
+
+  .signalItem[data-signal='linkedin'] {
+    --signal-x: 72%;
+    --signal-y: 48%;
+  }
+
+  .signalItem[data-signal='github'] {
+    --signal-x: 48%;
+    --signal-y: 78%;
+  }
+
+  .signalDetail {
+    max-width: 11rem;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .constellationSvg,
+  .signals {
+    top: clamp(13.5rem, 38vh, 16.5rem);
+    bottom: clamp(4.5rem, 12vh, 7rem);
+  }
+
+  .signalItem[data-signal='email'] {
+    --signal-y: 38%;
+  }
+
+  .signalItem[data-signal='linkedin'] {
+    --signal-y: 52%;
+  }
+
+  .signalItem[data-signal='github'] {
+    --signal-y: 82%;
+  }
+}

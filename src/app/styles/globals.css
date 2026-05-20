@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
+@import './typography.css';
 
 :root {
   --font-display: 'Outfit', system-ui, sans-serif;
@@ -87,6 +88,46 @@
   --contact-sun-glow-halo: rgba(142, 58, 18, 0.22);
   --contact-sun-glow-rim: rgba(188, 82, 28, 0.42);
   --contact-sun-glow-flare: rgba(108, 38, 10, 0.2);
+  --contact-signal-label: color-mix(
+    in srgb,
+    var(--text-emphasis) 88%,
+    transparent
+  );
+  --contact-signal-detail: color-mix(
+    in srgb,
+    var(--text-subtle) 92%,
+    transparent
+  );
+  --contact-signal-solar: color-mix(
+    in srgb,
+    var(--contact-sun-glow-rim) 72%,
+    var(--text-h) 28%
+  );
+  --contact-signal-glow: color-mix(
+    in srgb,
+    var(--contact-sun-glow-mid) 55%,
+    transparent
+  );
+  --contact-signal-line: color-mix(
+    in srgb,
+    var(--contact-sun-glow-rim) 48%,
+    var(--text-quiet) 52%
+  );
+  --contact-nebula-veil: color-mix(
+    in srgb,
+    var(--glow-deep-08) 65%,
+    transparent
+  );
+  --contact-star-dim: color-mix(
+    in srgb,
+    var(--text-emphasis) 55%,
+    transparent
+  );
+  --contact-particle: color-mix(
+    in srgb,
+    var(--contact-sun-glow-rim) 70%,
+    var(--text-h) 30%
+  );
   --about-photo-mask: radial-gradient(
     circle farthest-side at 50% 46%,
     #fff 0%,
@@ -169,8 +210,47 @@
     rgba(0, 0, 0, 0.45) 0 18px 40px -12px,
     rgba(0, 0, 0, 0.35) 0 8px 16px -8px;
 
-  font: 17px/145% var(--sans);
-  letter-spacing: 0.02em;
+  /* Typography — cinematic (aligned with contact section) */
+  --type-weight-light: 300;
+  --type-weight-regular: 400;
+  --type-weight-medium: 500;
+  --type-kicker-size: clamp(0.58rem, 1vw, 0.72rem);
+  --type-kicker-weight: 300;
+  --type-kicker-tracking: 0.38em;
+  --type-title-size: clamp(1.35rem, 4.2vw, 2.35rem);
+  --type-title-weight: 300;
+  --type-title-tracking: 0.12em;
+  --type-title-line-height: 1.12;
+  --type-hero-size: clamp(2rem, 5.2vw, 3.6rem);
+  --type-hero-weight: 300;
+  --type-hero-tracking: 0.05em;
+  --type-hero-line-height: 1.12;
+  --type-lead-size: clamp(0.92rem, 1.35vw, 1.08rem);
+  --type-lead-weight: 300;
+  --type-lead-tracking: 0.04em;
+  --type-lead-line-height: 1.6;
+  --type-body-size: clamp(0.92rem, 1.1vw, 1rem);
+  --type-body-weight: 300;
+  --type-body-tracking: 0.03em;
+  --type-body-line-height: 1.65;
+  --type-caption-size: clamp(0.78rem, 1.15vw, 0.88rem);
+  --type-caption-weight: 300;
+  --type-caption-tracking: 0.1em;
+  --type-label-size: clamp(0.62rem, 0.95vw, 0.72rem);
+  --type-label-weight: 300;
+  --type-label-tracking: 0.32em;
+  --type-nav-size: 0.75rem;
+  --type-nav-weight: 300;
+  --type-nav-tracking: 0.28em;
+  --type-cta-size: 0.75rem;
+  --type-cta-weight: 300;
+  --type-cta-tracking: 0.22em;
+  --type-brand-size: 0.88rem;
+  --type-brand-weight: 300;
+  --type-brand-tracking: 0.2em;
+
+  font: var(--type-body-weight) 17px / var(--type-body-line-height) var(--sans);
+  letter-spacing: var(--type-body-tracking);
   color-scheme: dark;
   color: var(--text);
   background: var(--bg);
@@ -210,27 +290,26 @@ body {
 h1,
 h2 {
   font-family: var(--heading);
-  font-weight: 500;
+  font-weight: var(--type-title-weight);
   color: var(--text-h);
 }
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
+  font-size: var(--type-hero-size);
+  font-weight: var(--type-hero-weight);
+  line-height: var(--type-hero-line-height);
+  letter-spacing: var(--type-hero-tracking);
   margin: 32px 0;
   @media (max-width: 1024px) {
-    font-size: 36px;
     margin: 20px 0;
   }
 }
+
 h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
+  font-size: var(--type-title-size);
+  line-height: var(--type-title-line-height);
+  letter-spacing: var(--type-title-tracking);
   margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
 }
 p {
   margin: 0;
