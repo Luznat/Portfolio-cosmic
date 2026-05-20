@@ -10,11 +10,18 @@
   isolation: isolate;
 }
 
-.sectionBackdrop {
+.backdropStage {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
+}
+
+.sectionBackdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center 88%;
@@ -28,11 +35,76 @@
   mask-repeat: no-repeat;
 }
 
-.sectionBackdrop::before {
+.sunCorona {
+  position: absolute;
+  left: 50%;
+  bottom: -14%;
+  z-index: 1;
+  width: min(150vw, 64rem);
+  height: min(58vh, 34rem);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 100% 68% at 50% 100%,
+    var(--contact-sun-glow-halo) 0%,
+    var(--contact-sun-glow-mid) 34%,
+    var(--contact-sun-glow-outer) 58%,
+    transparent 72%
+  );
+  filter: blur(52px);
+  mix-blend-mode: plus-lighter;
+  opacity: 0.88;
+  animation: contactSunCoronaPulse 7.4s ease-in-out infinite;
+}
+
+.sunGlow {
+  position: absolute;
+  left: 50%;
+  bottom: -6%;
+  z-index: 2;
+  width: min(128vw, 52rem);
+  height: min(46vh, 26rem);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 100% 74% at 50% 100%,
+    var(--contact-sun-glow-core) 0%,
+    var(--contact-sun-glow-mid) 36%,
+    var(--contact-sun-glow-flare) 52%,
+    transparent 68%
+  );
+  filter: blur(32px);
+  mix-blend-mode: plus-lighter;
+  opacity: 0.9;
+  animation: contactSunGlowPulse 5.2s ease-in-out infinite;
+}
+
+.sunRim {
+  position: absolute;
+  left: 50%;
+  bottom: 16%;
+  z-index: 3;
+  width: min(118vw, 48rem);
+  height: clamp(4rem, 14vh, 9rem);
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse 52% 100% at 50% 100%,
+    var(--contact-sun-glow-rim) 0%,
+    var(--contact-sun-glow-mid) 42%,
+    transparent 72%
+  );
+  filter: blur(14px);
+  mix-blend-mode: plus-lighter;
+  opacity: 0.86;
+  animation: contactSunRimPulse 4.1s ease-in-out infinite;
+  animation-delay: -0.8s;
+}
+
+.backdropStage::before {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 4;
   pointer-events: none;
   background: linear-gradient(
     180deg,
@@ -43,11 +115,11 @@
   );
 }
 
-.sectionBackdrop::after {
+.backdropStage::after {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 5;
   pointer-events: none;
   background: linear-gradient(
     180deg,
@@ -57,32 +129,181 @@
   );
 }
 
+.backdropStage[data-reduce-motion='true'] .sunCorona,
+.backdropStage[data-reduce-motion='true'] .sunGlow,
+.backdropStage[data-reduce-motion='true'] .sunRim {
+  animation: none;
+}
+
 .inner {
   position: relative;
   z-index: 2;
-  max-width: 28rem;
+  max-width: min(32rem, 100%);
   margin: 0 auto;
   padding-top: clamp(0.5rem, 4vh, 2rem);
   text-align: center;
 }
 
-.title {
-  margin: 0 0 0.5rem;
-  font-size: 0.95rem;
+.kicker {
+  margin: 0 0 0.85rem;
+  font-size: clamp(0.65rem, 1vw, 0.72rem);
   font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-quiet);
+}
+
+.title {
+  margin: 0 0 1rem;
+  font-family: var(--heading);
+  font-size: clamp(1.5rem, 3.8vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: var(--text-h);
+}
+
+.lead {
+  margin: 0 0 1.75rem;
+  font-size: clamp(0.95rem, 1.25vw, 1.05rem);
+  line-height: 1.6;
   color: var(--text-emphasis);
 }
 
-.text {
+.links {
+  display: block;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
   margin: 0;
-  font-size: 0.88rem;
-  line-height: 1.55;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.85rem 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  background: var(--cta-bg);
+  border: 1px solid var(--border-soft);
+  border-radius: 0.75rem;
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.3s ease;
+}
+
+.link:hover {
+  background: var(--cta-bg-hover);
+  border-color: var(--border-hover);
+  box-shadow: 0 0 24px var(--glow-deep-12);
+  transform: translateY(-1px);
+}
+
+.link:focus-visible {
+  outline: 1px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.linkLabel {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--text-quiet);
+}
+
+.linkDetail {
+  font-size: clamp(0.88rem, 1.1vw, 0.95rem);
+  font-weight: 400;
+  color: var(--text-cta);
+  word-break: break-word;
+}
+
+@keyframes contactSunGlowPulse {
+  0%,
+  100% {
+    opacity: 0.58;
+    transform: translateX(-50%) scale(0.98);
+  }
+
+  42% {
+    opacity: 0.82;
+    transform: translateX(-50%) scale(1.06);
+  }
+
+  68% {
+    opacity: 0.68;
+    transform: translateX(-50%) scale(1.02);
+  }
+}
+
+@keyframes contactSunCoronaPulse {
+  0%,
+  100% {
+    opacity: 0.48;
+    transform: translateX(-50%) scale(0.96);
+  }
+
+  50% {
+    opacity: 0.78;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+@keyframes contactSunRimPulse {
+  0%,
+  100% {
+    opacity: 0.52;
+    filter: blur(14px) brightness(0.88);
+  }
+
+  38% {
+    opacity: 0.82;
+    filter: blur(16px) brightness(1.05);
+  }
+
+  62% {
+    opacity: 0.64;
+    filter: blur(13px) brightness(0.94);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sunCorona,
+  .sunGlow,
+  .sunRim {
+    animation: none;
+    opacity: 0.72;
+  }
 }
 
 @media (max-width: 768px) {
   .sectionBackdrop {
     background-position: center 92%;
+  }
+
+  .sunCorona {
+    bottom: -18%;
+    width: 160vw;
+  }
+
+  .sunGlow {
+    bottom: -10%;
+    width: 140vw;
+  }
+
+  .sunRim {
+    bottom: 12%;
+    width: 130vw;
   }
 
   .inner {

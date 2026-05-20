@@ -1,1 +1,1 @@
-export const GITHUB_PROFILE_HREF = 'https://github.com'
+export { githubProfileHref as GITHUB_PROFILE_HREF } from './contact'

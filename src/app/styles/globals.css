@@ -81,6 +81,12 @@
     var(--section-projects-bg) 12%,
     transparent
   );
+  --contact-sun-glow-core: rgba(168, 62, 14, 0.5);
+  --contact-sun-glow-mid: rgba(128, 42, 10, 0.34);
+  --contact-sun-glow-outer: rgba(72, 22, 6, 0.14);
+  --contact-sun-glow-halo: rgba(142, 58, 18, 0.22);
+  --contact-sun-glow-rim: rgba(188, 82, 28, 0.42);
+  --contact-sun-glow-flare: rgba(108, 38, 10, 0.2);
   --about-photo-mask: radial-gradient(
     circle farthest-side at 50% 46%,
     #fff 0%,
