@@ -58,9 +58,13 @@
 
 .constellationLine {
   stroke: var(--contact-signal-line);
-  stroke-width: 0.35;
+  stroke-width: 0.55;
   stroke-linecap: round;
+  stroke-dasharray: 1.15 0.48;
   opacity: 0;
+  filter:
+    drop-shadow(0 0 12px var(--contact-sun-glow-mid))
+    drop-shadow(0 0 6px var(--contact-sun-glow-rim));
   animation: contactLineReveal 0.65s ease forwards;
 }
 
@@ -271,11 +275,11 @@
 @keyframes contactLineReveal {
   from {
     opacity: 0;
-    stroke-dashoffset: 12;
+    stroke-dashoffset: 14;
   }
 
   to {
-    opacity: 0.55;
+    opacity: 0.94;
     stroke-dashoffset: 0;
   }
 }
@@ -315,7 +319,7 @@
 
   .constellationLine {
     animation: none;
-    opacity: 0.45;
+    opacity: 0.82;
   }
 }
 

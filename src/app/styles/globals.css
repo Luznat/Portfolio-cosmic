@@ -110,8 +110,8 @@
   );
   --contact-signal-line: color-mix(
     in srgb,
-    var(--contact-sun-glow-rim) 48%,
-    var(--text-quiet) 52%
+    var(--contact-sun-glow-rim) 82%,
+    var(--text-emphasis) 18%
   );
   --contact-nebula-veil: color-mix(
     in srgb,
