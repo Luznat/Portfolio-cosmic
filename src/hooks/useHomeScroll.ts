@@ -1,1 +1,4 @@
-export { useHomeScroll } from '../contexts/HomeScrollContext'
+export {
+  useHomeScroll,
+  useOptionalHomeScroll,
+} from '../contexts/HomeScrollContext'

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useCallback, type MouseEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { useHomeScroll } from '../../../hooks/useHomeScroll'
+import { useOptionalHomeScroll } from '../../../hooks/useHomeScroll'
 import { nav, type NavItem } from '../model/navigation.data'
 import styles from '../styles/SiteHeader.module.css'
 
@@ -14,15 +14,16 @@ function sectionIdFromNavItem(item: NavItem): string | null {
 }
 
 export function SiteHeader() {
-  const { scrollToSection } = useHomeScroll()
+  const homeScroll = useOptionalHomeScroll()
 
   const handleSectionNav = useCallback(
     (event: MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+      if (!homeScroll) return
       event.preventDefault()
-      scrollToSection(sectionId)
+      homeScroll.scrollToSection(sectionId)
       window.history.replaceState(null, '', `/#${sectionId}`)
     },
-    [scrollToSection],
+    [homeScroll],
   )
 
   return (

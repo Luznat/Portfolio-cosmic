@@ -14,8 +14,12 @@ export const HomeScrollContext = createContext<HomeScrollContextValue | null>(
   null,
 )
 
+export function useOptionalHomeScroll(): HomeScrollContextValue | null {
+  return useContext(HomeScrollContext)
+}
+
 export function useHomeScroll(): HomeScrollContextValue {
-  const ctx = useContext(HomeScrollContext)
+  const ctx = useOptionalHomeScroll()
   if (!ctx) {
     throw new Error(
       'useHomeScroll must be used within HomeScrollContext.Provider',

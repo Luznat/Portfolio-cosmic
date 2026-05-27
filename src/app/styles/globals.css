@@ -140,6 +140,8 @@
   --code-bg: rgba(20, 18, 36, 0.85);
   --social-bg: rgba(12, 11, 24, 0.65);
   --header-bg: rgba(6, 5, 14, 0.45);
+  --site-header-offset: 5.5rem;
+  --site-header-offset-mobile: 4.75rem;
   --cta-bg: rgba(8, 8, 18, 0.45);
   --cta-bg-hover: rgba(14, 14, 28, 0.55);
 
