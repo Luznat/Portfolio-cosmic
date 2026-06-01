@@ -46,6 +46,81 @@
     var(--glow-cool-18) 14%,
     transparent
   );
+  --project-status-success: color-mix(
+    in srgb,
+    #7dffb8 62%,
+    var(--text-h) 38%
+  );
+  --project-phone-glow: color-mix(
+    in srgb,
+    var(--glow-cool-20) 55%,
+    transparent
+  );
+  --project-phone-frame: color-mix(
+    in srgb,
+    var(--text-h) 12%,
+    var(--bg) 88%
+  );
+  --project-phone-frame-highlight: color-mix(
+    in srgb,
+    var(--text-emphasis) 22%,
+    var(--project-phone-frame) 78%
+  );
+  --project-btn-primary-bg: color-mix(
+    in srgb,
+    var(--accent-bg) 70%,
+    var(--glow-deep-12) 30%
+  );
+  --project-btn-primary-border: color-mix(
+    in srgb,
+    var(--accent-border) 85%,
+    transparent
+  );
+  --project-chip-glow: color-mix(
+    in srgb,
+    var(--glow-cool-18) 40%,
+    transparent
+  );
+  --project-chip-surface: color-mix(
+    in srgb,
+    var(--bg) 88%,
+    var(--cta-bg) 12%
+  );
+  --project-chip-border: color-mix(
+    in srgb,
+    var(--accent-border) 92%,
+    transparent
+  );
+  --project-chip-glow-strong: color-mix(
+    in srgb,
+    var(--glow-cool-20) 70%,
+    transparent
+  );
+  --project-thumb-ring: color-mix(
+    in srgb,
+    var(--accent) 75%,
+    var(--glow-cool-20) 25%
+  );
+  --project-page-backdrop-veil-core: color-mix(
+    in srgb,
+    var(--bg) 48%,
+    transparent
+  );
+  --project-page-backdrop-veil-top: color-mix(
+    in srgb,
+    var(--bg) 78%,
+    transparent
+  );
+  --project-page-backdrop-veil-bottom: color-mix(
+    in srgb,
+    var(--bg) 62%,
+    transparent
+  );
+  --project-page-backdrop-veil-edge: color-mix(
+    in srgb,
+    var(--bg) 50%,
+    transparent
+  );
   --journey-backdrop-mask: linear-gradient(
     180deg,
     #fff 0%,

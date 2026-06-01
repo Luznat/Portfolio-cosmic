@@ -1,4 +1,4 @@
-import heroCover from '../shared/assets/images/hero.png'
+import andromedaCover from '../shared/assets/images/projetos/andromeda-app/Group 6.png'
 
 export type SatelliteVariant = 1 | 2 | 3
 
@@ -31,31 +31,31 @@ export interface FeaturedProject {
 }
 
 /**
- * Two separate maps (0–100 viewBox): left = Orbit, right = Nebula Kit.
+ * Two separate maps (0–100 viewBox): left = Andrômeda App, right = Nebula Kit.
  * Each follows a zig-zag like the Figma reference: top corner → main star →
  * lower opposite → mid outer → far corner.
  */
 export const featuredProjects: readonly FeaturedProject[] = [
   {
-    slug: 'orbit-mobile',
-    name: 'Orbit',
-    tagline: 'Experiência mobile imersiva',
+    slug: 'andromeda-app',
+    name: 'Andrômeda',
+    tagline: 'Astronomia e exploração espacial',
     cx: 15,
     cy: 45,
-    coverSrc: heroCover,
+    coverSrc: andromedaCover,
     constellationParallax: 0.10,
     constellationChain: [
-      'orbit-s2',
-      'orbit-s1',
-      'orbit-mobile',
-      'orbit-s3',
-      'orbit-s4',
+      'and-s2',
+      'and-s1',
+      'andromeda-app',
+      'and-s3',
+      'and-s4',
     ],
     satellites: [
-      { id: 'orbit-s1', cx: 10, cy: 24, variant: 1 },
-      { id: 'orbit-s2', cx: 30, cy: 10, variant: 2 },
-      { id: 'orbit-s3', cx: 40, cy: 54, variant: 3 },
-      { id: 'orbit-s4', cx: 44, cy: 78, variant: 2 },
+      { id: 'and-s1', cx: 10, cy: 24, variant: 1 },
+      { id: 'and-s2', cx: 30, cy: 10, variant: 2 },
+      { id: 'and-s3', cx: 40, cy: 54, variant: 3 },
+      { id: 'and-s4', cx: 44, cy: 78, variant: 2 },
     ],
   },
   {
@@ -81,28 +81,28 @@ export const featuredProjects: readonly FeaturedProject[] = [
   },
 ] as const
 
-/** Positions tuned for portrait — Orbit upper-left, Nebula lower-right (less overlap). */
+/** Positions tuned for portrait — Andrômeda upper-left, Nebula lower-right (less overlap). */
 export const featuredProjectsMobile: readonly FeaturedProject[] = [
   {
-    slug: 'orbit-mobile',
-    name: 'Orbit',
-    tagline: 'Experiência mobile imersiva',
+    slug: 'andromeda-app',
+    name: 'Andrômeda',
+    tagline: 'Astronomia e exploração espacial',
     cx: 22,
     cy: 38,
-    coverSrc: heroCover,
+    coverSrc: andromedaCover,
     constellationParallax: 0.1,
     constellationChain: [
-      'orbit-s2',
-      'orbit-s1',
-      'orbit-mobile',
-      'orbit-s3',
-      'orbit-s4',
+      'and-s2',
+      'and-s1',
+      'andromeda-app',
+      'and-s3',
+      'and-s4',
     ],
     satellites: [
-      { id: 'orbit-s1', cx: 14, cy: 20, variant: 1 },
-      { id: 'orbit-s2', cx: 34, cy: 8, variant: 2 },
-      { id: 'orbit-s3', cx: 44, cy: 56, variant: 3 },
-      { id: 'orbit-s4', cx: 48, cy: 72, variant: 2 },
+      { id: 'and-s1', cx: 14, cy: 20, variant: 1 },
+      { id: 'and-s2', cx: 34, cy: 8, variant: 2 },
+      { id: 'and-s3', cx: 44, cy: 56, variant: 3 },
+      { id: 'and-s4', cx: 48, cy: 72, variant: 2 },
     ],
   },
   {

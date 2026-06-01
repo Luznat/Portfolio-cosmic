@@ -1,18 +1,33 @@
 import { Link, useParams } from 'react-router-dom'
 import { SiteHeader } from '../../features/navigation'
+import { andromedaAppSlug } from '../../content/projects/andromedaApp'
 import { getFeaturedProjectBySlug } from '../../content/featuredProjects'
+import projectBackdrop from '../../shared/assets/images/Galaxia_background_for_portfolio_202605181755.jpeg'
+import { AndromedaProjectView } from './AndromedaProjectView'
 import './project-page.css'
 
 export function ProjectPage() {
   const { slug } = useParams<{ slug: string }>()
   const project = slug ? getFeaturedProjectBySlug(slug) : undefined
+  const isAndromeda = slug === andromedaAppSlug
 
   return (
     <>
       <SiteHeader />
-      <main className="projectPage">
+      <main
+        className={
+          isAndromeda ? 'projectPage projectPage--andromeda' : 'projectPage'
+        }
+      >
+        <div
+          className="projectPage__backdrop"
+          style={{ backgroundImage: `url(${projectBackdrop})` }}
+          aria-hidden
+        />
         <div className="projectPage__inner">
-          {!project ? (
+          {isAndromeda ? (
+            <AndromedaProjectView />
+          ) : !project ? (
             <>
               <p className="projectPage__muted">Projeto não encontrado.</p>
               <Link className="projectPage__back" to="/#projetos">

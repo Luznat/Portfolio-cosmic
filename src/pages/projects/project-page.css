@@ -1,15 +1,65 @@
 .projectPage {
+  position: relative;
+  isolation: isolate;
   min-height: 100dvh;
   min-height: 100svh;
   padding: clamp(5.5rem, 11vw, 7rem) clamp(1.25rem, 5vw, 2.5rem)
     clamp(2.5rem, 6vw, 4rem);
   box-sizing: border-box;
+  overflow-x: clip;
   background: var(--bg);
 }
 
+.projectPage__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 42%;
+  filter: brightness(0.52) saturate(1.08) contrast(1.06);
+}
+
+.projectPage__backdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--project-page-backdrop-veil-core);
+}
+
+.projectPage__backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      var(--project-page-backdrop-veil-top) 0%,
+      transparent 22%,
+      transparent 72%,
+      var(--project-page-backdrop-veil-bottom) 100%
+    ),
+    linear-gradient(
+      90deg,
+      var(--project-page-backdrop-veil-edge) 0%,
+      transparent 18%,
+      transparent 82%,
+      var(--project-page-backdrop-veil-edge) 100%
+    );
+}
+
 .projectPage__inner {
+  position: relative;
+  z-index: 1;
   max-width: 40rem;
   margin: 0 auto;
+}
+
+.projectPage--andromeda .projectPage__inner {
+  max-width: min(76rem, 100%);
 }
 
 .projectPage__crumb {
