@@ -163,8 +163,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: min(24rem, 62vw);
+  min-height: min(30rem, 72vw);
   padding: clamp(0.5rem, 2vw, 1rem) 0;
+  overflow: visible;
 }
 
 .andromeda__orbit {
@@ -185,8 +186,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.1rem;
-  padding: 0.38rem 0.55rem;
+  gap: 0.2rem;
+  padding: 0.42rem 0.62rem;
   border-radius: 999px;
   border: 1px solid var(--project-chip-border);
   background: var(--project-chip-surface);
@@ -200,6 +201,16 @@
   min-width: auto;
 }
 
+.andromeda__stackIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 1rem;
+  color: var(--text-emphasis);
+}
+
 @media (min-width: 64rem) {
   .andromeda__stackMobile {
     display: none;
@@ -208,42 +219,48 @@
   .andromeda__orbit {
     display: block;
     position: absolute;
-    inset: -8% -12%;
-    z-index: 2;
+    left: 50%;
+    top: 50%;
+    width: clamp(29rem, 43vw, 36rem);
+    aspect-ratio: 1;
+    z-index: 1;
     pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: andromedaOrbitSpin 56s linear infinite;
   }
 
   .andromeda__orbit .andromeda__stackChip {
     position: absolute;
     left: 50%;
     top: 50%;
-    z-index: 2;
+    z-index: 1;
     min-width: 4.85rem;
     transform: translate(-50%, -50%)
-      rotate(calc(var(--orbit-index) * 60deg - 30deg))
-      translateY(clamp(-11rem, -22vw, -14rem))
-      rotate(calc(30deg - var(--orbit-index) * 60deg));
+      rotate(calc(var(--orbit-index) * 60deg))
+      translateY(clamp(-14.25rem, -21vw, -17rem))
+      rotate(calc(var(--orbit-index) * -60deg));
+    animation: andromedaOrbitCounterSpin 56s linear infinite;
   }
 }
 
 .andromeda__stackLabel {
-  font-size: 0.58rem;
+  font-size: 0.5rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-h);
 }
 
 .andromeda__stackRole {
-  font-size: 0.5rem;
-  letter-spacing: 0.07em;
+  font-size: 0.42rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-subtle);
 }
 
 .andromeda__device {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   margin: 0;
   width: min(100%, 24rem);
 }
@@ -452,5 +469,38 @@
 
   .andromeda__description {
     max-width: none;
+  }
+}
+
+@keyframes andromedaOrbitSpin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes andromedaOrbitCounterSpin {
+  from {
+    transform: translate(-50%, -50%)
+      rotate(calc(var(--orbit-index) * 60deg))
+      translateY(clamp(-14.25rem, -21vw, -17rem))
+      rotate(calc(var(--orbit-index) * -60deg))
+      rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%)
+      rotate(calc(var(--orbit-index) * 60deg))
+      translateY(clamp(-14.25rem, -21vw, -17rem))
+      rotate(calc(var(--orbit-index) * -60deg))
+      rotate(-360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .andromeda__orbit,
+  .andromeda__orbit .andromeda__stackChip {
+    animation: none;
   }
 }

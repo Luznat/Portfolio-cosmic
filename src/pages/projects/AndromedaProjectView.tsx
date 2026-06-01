@@ -1,9 +1,27 @@
 import { useState, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
+import type { IconType } from 'react-icons'
+import {
+  SiFigma,
+  SiFirebase,
+  SiGithub,
+  SiNodedotjs,
+  SiReact,
+  SiTypescript,
+} from 'react-icons/si'
 import { andromedaAppContent } from '../../content/projects/andromedaApp'
 import './andromeda-project.css'
 
 const content = andromedaAppContent
+
+const stackIconById: Record<string, IconType> = {
+  rn: SiReact,
+  gh: SiGithub,
+  figma: SiFigma,
+  firebase: SiFirebase,
+  node: SiNodedotjs,
+  ts: SiTypescript,
+}
 
 export function AndromedaProjectView() {
   const [activeArtifact, setActiveArtifact] = useState(0)
@@ -59,14 +77,20 @@ export function AndromedaProjectView() {
         <div className="andromeda__showcase">
           <div className="andromeda__orbit" aria-hidden>
             {content.stack.map((item, index) => (
-              <div
+              <article
                 key={item.id}
                 className="andromeda__stackChip"
                 style={{ '--orbit-index': index } as CSSProperties}
               >
+                <span className="andromeda__stackIcon" aria-hidden>
+                  {(() => {
+                    const Icon = stackIconById[item.id]
+                    return Icon ? <Icon /> : null
+                  })()}
+                </span>
                 <span className="andromeda__stackLabel">{item.label}</span>
                 <span className="andromeda__stackRole">{item.role}</span>
-              </div>
+              </article>
             ))}
           </div>
 
@@ -84,7 +108,16 @@ export function AndromedaProjectView() {
 
           <ul className="andromeda__stackMobile" aria-label="Tecnologias do projeto">
             {content.stack.map((item) => (
-              <li key={item.id} className="andromeda__stackChip andromeda__stackChip--mobile">
+              <li
+                key={item.id}
+                className="andromeda__stackChip andromeda__stackChip--mobile"
+              >
+                <span className="andromeda__stackIcon" aria-hidden>
+                  {(() => {
+                    const Icon = stackIconById[item.id]
+                    return Icon ? <Icon /> : null
+                  })()}
+                </span>
                 <span className="andromeda__stackLabel">{item.label}</span>
                 <span className="andromeda__stackRole">{item.role}</span>
               </li>
