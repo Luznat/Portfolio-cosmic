@@ -1,5 +1,6 @@
-import andromedaDeviceMockup from '../../shared/assets/images/projetos/andromeda-app/Group 6.png'
-import andromedaScreenshot from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260526_023152_Andromeda.jpg'
+import screenHome from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260521_185848_Andromeda.jpg'
+import screenSplash from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260526_023152_Andromeda.jpg'
+import screenProfile from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260521_185915_Andromeda.jpg'
 
 export const andromedaAppSlug = 'andromeda-app' as const
 
@@ -21,6 +22,23 @@ export const andromedaAppContent = {
     project: '#',
     github: '#',
   },
+  heroScreens: [
+    {
+      id: 'home',
+      src: screenHome,
+      alt: 'Tela inicial do Andrômeda com recomendações e destaques',
+    },
+    {
+      id: 'splash',
+      src: screenSplash,
+      alt: 'Tela de boas-vindas do Andrômeda com nebulosa e botão Iniciar jornada',
+    },
+    {
+      id: 'profile',
+      src: screenProfile,
+      alt: 'Perfil do usuário com constelação e progresso no Andrômeda',
+    },
+  ],
   stack: [
     { id: 'rn', label: 'React Native', role: 'Framework' },
     { id: 'gh', label: 'GitHub', role: 'Versionamento' },
@@ -70,12 +88,11 @@ export const andromedaAppContent = {
       {
         id: 'splash',
         label: 'Splash — Andrômeda',
-        src: andromedaScreenshot,
-        alt: 'Tela inicial do Andrômeda App com nebulosa, logotipo e botão Iniciar jornada',
+        src: screenSplash,
+        alt: 'Tela de boas-vindas do Andrômeda com nebulosa e botão Iniciar jornada',
       },
     ],
   },
-  heroDeviceMockup: andromedaDeviceMockup,
 } as const
 
 export type AndromedaAppContent = typeof andromedaAppContent

@@ -17,6 +17,13 @@
   -webkit-backdrop-filter: blur(14px) saturate(120%);
 }
 
+.headerOnProject {
+  background: var(--project-page-header-bg);
+  border-bottom-color: var(--project-page-header-border);
+  backdrop-filter: blur(10px) saturate(110%);
+  -webkit-backdrop-filter: blur(10px) saturate(110%);
+}
+
 .brand {
   font-family: var(--heading);
   font-size: var(--type-brand-size);

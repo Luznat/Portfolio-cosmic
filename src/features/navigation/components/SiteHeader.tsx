@@ -13,7 +13,11 @@ function sectionIdFromNavItem(item: NavItem): string | null {
   return hash.replace(/^#/, '')
 }
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  variant?: 'default' | 'project'
+}
+
+export function SiteHeader({ variant = 'default' }: SiteHeaderProps) {
   const homeScroll = useOptionalHomeScroll()
 
   const handleSectionNav = useCallback(
@@ -28,7 +32,11 @@ export function SiteHeader() {
 
   return (
     <motion.header
-      className={styles.header}
+      className={
+        variant === 'project'
+          ? `${styles.header} ${styles.headerOnProject}`
+          : styles.header
+      }
       initial={{ opacity: 0, y: -12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}

@@ -2,7 +2,8 @@ import { Link, useParams } from 'react-router-dom'
 import { SiteHeader } from '../../features/navigation'
 import { andromedaAppSlug } from '../../content/projects/andromedaApp'
 import { getFeaturedProjectBySlug } from '../../content/featuredProjects'
-import projectBackdrop from '../../shared/assets/images/Galaxia_background_for_portfolio_202605181755.jpeg'
+import projectBackdrop from '../../shared/assets/images/projetos/back-groud/Isolate_background_from_referenc…_202606021754.jpeg'
+import projectHoleOverlay from '../../shared/assets/images/projetos/back-groud/buraco.png'
 import { AndromedaProjectView } from './AndromedaProjectView'
 import './project-page.css'
 
@@ -13,17 +14,32 @@ export function ProjectPage() {
 
   return (
     <>
-      <SiteHeader />
+      <SiteHeader variant="project" />
       <main
         className={
           isAndromeda ? 'projectPage projectPage--andromeda' : 'projectPage'
         }
       >
-        <div
-          className="projectPage__backdrop"
-          style={{ backgroundImage: `url(${projectBackdrop})` }}
-          aria-hidden
-        />
+        <div className="projectPage__backdrop" aria-hidden>
+          <img
+            className="projectPage__backdropImg"
+            src={projectBackdrop}
+            alt=""
+            decoding="async"
+            fetchPriority="low"
+          />
+        </div>
+        {isAndromeda ? (
+          <img
+            className="projectPage__holeOverlay"
+            src={projectHoleOverlay}
+            alt=""
+            width={640}
+            height={552}
+            decoding="async"
+            aria-hidden
+          />
+        ) : null}
         <div className="projectPage__inner">
           {isAndromeda ? (
             <AndromedaProjectView />

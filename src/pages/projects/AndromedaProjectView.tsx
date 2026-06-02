@@ -1,27 +1,9 @@
-import { useState, type CSSProperties } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import type { IconType } from 'react-icons'
-import {
-  SiFigma,
-  SiFirebase,
-  SiGithub,
-  SiNodedotjs,
-  SiReact,
-  SiTypescript,
-} from 'react-icons/si'
 import { andromedaAppContent } from '../../content/projects/andromedaApp'
 import './andromeda-project.css'
 
 const content = andromedaAppContent
-
-const stackIconById: Record<string, IconType> = {
-  rn: SiReact,
-  gh: SiGithub,
-  figma: SiFigma,
-  firebase: SiFirebase,
-  node: SiNodedotjs,
-  ts: SiTypescript,
-}
 
 export function AndromedaProjectView() {
   const [activeArtifact, setActiveArtifact] = useState(0)
@@ -74,56 +56,31 @@ export function AndromedaProjectView() {
           </div>
         </header>
 
-        <div className="andromeda__showcase">
-          <div className="andromeda__orbit" aria-hidden>
-            {content.stack.map((item, index) => (
-              <article
-                key={item.id}
-                className="andromeda__stackChip"
-                style={{ '--orbit-index': index } as CSSProperties}
-              >
-                <span className="andromeda__stackIcon" aria-hidden>
-                  {(() => {
-                    const Icon = stackIconById[item.id]
-                    return Icon ? <Icon /> : null
-                  })()}
-                </span>
-                <span className="andromeda__stackLabel">{item.label}</span>
-                <span className="andromeda__stackRole">{item.role}</span>
-              </article>
-            ))}
-          </div>
-
-          <figure className="andromeda__device">
-            <img
-              className="andromeda__deviceImg"
-              src={content.heroDeviceMockup}
-              alt="Mockup do Andrômeda App em perspectiva, com a tela de boas-vindas"
-              width={720}
-              height={900}
-              loading="eager"
-              decoding="async"
-            />
-          </figure>
-
-          <ul className="andromeda__stackMobile" aria-label="Tecnologias do projeto">
-            {content.stack.map((item) => (
-              <li
-                key={item.id}
-                className="andromeda__stackChip andromeda__stackChip--mobile"
-              >
-                <span className="andromeda__stackIcon" aria-hidden>
-                  {(() => {
-                    const Icon = stackIconById[item.id]
-                    return Icon ? <Icon /> : null
-                  })()}
-                </span>
-                <span className="andromeda__stackLabel">{item.label}</span>
-                <span className="andromeda__stackRole">{item.role}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <figure
+          className="andromeda__vortex"
+          aria-label="Capturas de tela do Andrômeda App"
+        >
+          {content.heroScreens.map((screen, index) => (
+            <div
+              key={screen.id}
+              className="andromeda__vortexShotWrap"
+              data-vortex-index={index}
+            >
+              <img
+                className="andromeda__vortexShot"
+                src={screen.src}
+                srcSet={`${screen.src} 1080w`}
+                sizes="(min-width: 64rem) 11rem, (min-width: 40rem) 9rem, 7rem"
+                alt={screen.alt}
+                width={1080}
+                height={2210}
+                loading="eager"
+                decoding="sync"
+                fetchPriority="high"
+              />
+            </div>
+          ))}
+        </figure>
 
         <aside className="andromeda__insights" aria-label="Detalhes do projeto">
           {content.insights.map((block) => (

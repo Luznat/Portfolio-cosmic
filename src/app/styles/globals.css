@@ -101,24 +101,31 @@
     var(--accent) 75%,
     var(--glow-cool-20) 25%
   );
+  --project-page-bg: #000000;
+  --project-page-header-bg: rgba(0, 0, 0, 0.88);
+  --project-page-header-border: color-mix(
+    in srgb,
+    var(--text-h) 8%,
+    transparent
+  );
   --project-page-backdrop-veil-core: color-mix(
     in srgb,
-    var(--bg) 48%,
+    var(--project-page-bg) 26%,
     transparent
   );
   --project-page-backdrop-veil-top: color-mix(
     in srgb,
-    var(--bg) 78%,
+    var(--project-page-bg) 52%,
     transparent
   );
   --project-page-backdrop-veil-bottom: color-mix(
     in srgb,
-    var(--bg) 62%,
+    var(--project-page-bg) 38%,
     transparent
   );
   --project-page-backdrop-veil-edge: color-mix(
     in srgb,
-    var(--bg) 50%,
+    var(--project-page-bg) 28%,
     transparent
   );
   --journey-backdrop-mask: linear-gradient(

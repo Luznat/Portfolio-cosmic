@@ -1,4 +1,5 @@
 .projectPage {
+  --project-backdrop-focus: 50% 110%;
   position: relative;
   isolation: isolate;
   min-height: 100dvh;
@@ -7,7 +8,11 @@
     clamp(2.5rem, 6vw, 4rem);
   box-sizing: border-box;
   overflow-x: clip;
-  background: var(--bg);
+  background: var(--project-page-bg);
+}
+
+body:has(.projectPage) {
+  background: var(--project-page-bg);
 }
 
 .projectPage__backdrop {
@@ -15,10 +20,19 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 42%;
-  filter: brightness(0.52) saturate(1.08) contrast(1.06);
+  overflow: hidden;
+  background: var(--project-page-bg);
+}
+
+.projectPage__backdropImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--project-backdrop-focus);
+  transform: scale(0.82);
+  transform-origin: var(--project-backdrop-focus);
+  filter: brightness(0.82) saturate(1.24) contrast(1.04);
 }
 
 .projectPage__backdrop::before {
@@ -38,15 +52,15 @@
     linear-gradient(
       180deg,
       var(--project-page-backdrop-veil-top) 0%,
-      transparent 22%,
-      transparent 72%,
+      transparent 14%,
+      transparent 80%,
       var(--project-page-backdrop-veil-bottom) 100%
     ),
     linear-gradient(
       90deg,
       var(--project-page-backdrop-veil-edge) 0%,
-      transparent 18%,
-      transparent 82%,
+      transparent 12%,
+      transparent 88%,
       var(--project-page-backdrop-veil-edge) 100%
     );
 }
@@ -56,6 +70,24 @@
   z-index: 1;
   max-width: 40rem;
   margin: 0 auto;
+}
+
+.projectPage--andromeda {
+  --project-hole-x: 51%;
+  --project-hole-y: 58%;
+  --project-hole-size: clamp(14rem, 32vw, 22rem);
+}
+
+.projectPage__holeOverlay {
+  position: fixed;
+  left: var(--project-hole-x);
+  top: var(--project-hole-y);
+  z-index: 5;
+  width: var(--project-hole-size);
+  height: auto;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scaleX(-1);
+  object-fit: contain;
 }
 
 .projectPage--andromeda .projectPage__inner {
