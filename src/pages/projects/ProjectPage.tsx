@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { SiteHeader } from '../../features/navigation'
 import { andromedaAppSlug } from '../../content/projects/andromedaApp'
 import { getFeaturedProjectBySlug } from '../../content/featuredProjects'
-import projectBackdrop from '../../shared/assets/images/projetos/back-groud/Isolate_background_from_referenc…_202606021754.jpeg'
+import projectBackdrop from '../../shared/assets/images/projetos/back-groud/Picsart_26-06-03_15-22-45-787.png'
 import projectHoleOverlay from '../../shared/assets/images/projetos/back-groud/buraco.png'
 import { AndromedaProjectView } from './AndromedaProjectView'
 import './project-page.css'
@@ -21,13 +21,15 @@ export function ProjectPage() {
         }
       >
         <div className="projectPage__backdrop" aria-hidden>
-          <img
-            className="projectPage__backdropImg"
-            src={projectBackdrop}
-            alt=""
-            decoding="async"
-            fetchPriority="low"
-          />
+          <div className="projectPage__backdropSpin">
+            <img
+              className="projectPage__backdropImg"
+              src={projectBackdrop}
+              alt=""
+              decoding="async"
+              fetchPriority="low"
+            />
+          </div>
         </div>
         {isAndromeda ? (
           <img

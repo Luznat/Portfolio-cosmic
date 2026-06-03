@@ -16,12 +16,17 @@ body:has(.projectPage) {
 }
 
 .projectPage__backdrop {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
   background: var(--project-page-bg);
+}
+
+.projectPage__backdropSpin {
+  position: absolute;
+  inset: 0;
 }
 
 .projectPage__backdropImg {
@@ -74,20 +79,69 @@ body:has(.projectPage) {
 
 .projectPage--andromeda {
   --project-hole-x: 51%;
-  --project-hole-y: 58%;
+  --project-hole-y: 58vh;
   --project-hole-size: clamp(14rem, 32vw, 22rem);
+  --project-hole-spin-duration: 280s;
+  --project-backdrop-spin-duration: 980s;
+  --project-backdrop-spin-origin: 51% 58%;
+  --project-hole-brightness: 0.74;
+  --project-hole-saturate: 0.86;
+}
+
+.projectPage--andromeda .projectPage__backdrop {
+  inset: auto 0 auto 0;
+  top: 0;
+  height: 100svh;
+  height: 100dvh;
+}
+
+.projectPage--andromeda .projectPage__backdropSpin {
+  transform-origin: var(--project-backdrop-spin-origin);
+  animation: projectBackdropSpin var(--project-backdrop-spin-duration) linear
+    infinite;
+}
+
+@keyframes projectBackdropSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes projectHoleSpin {
+  from {
+    transform: translate(-50%, -50%) scaleX(-1) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scaleX(-1) rotate(-360deg);
+  }
 }
 
 .projectPage__holeOverlay {
-  position: fixed;
+  position: absolute;
   left: var(--project-hole-x);
   top: var(--project-hole-y);
   z-index: 5;
   width: var(--project-hole-size);
   height: auto;
   pointer-events: none;
+  transform-origin: center center;
   transform: translate(-50%, -50%) scaleX(-1);
   object-fit: contain;
+  filter: brightness(var(--project-hole-brightness))
+    saturate(var(--project-hole-saturate));
+  animation: projectHoleSpin var(--project-hole-spin-duration) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projectPage--andromeda .projectPage__backdropSpin,
+  .projectPage__holeOverlay {
+    animation: none;
+  }
 }
 
 .projectPage--andromeda .projectPage__inner {
