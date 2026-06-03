@@ -101,6 +101,12 @@ body:has(.projectPage) {
     infinite;
 }
 
+/* contain evita o recorte do cover; scale(0.82) base mantém o tamanho calibrado */
+.projectPage--andromeda .projectPage__backdropImg {
+  object-fit: contain;
+  object-position: center center;
+}
+
 @keyframes projectBackdropSpin {
   from {
     transform: rotate(0deg);
