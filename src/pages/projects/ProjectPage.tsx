@@ -5,6 +5,7 @@ import { getFeaturedProjectBySlug } from '../../content/featuredProjects'
 import projectBackdrop from '../../shared/assets/images/projetos/back-groud/Picsart_26-06-03_15-22-45-787.png'
 import projectHoleOverlay from '../../shared/assets/images/projetos/back-groud/buraco.png'
 import { AndromedaProjectView } from './AndromedaProjectView'
+import { AndromedaVortexFrontScreen } from './AndromedaVortexFrontScreen'
 import './project-page.css'
 
 export function ProjectPage() {
@@ -31,17 +32,6 @@ export function ProjectPage() {
             />
           </div>
         </div>
-        {isAndromeda ? (
-          <img
-            className="projectPage__holeOverlay"
-            src={projectHoleOverlay}
-            alt=""
-            width={640}
-            height={552}
-            decoding="async"
-            aria-hidden
-          />
-        ) : null}
         <div className="projectPage__inner">
           {isAndromeda ? (
             <AndromedaProjectView />
@@ -73,6 +63,20 @@ export function ProjectPage() {
             </>
           )}
         </div>
+        {isAndromeda ? (
+          <>
+            <img
+              className="projectPage__holeOverlay"
+              src={projectHoleOverlay}
+              alt=""
+              width={640}
+              height={552}
+              decoding="async"
+              aria-hidden
+            />
+            <AndromedaVortexFrontScreen />
+          </>
+        ) : null}
       </main>
     </>
   )

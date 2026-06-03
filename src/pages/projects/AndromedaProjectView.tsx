@@ -57,29 +57,31 @@ export function AndromedaProjectView() {
         </header>
 
         <figure
-          className="andromeda__vortex"
+          className="andromeda__vortex andromeda__vortex--anchor"
           aria-label="Capturas de tela do Andrômeda App"
         >
-          {content.heroScreens.map((screen, index) => (
-            <div
-              key={screen.id}
-              className="andromeda__vortexShotWrap"
-              data-vortex-index={index}
-            >
-              <img
-                className="andromeda__vortexShot"
-                src={screen.src}
-                srcSet={`${screen.src} 1080w`}
-                sizes="(min-width: 64rem) 11rem, (min-width: 40rem) 9rem, 7rem"
-                alt={screen.alt}
-                width={1080}
-                height={2210}
-                loading="eager"
-                decoding="sync"
-                fetchPriority="high"
-              />
-            </div>
-          ))}
+          {content.heroScreens.map((screen, index) =>
+            index === 1 ? null : (
+              <div
+                key={screen.id}
+                className="andromeda__vortexShotWrap"
+                data-vortex-index={index}
+              >
+                <img
+                  className="andromeda__vortexShot"
+                  src={screen.src}
+                  srcSet={`${screen.src} 1080w`}
+                  sizes="(min-width: 64rem) 11rem, (min-width: 40rem) 9rem, 7rem"
+                  alt={screen.alt}
+                  width={1080}
+                  height={2210}
+                  loading="eager"
+                  decoding="sync"
+                  fetchPriority="high"
+                />
+              </div>
+            ),
+          )}
         </figure>
 
         <aside className="andromeda__insights" aria-label="Detalhes do projeto">

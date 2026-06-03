@@ -36,20 +36,26 @@
   }
 }
 
-.andromeda__vortex {
+.projectPage--andromeda {
   /* Ajusta posição/tamanho das 3 telas aqui (vale em mobile e desktop) */
-  --vortex-0-x: -130%;
-  --vortex-0-y: -75%;
+  --vortex-0-x: -140%;
+  --vortex-0-y: -40%;
   --vortex-0-r: -10deg;
   --vortex-0-w: clamp(6.35rem, 16vw, 8.35rem);
   --vortex-1-x: -50%;
-  --vortex-1-y: -110%;
+  --vortex-1-y: -90%;
   --vortex-1-r: 5deg;
-  --vortex-1-w: clamp(7.35rem, 19vw, 10rem);
+  --vortex-1-w: clamp(9.25rem, 24vw, 12.5rem);
   --vortex-2-x: 60%;
   --vortex-2-y: -30%;
   --vortex-2-r: 15deg;
   --vortex-2-w: clamp(6.15rem, 15.5vw, 8rem);
+  --vortex-drift-duration-0: 23s;
+  --vortex-drift-duration-1: 27s;
+  --vortex-drift-duration-2: 20s;
+}
+
+.andromeda__vortex {
   position: relative;
   width: 100%;
   max-width: 24rem;
@@ -88,6 +94,17 @@
   width: var(--vortex-0-w);
   transform: translate3d(var(--vortex-0-x), var(--vortex-0-y), 0)
     rotate(var(--vortex-0-r));
+  animation: vortexDrift0 var(--vortex-drift-duration-0) ease-in-out infinite
+    alternate;
+  animation-delay: -3s;
+}
+
+.andromeda__vortexFrontLayer {
+  position: absolute;
+  z-index: 6;
+  margin: 0;
+  pointer-events: none;
+  overflow: visible;
 }
 
 .andromeda__vortexShotWrap[data-vortex-index='1'] {
@@ -95,6 +112,9 @@
   width: var(--vortex-1-w);
   transform: translate3d(var(--vortex-1-x), var(--vortex-1-y), 0)
     rotate(var(--vortex-1-r));
+  animation: vortexDrift1 var(--vortex-drift-duration-1) ease-in-out infinite
+    alternate;
+  animation-delay: -8s;
 }
 
 .andromeda__vortexShotWrap[data-vortex-index='2'] {
@@ -102,6 +122,75 @@
   width: var(--vortex-2-w);
   transform: translate3d(var(--vortex-2-x), var(--vortex-2-y), 0)
     rotate(var(--vortex-2-r));
+  animation: vortexDrift2 var(--vortex-drift-duration-2) ease-in-out infinite
+    alternate;
+  animation-delay: -13s;
+}
+
+@keyframes vortexDrift0 {
+  0% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+
+  38% {
+    translate: 3px -6px;
+    rotate: 0.35deg;
+  }
+
+  72% {
+    translate: -4px -4px;
+    rotate: -0.3deg;
+  }
+
+  100% {
+    translate: 2px -8px;
+    rotate: 0.2deg;
+  }
+}
+
+@keyframes vortexDrift1 {
+  0% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+
+  42% {
+    translate: -4px -7px;
+    rotate: -0.4deg;
+  }
+
+  68% {
+    translate: 3px -5px;
+    rotate: 0.35deg;
+  }
+
+  100% {
+    translate: -2px -9px;
+    rotate: -0.25deg;
+  }
+}
+
+@keyframes vortexDrift2 {
+  0% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+
+  33% {
+    translate: 5px -5px;
+    rotate: 0.45deg;
+  }
+
+  61% {
+    translate: -3px -7px;
+    rotate: -0.4deg;
+  }
+
+  100% {
+    translate: 4px -4px;
+    rotate: 0.3deg;
+  }
 }
 
 @media (min-width: 64rem) {
@@ -418,5 +507,11 @@
 @media (max-width: 63.99rem) {
   .andromeda__description {
     max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .andromeda__vortexShotWrap[data-vortex-index] {
+    animation: none;
   }
 }
