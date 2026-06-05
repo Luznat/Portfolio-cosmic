@@ -331,7 +331,8 @@
 .andromeda__insights {
   display: grid;
   gap: 0.55rem;
-  max-width: 15.5rem;
+  width: 100%;
+  max-width: none;
 }
 
 @media (min-width: 40rem) and (max-width: 63.99rem) {
@@ -507,6 +508,28 @@
 @media (max-width: 63.99rem) {
   .andromeda__description {
     max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectPage--andromeda {
+    --vortex-0-y: -28%;
+    --vortex-1-y: -68%;
+    --vortex-2-y: -18%;
+  }
+
+  .andromeda__hero {
+    gap: clamp(1.75rem, 5vw, 2.5rem);
+  }
+
+  .andromeda__vortex {
+    margin-top: clamp(2rem, 7vh, 3.25rem);
+    margin-bottom: clamp(1.25rem, 4vh, 2rem);
+    height: clamp(17.5rem, 46vw, 21rem);
+  }
+
+  .andromeda__vortexShotWrap {
+    top: 63%;
   }
 }
 

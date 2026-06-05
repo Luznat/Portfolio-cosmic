@@ -79,14 +79,14 @@ body:has(.projectPage) {
 
 .projectPage--andromeda {
   --project-hole-x: 51%;
-  --project-hole-y: 58vh;
+  --project-hole-y: 54vh;
   --project-hole-size: clamp(14rem, 32vw, 22rem);
   --project-hole-spin-duration: 280s;
   --project-backdrop-spin-duration: 980s;
   --project-backdrop-spin-origin: center center;
   --project-backdrop-spin-scale: 0.82;
   --project-backdrop-offset-x: 0%;
-  --project-backdrop-offset-y: 0%;
+  --project-backdrop-offset-y: 8%;
   --project-hole-brightness: 0.74;
   --project-hole-saturate: 0.86;
 }
@@ -183,12 +183,13 @@ body:has(.projectPage) {
     --project-backdrop-spin-scale: var(--project-backdrop-scale-mobile);
     --project-backdrop-focus-mobile: center center;
     --project-backdrop-offset-x-mobile: 0%;
-    --project-backdrop-offset-y-mobile: 27%;
+    --project-backdrop-offset-y-mobile: 28%;
     --project-backdrop-offset-x: var(--project-backdrop-offset-x-mobile);
     --project-backdrop-offset-y: var(--project-backdrop-offset-y-mobile);
-    --project-hole-x: 52%;
-    --project-hole-y: 45%;
-    --project-hole-size: clamp(11rem, 58vw, 16rem);
+  }
+
+  .projectPage__holeOverlay {
+    display: none;
   }
 
   .projectPage--andromeda .projectPage__backdrop {
