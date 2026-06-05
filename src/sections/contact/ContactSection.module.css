@@ -293,22 +293,57 @@
 }
 
 @media (max-width: 768px) {
+  .section {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    min-height: 100dvh;
+    padding-top: clamp(4.75rem, 13vh, 5.5rem);
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+    scroll-margin-top: var(--site-header-offset-mobile);
+    overflow: hidden;
+  }
+
   .sectionBackdrop {
-    background-position: center 92%;
+    background-position: center bottom;
   }
 
   .sunCorona {
-    bottom: -18%;
+    bottom: 0;
     width: 160vw;
+    height: min(52vh, 24rem);
   }
 
   .sunGlow {
-    bottom: -10%;
+    bottom: 0;
     width: 140vw;
+    height: min(44vh, 20rem);
   }
 
   .sunRim {
-    bottom: 12%;
+    bottom: 6%;
     width: 130vw;
+  }
+
+  .section::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    height: min(40vh, 17rem);
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--contact-sun-glow-mid) 32%, transparent) 42%,
+      color-mix(
+          in srgb,
+          var(--contact-sun-glow-core) 48%,
+          var(--section-projects-bg)
+        )
+        100%
+    );
   }
 }

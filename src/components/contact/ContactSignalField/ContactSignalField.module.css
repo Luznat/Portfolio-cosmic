@@ -325,7 +325,9 @@
 
 @media (max-width: 768px) {
   .field {
-    min-height: min(90svh, 42rem);
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
   }
 
   .intro {
@@ -335,8 +337,13 @@
 
   .constellationSvg,
   .signals {
+    inset: auto;
     top: clamp(12.5rem, 36vh, 15.5rem);
-    bottom: clamp(5rem, 14vh, 8rem);
+    right: 0;
+    bottom: clamp(2.5rem, 8vh, 4rem);
+    left: 0;
+    width: 100%;
+    height: auto;
   }
 
   .signalItem[data-signal='email'] {
@@ -364,7 +371,7 @@
   .constellationSvg,
   .signals {
     top: clamp(13.5rem, 38vh, 16.5rem);
-    bottom: clamp(4.5rem, 12vh, 7rem);
+    bottom: clamp(2rem, 7vh, 3.5rem);
   }
 
   .signalItem[data-signal='email'] {
