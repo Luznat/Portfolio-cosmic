@@ -78,8 +78,9 @@ body:has(.projectPage) {
 }
 
 .projectPage--andromeda {
+  overflow-y: clip;
   --project-hole-x: 51%;
-  --project-hole-y: 54vh;
+  --project-hole-y: 56vh;
   --project-hole-size: clamp(14rem, 32vw, 22rem);
   --project-hole-spin-duration: 280s;
   --project-backdrop-spin-duration: 980s;
@@ -96,7 +97,7 @@ body:has(.projectPage) {
   top: 0;
   height: 100svh;
   height: 100dvh;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .projectPage--andromeda .projectPage__backdrop::before,
