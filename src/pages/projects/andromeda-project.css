@@ -28,6 +28,32 @@
   align-items: start;
 }
 
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .andromeda__hero {
+    gap: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  .andromeda__overview {
+    max-width: none;
+  }
+
+  .andromeda__insights {
+    max-width: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .andromeda__vortex {
+    margin: clamp(1.5rem, 4vh, 2.5rem) auto;
+    max-width: 28rem;
+    height: clamp(18rem, 38vw, 23rem);
+  }
+
+  .andromeda__vortexShotWrap {
+    top: 60%;
+  }
+}
+
 @media (min-width: 64rem) {
   .andromeda__hero {
     grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.05fr) minmax(0, 0.85fr);
@@ -335,7 +361,7 @@
   max-width: none;
 }
 
-@media (min-width: 40rem) and (max-width: 63.99rem) {
+@media (min-width: 40rem) and (max-width: 47.99rem) {
   .andromeda__insights {
     max-width: none;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -511,9 +537,23 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 48rem) and (max-width: 63.99rem) {
   .projectPage--andromeda {
-    --vortex-0-y: -28%;
+    --vortex-0-x: -130%;
+    --vortex-0-y: -82%;
+    --vortex-1-x: -50%;
+    --vortex-1-y: -88%;
+    --vortex-2-x: 55%;
+    --vortex-2-y: -82%;
+    --vortex-0-w: clamp(6rem, 15vw, 7.75rem);
+    --vortex-1-w: clamp(8.75rem, 22vw, 11.5rem);
+    --vortex-2-w: clamp(5.75rem, 14vw, 7.25rem);
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .projectPage--andromeda {
+    --vortex-0-y: -25%;
     --vortex-1-y: -68%;
     --vortex-2-y: -18%;
   }
