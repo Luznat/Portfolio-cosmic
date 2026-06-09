@@ -1,13 +1,47 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { andromedaAppContent } from '../../content/projects/andromedaApp'
+import { ArtifactScreenshotModal } from './ArtifactScreenshotModal'
 import './andromeda-project.css'
 
 const content = andromedaAppContent
+const artifacts = content.artifacts.items
 
 export function AndromedaProjectView() {
   const [activeArtifact, setActiveArtifact] = useState(0)
-  const artifact = content.artifacts.items[activeArtifact]
+  const [modalArtifactIndex, setModalArtifactIndex] = useState<number | null>(
+    null,
+  )
+  const artifact = artifacts[activeArtifact]
+  const modalArtifact =
+    modalArtifactIndex !== null ? artifacts[modalArtifactIndex] : null
+
+  const openArtifactModal = (index: number) => {
+    setActiveArtifact(index)
+    setModalArtifactIndex(index)
+  }
+
+  const closeArtifactModal = () => {
+    setModalArtifactIndex(null)
+  }
+
+  const showPrevArtifact = () => {
+    setModalArtifactIndex((current) => {
+      if (current === null || current <= 0) return current
+      const next = current - 1
+      setActiveArtifact(next)
+      return next
+    })
+  }
+
+  const showNextArtifact = () => {
+    setModalArtifactIndex((current) => {
+      if (current === null || current >= artifacts.length - 1) return current
+      const next = current + 1
+      setActiveArtifact(next)
+      return next
+    })
+  }
 
   return (
     <div className="andromeda">
@@ -60,28 +94,26 @@ export function AndromedaProjectView() {
           className="andromeda__vortex andromeda__vortex--anchor"
           aria-label="Capturas de tela do Andrômeda App"
         >
-          {content.heroScreens.map((screen, index) =>
-            index === 1 ? null : (
-              <div
-                key={screen.id}
-                className="andromeda__vortexShotWrap"
-                data-vortex-index={index}
-              >
-                <img
-                  className="andromeda__vortexShot"
-                  src={screen.src}
-                  srcSet={`${screen.src} 1080w`}
-                  sizes="(min-width: 64rem) 11rem, (min-width: 40rem) 9rem, 7rem"
-                  alt={screen.alt}
-                  width={1080}
-                  height={2210}
-                  loading="eager"
-                  decoding="sync"
-                  fetchPriority="high"
-                />
-              </div>
-            ),
-          )}
+          {content.heroScreens.map((screen, index) => (
+            <div
+              key={screen.id}
+              className="andromeda__vortexShotWrap"
+              data-vortex-index={index}
+            >
+              <img
+                className="andromeda__vortexShot"
+                src={screen.src}
+                srcSet={`${screen.src} 1080w`}
+                sizes="(min-width: 64rem) 11rem, (min-width: 40rem) 9rem, 7rem"
+                alt={screen.alt}
+                width={1080}
+                height={2210}
+                loading={index === 1 ? 'eager' : 'lazy'}
+                decoding={index === 1 ? 'sync' : 'async'}
+                fetchPriority={index === 1 ? 'high' : 'auto'}
+              />
+            </div>
+          ))}
         </figure>
 
         <aside className="andromeda__insights" aria-label="Detalhes do projeto">
@@ -133,15 +165,15 @@ export function AndromedaProjectView() {
           </button>
 
           <ul className="andromeda__thumbs" role="list">
-            {content.artifacts.items.map((item, index) => (
+            {artifacts.map((item, index) => (
               <li key={item.id}>
                 <button
                   type="button"
                   className="andromeda__thumb"
                   data-active={index === activeArtifact ? 'true' : undefined}
-                  aria-label={item.label}
+                  aria-label={`${item.label} — ampliar captura`}
                   aria-current={index === activeArtifact ? 'true' : undefined}
-                  onClick={() => setActiveArtifact(index)}
+                  onClick={() => openArtifactModal(index)}
                 >
                   <img src={item.src} alt="" width={120} height={260} />
                 </button>
@@ -153,11 +185,9 @@ export function AndromedaProjectView() {
             type="button"
             className="andromeda__carouselNav"
             aria-label="Próximo artefato"
-            disabled={activeArtifact >= content.artifacts.items.length - 1}
+            disabled={activeArtifact >= artifacts.length - 1}
             onClick={() =>
-              setActiveArtifact((i) =>
-                Math.min(content.artifacts.items.length - 1, i + 1),
-              )
+              setActiveArtifact((i) => Math.min(artifacts.length - 1, i + 1))
             }
           >
             ›
@@ -168,6 +198,17 @@ export function AndromedaProjectView() {
           <p className="andromeda__artifactCaption">{artifact.label}</p>
         ) : null}
       </section>
+
+      {modalArtifact && modalArtifactIndex !== null ? (
+        <ArtifactScreenshotModal
+          artifact={modalArtifact}
+          index={modalArtifactIndex}
+          total={artifacts.length}
+          onClose={closeArtifactModal}
+          onPrev={showPrevArtifact}
+          onNext={showNextArtifact}
+        />
+      ) : null}
     </div>
   )
 }

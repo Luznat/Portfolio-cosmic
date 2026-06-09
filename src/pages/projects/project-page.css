@@ -180,7 +180,12 @@ body:has(.projectPage) {
 }
 
 .projectPage--andromeda .projectPage__inner {
+  z-index: 3;
   max-width: min(76rem, 100%);
+}
+
+.projectPage--andromeda .projectPage__holeOverlay {
+  z-index: 2;
 }
 
 @media (min-width: 48rem) and (max-width: 63.99rem) {

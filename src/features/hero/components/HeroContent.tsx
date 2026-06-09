@@ -28,7 +28,7 @@ export function HeroContent() {
         initial="hidden"
         animate="show"
       >
-        Alinhando os cosmos para experiências mobile além das estrelas.
+        Alinhando os cosmos para experiências além das estrelas.
       </motion.h1>
       <motion.p
         className={styles.subtitle}
@@ -37,7 +37,7 @@ export function HeroContent() {
         initial="hidden"
         animate="show"
       >
-        Desenvolvendo experiências mobile imersivas com identidade cósmica.
+        Desenvolvendo experiências digitais imersivas com identidade cósmica.
       </motion.p>
       <div className={styles.actions}>
         <motion.button

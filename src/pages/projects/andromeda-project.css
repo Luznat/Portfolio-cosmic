@@ -125,14 +125,6 @@
   animation-delay: -3s;
 }
 
-.andromeda__vortexFrontLayer {
-  position: absolute;
-  z-index: 6;
-  margin: 0;
-  pointer-events: none;
-  overflow: visible;
-}
-
 .andromeda__vortexShotWrap[data-vortex-index='1'] {
   z-index: 3;
   width: var(--vortex-1-w);
@@ -528,6 +520,134 @@
   margin: 0.85rem 0 0;
   font-size: var(--type-caption-size);
   letter-spacing: var(--type-caption-tracking);
+  color: var(--text-quiet);
+}
+
+.andromedaArtifactModal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 2rem);
+  background: color-mix(in srgb, var(--project-page-bg) 72%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.andromedaArtifactModal__dialog {
+  position: relative;
+  display: grid;
+  gap: 0.85rem;
+  width: min(100%, 22rem);
+  max-height: min(92dvh, 52rem);
+  padding: clamp(0.85rem, 2.5vw, 1.15rem);
+  border: 1px solid var(--border-soft);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--project-page-bg) 88%, var(--cta-bg) 12%);
+  box-shadow: 0 24px 64px color-mix(in srgb, var(--project-page-bg) 55%, transparent);
+}
+
+.andromedaArtifactModal__close {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: var(--cta-bg);
+  color: var(--text-emphasis);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.andromedaArtifactModal__close:hover {
+  border-color: var(--border-hover);
+  background: var(--cta-bg-hover);
+}
+
+.andromedaArtifactModal__figure {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  min-height: 0;
+}
+
+.andromedaArtifactModal__img {
+  display: block;
+  width: 100%;
+  max-height: min(72dvh, 44rem);
+  margin: 0 auto;
+  border-radius: 0.85rem;
+  border: 1px solid var(--project-phone-frame);
+  object-fit: contain;
+  object-position: top center;
+  background: color-mix(in srgb, var(--project-page-bg) 70%, transparent);
+}
+
+.andromedaArtifactModal__caption {
+  margin: 0;
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  letter-spacing: var(--type-caption-tracking);
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--text-subtle);
+}
+
+.andromedaArtifactModal__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.andromedaArtifactModal__navBtn {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: var(--cta-bg);
+  color: var(--text-emphasis);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.andromedaArtifactModal__navBtn:hover:not(:disabled) {
+  border-color: var(--border-hover);
+  background: var(--cta-bg-hover);
+}
+
+.andromedaArtifactModal__navBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.andromedaArtifactModal__counter {
+  margin: 0;
+  min-width: 3.5rem;
+  font-size: 0.68rem;
+  font-weight: var(--type-caption-weight);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
   color: var(--text-quiet);
 }
 

@@ -1,6 +1,11 @@
 import screenHome from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260521_185848_Andromeda.jpg'
-import screenSplash from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260526_023152_Andromeda.jpg'
+import screenTarot from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260521_185900_Andromeda.jpg'
 import screenProfile from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260521_185915_Andromeda.jpg'
+import screenSearch from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260521_185946_Andromeda.jpg'
+import screenMessages from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260609_155555_Andromeda.jpg'
+import screenCategory from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260609_155633_Andromeda.jpg'
+import screenChat from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260609_155808_Andromeda.jpg'
+import screenSplash from '../../shared/assets/images/projetos/andromeda-app/Screenshot_20260526_023152_Andromeda.jpg'
 
 export const andromedaAppSlug = 'andromeda-app' as const
 
@@ -90,6 +95,48 @@ export const andromedaAppContent = {
         label: 'Splash — Andrômeda',
         src: screenSplash,
         alt: 'Tela de boas-vindas do Andrômeda com nebulosa e botão Iniciar jornada',
+      },
+      {
+        id: 'home',
+        label: 'Início — recomendações',
+        src: screenHome,
+        alt: 'Tela inicial do Andrômeda com destaques e serviços recomendados',
+      },
+      {
+        id: 'tarot',
+        label: 'Tarot  — mentoria',
+        src: screenTarot,
+        alt: 'Detalhe da mentoria premium Tarot com horários e agendamento',
+      },
+      {
+        id: 'profile',
+        label: 'Perfil — constelação',
+        src: screenProfile,
+        alt: 'Perfil do usuário com constelação, créditos e progresso astral',
+      },
+      {
+        id: 'search',
+        label: 'Buscar — categorias',
+        src: screenSearch,
+        alt: 'Tela de busca com categorias populares e leituras em destaque',
+      },
+      {
+        id: 'messages',
+        label: 'Mensagens — conexões',
+        src: screenMessages,
+        alt: 'Lista de mensagens com guias e oráculos astrais',
+      },
+      {
+        id: 'category',
+        label: 'Categoria — tarot',
+        src: screenCategory,
+        alt: 'Categoria Tarot com filtros e lista de oráculos disponíveis',
+      },
+      {
+        id: 'chat',
+        label: 'Chat — Mensagem astrais',
+        src: screenChat,
+        alt: 'Conversa com Selene da Estrela em canal de mensagens astrais',
       },
     ],
   },
