@@ -16,10 +16,10 @@ export const andromedaAppContent = {
   headline: 'ANDRÔMEDA APP',
   tagline: 'Aplicativo de astronomia e exploração espacial.',
   description:
-    'Uma experiência imersiva para explorar o universo, com interface inspirada no cosmos, dados em tempo real e navegação fluida entre destaques, eventos e descobertas.',
+    'Andrômeda é um aplicativo desenvolvido para conectar pessoas em busca de orientação espiritual com profissionais especializados em diversas práticas e abordagens. O objetivo é criar um ambiente acessível, seguro e acolhedor para facilitar o encontro entre quem procura auxílio e quem pode oferecê-lo.',
   meta: [
     { label: 'Status', value: 'Concluído', tone: 'success' as const },
-    { label: 'Ano', value: '2025' },
+    { label: 'Ano', value: '2026' },
     { label: 'Categoria', value: 'Mobile' },
     { label: 'Plataformas', value: 'Android · iOS' },
   ],
@@ -57,14 +57,14 @@ export const andromedaAppContent = {
       id: 'mission',
       title: 'Missão',
       icon: '✦',
-      body: 'Aproximar pessoas do universo com uma experiência mobile imersiva, acessível e visualmente memorável.',
+      body: 'Criar uma ponte entre quem busca respostas, autoconhecimento e desenvolvimento espiritual e os profissionais capazes de auxiliar nessa jornada.',
     },
     {
       id: 'challenges',
       title: 'Desafios',
       icon: '◇',
       body: [
-        'Consumo de dados astronômicos em tempo quase real.',
+        'Desenvolver uma plataforma capaz de atender diferentes perfis de usuários, incluindo clientes e profissionais espirituais.',
         'Performance em dispositivos de gama média.',
         'Identidade visual forte sem comprometer legibilidade.',
       ],
@@ -73,7 +73,7 @@ export const andromedaAppContent = {
       id: 'solutions',
       title: 'Soluções',
       icon: '◎',
-      body: 'React Native com arquitetura modular, Firebase para sincronização e UI com camadas, blur e motion alinhados ao tema espacial.',
+      body: 'Aplicação desenvolvida em React Native com arquitetura modular, componentes reutilizáveis e interface intuitiva, projetada para facilitar a conexão entre usuários e profissionais da área espiritual.',
     },
     {
       id: 'learnings',
