@@ -1,4 +1,5 @@
 import { useEffect, useId } from 'react'
+import { createPortal } from 'react-dom'
 import type { AndromedaAppContent } from '../../content/projects/andromedaApp'
 import './andromeda-project.css'
 
@@ -40,7 +41,7 @@ export function ArtifactScreenshotModal({
     }
   }, [onClose, onNext, onPrev])
 
-  return (
+  return createPortal(
     <div
       className="andromedaArtifactModal"
       role="presentation"
@@ -100,6 +101,7 @@ export function ArtifactScreenshotModal({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
